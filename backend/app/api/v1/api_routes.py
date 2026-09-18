@@ -74,11 +74,32 @@ def get_profile(current_user: dict = Depends(get_current_user)):
 
 
 # ==========================================
-# 2. DASHBOARD / COMMAND CENTER OVERVIEW
+# 2. REGIONS & MULTI-DISTRICT CATALOG
+# ==========================================
+from backend.app.db.seed_multi_region import REGIONS
+
+@api_router.get("/regions", tags=["Regions"])
+def list_supported_regions():
+    """Returns list of all monitored disaster-prone regions across India."""
+    return REGIONS
+
+
+# ==========================================
+# 3. DASHBOARD / COMMAND CENTER OVERVIEW
 # ==========================================
 @api_router.get("/dashboard/kpis", tags=["Dashboard"])
-def get_dashboard_kpis(db: Session = Depends(get_db)):
-    habs = db.query(Habitation).all()
+def get_dashboard_kpis(
+    district: Optional[str] = None,
+    db: Session = Depends(get_db)
+):
+    query_habs = db.query(Habitation)
+    query_shelters = db.query(Shelter)
+
+    if district and district.upper() != "ALL":
+        query_habs = query_habs.filter(Habitation.district.ilike(f"%{district}%"))
+        query_shelters = query_shelters.filter(Shelter.district.ilike(f"%{district}%"))
+
+    habs = query_habs.all()
     critical_habs = [h for h in habs if h.risk_category == "CRITICAL"]
     warning_habs = [h for h in habs if h.risk_category == "WARNING"]
     immediate_reloc = [h for h in habs if h.immediate_relocation_needed]
@@ -86,7 +107,7 @@ def get_dashboard_kpis(db: Session = Depends(get_db)):
     total_people_risk = sum(h.total_population for h in critical_habs)
     total_vuln_risk = sum(h.vulnerable_population for h in critical_habs)
     
-    shelters = db.query(Shelter).all()
+    shelters = query_shelters.all()
     total_safe_capacity = sum(s.effective_safe_capacity for s in shelters)
     current_occupancy = sum(s.current_occupancy for s in shelters)
     available_capacity = max(0, total_safe_capacity - current_occupancy)
@@ -95,10 +116,15 @@ def get_dashboard_kpis(db: Session = Depends(get_db)):
     data_sources_count = db.query(DataSourceHealth).count()
     fresh_sources = db.query(DataSourceHealth).filter(DataSourceHealth.status == "FRESH").count()
 
+    selected_reg = next((r for r in REGIONS if district and (r["district"].lower() in district.lower() or r["id"].lower() == district.lower())), None)
+    dist_label = selected_reg["name"] if selected_reg else ("National Overview" if not district or district.upper() == "ALL" else district)
+
     return {
         "critical_zones_count": len(critical_habs),
         "warning_zones_count": len(warning_habs),
         "immediate_relocation_candidates_count": len(immediate_reloc),
+        "total_habitations_count": len(habs),
+        "total_shelters_count": len(shelters),
         "people_at_risk": total_people_risk,
         "vulnerable_people_at_risk": total_vuln_risk,
         "total_safe_capacity": total_safe_capacity,
@@ -107,34 +133,44 @@ def get_dashboard_kpis(db: Session = Depends(get_db)):
         "capacity_utilization_pct": round((current_occupancy / total_safe_capacity) * 100, 1) if total_safe_capacity > 0 else 0,
         "unresolved_alerts_count": unresolved_alerts,
         "data_sources_healthy": f"{fresh_sources}/{data_sources_count}",
-        "district": settings.DEMO_DISTRICT,
-        "state": settings.DEMO_STATE,
+        "district": dist_label,
+        "state": selected_reg["state"] if selected_reg else "India",
         "operational_mode": settings.DATA_MODE,
         "is_synthetic_demo": True
     }
 
 
 # ==========================================
-# 3. HAZARDS & RISK INTELLIGENCE
+# 4. HAZARDS & RISK INTELLIGENCE
 # ==========================================
 @api_router.get("/hazards/zones", tags=["Hazards"])
-def get_hazard_zones(db: Session = Depends(get_db)):
+def get_hazard_zones(
+    district: Optional[str] = None,
+    db: Session = Depends(get_db)
+):
     zones = db.query(HazardZone).all()
     features = []
     for z in zones:
+        drivers = json.loads(z.drivers_json) if z.drivers_json else {}
+        z_district = drivers.get("district", "")
+        if district and district.upper() != "ALL":
+            if z_district and district.lower() not in z_district.lower() and district.lower() not in z.name.lower():
+                continue
+
         features.append({
             "type": "Feature",
             "geometry": json.loads(z.geometry_geojson),
             "properties": {
                 "id": z.id,
                 "name": z.name,
+                "district": z_district,
                 "hazard_type": z.hazard_type,
                 "severity": z.severity,
                 "risk_score": z.risk_score,
                 "confidence_score": z.confidence_score,
                 "area_sqkm": z.area_sqkm,
                 "color": z.color_hex,
-                "drivers": json.loads(z.drivers_json) if z.drivers_json else {},
+                "drivers": drivers,
                 "warning_message": z.warning_message
             }
         })
@@ -146,16 +182,19 @@ def get_hazard_zones(db: Session = Depends(get_db)):
 
 
 # ==========================================
-# 4. HABITATIONS & EVIDENCE
+# 5. HABITATIONS & EVIDENCE
 # ==========================================
 @api_router.get("/habitations", tags=["Habitations"])
 def list_habitations(
+    district: Optional[str] = None,
     risk_category: Optional[str] = None,
-    limit: int = 50,
+    limit: int = 200,
     db: Session = Depends(get_db)
 ):
     query = db.query(Habitation)
-    if risk_category:
+    if district and district.upper() != "ALL":
+        query = query.filter(Habitation.district.ilike(f"%{district}%"))
+    if risk_category and risk_category.upper() != "ALL":
         query = query.filter(Habitation.risk_category == risk_category.upper())
     habs = query.limit(limit).all()
 
@@ -278,11 +317,17 @@ def get_habitation_detail(habitation_id: str, db: Session = Depends(get_db)):
 
 
 # ==========================================
-# 5. CARRYING CAPACITY
+# 6. CARRYING CAPACITY
 # ==========================================
 @api_router.get("/capacity/shelters", tags=["Carrying Capacity"])
-def get_all_shelters_capacity(db: Session = Depends(get_db)):
-    shelters = db.query(Shelter).all()
+def get_all_shelters_capacity(
+    district: Optional[str] = None,
+    db: Session = Depends(get_db)
+):
+    query = db.query(Shelter)
+    if district and district.upper() != "ALL":
+        query = query.filter(Shelter.district.ilike(f"%{district}%"))
+    shelters = query.all()
     results = []
     for s in shelters:
         cap = capacity_engine.evaluate_shelter_capacity(
@@ -299,6 +344,7 @@ def get_all_shelters_capacity(db: Session = Depends(get_db)):
             is_open=s.is_open
         )
         cap["shelter_type"] = s.shelter_type
+        cap["district"] = s.district
         cap["latitude"] = s.latitude
         cap["longitude"] = s.longitude
         results.append(cap)
@@ -306,7 +352,7 @@ def get_all_shelters_capacity(db: Session = Depends(get_db)):
 
 
 # ==========================================
-# 6. ROUTING & CANDIDATE ROUTES
+# 7. ROUTING & CANDIDATE ROUTES
 # ==========================================
 @api_router.post("/routes/calculate", tags=["Routing"])
 def calculate_route_options(req: RouteQueryRequest, db: Session = Depends(get_db)):
@@ -334,7 +380,14 @@ def calculate_route_options(req: RouteQueryRequest, db: Session = Depends(get_db
 
 
 @api_router.get("/routes/network", tags=["Routing"])
-def get_road_network(db: Session = Depends(get_db)):
+def get_road_network(
+    district: Optional[str] = None,
+    db: Session = Depends(get_db)
+):
+    query = db.query(RoadSegment)
+    if district and district.upper() != "ALL":
+        # Check roads matching district
+        query = query.filter(RoadSegment.name.ilike(f"%{district}%"))
     roads = db.query(RoadSegment).all()
     features = []
     for r in roads:

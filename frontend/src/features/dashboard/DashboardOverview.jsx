@@ -19,20 +19,26 @@ import {
 import { api } from '../../api/client';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Cell } from 'recharts';
 
-export default function DashboardOverview({ onNavigate, onSelectHabitation }) {
+export default function DashboardOverview({
+  onNavigate,
+  onSelectHabitation,
+  selectedRegion = 'ALL',
+  currentRegionObj
+}) {
   const [kpis, setKpis] = useState(null);
   const [loading, setLoading] = useState(true);
   const [alerts, setAlerts] = useState([]);
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [selectedRegion]);
 
   const loadData = async () => {
     try {
       setLoading(true);
+      const districtParam = selectedRegion === 'ALL' ? null : (currentRegionObj?.district || selectedRegion);
       const [kpiData, alertData] = await Promise.all([
-        api.getKPIs(),
+        api.getKPIs(districtParam),
         api.getAlerts()
       ]);
       setKpis(kpiData);
@@ -45,26 +51,26 @@ export default function DashboardOverview({ onNavigate, onSelectHabitation }) {
   };
 
   const chartData = [
-    { name: 'Critical P1', count: kpis?.critical_zones_count || 3, color: '#F43F5E' },
-    { name: 'Warning P2', count: kpis?.warning_zones_count || 5, color: '#F59E0B' },
-    { name: 'Watch P3', count: 8, color: '#38BDF8' },
-    { name: 'Stable P4', count: 4, color: '#10B981' }
+    { name: 'Critical P1', count: kpis?.critical_zones_count || 0, color: '#F43F5E' },
+    { name: 'Warning P2', count: kpis?.warning_zones_count || 0, color: '#F59E0B' },
+    { name: 'Watch P3', count: Math.max(0, (kpis?.total_habitations_count || 10) - (kpis?.critical_zones_count || 0) - (kpis?.warning_zones_count || 0)), color: '#38BDF8' },
+    { name: 'Safe Shelters', count: kpis?.total_shelters_count || 0, color: '#10B981' }
   ];
 
   return (
     <div className="space-y-5 pb-12 max-w-7xl mx-auto">
       {/* 1. Command Header Banner */}
-      <div className="relative overflow-hidden p-6 rounded-2xl bg-[#0B0F17]/90 backdrop-blur-xl border border-white/10 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="relative overflow-hidden p-6 rounded-2xl bg-[#0B0F17]/90 backdrop-blur-xl border border-slate-800 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
         <div className="relative z-10">
           <div className="flex items-center space-x-2 mb-1 text-xs font-mono">
             <span className="px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
-              TACTICAL GRID • CHAMOLI 2026
+              TACTICAL GRID • {currentRegionObj?.name?.toUpperCase() || 'ALL INDIA NATIONAL OVERVIEW'}
             </span>
             <span className="text-slate-600">•</span>
             <span className="text-emerald-400 flex items-center space-x-1">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-              <span>LIVE INSAR MONSOON TELEMETRY</span>
+              <span>LIVE SATELLITE & SENSOR TELEMETRY</span>
             </span>
           </div>
           <h1 className="text-2xl font-bold text-white tracking-tight font-mono">

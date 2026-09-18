@@ -1,12 +1,9 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "title": "ResQZone Evacuation Road Network - Chamoli District",
-    "generated_at": "2026-09-18T18:46:07.975647+00:00",
-    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84",
-    "source": "OpenStreetMap & Border Roads Organisation (BRO) Survey",
-    "is_synthetic": true,
-    "segment_count": 56
+    "title": "ResQZone Road Evacuation Network - Pan India",
+    "generated_at": "2026-09-18T19:38:50.982799+00:00",
+    "crs": "CRS84"
   },
   "features": [
     {
@@ -15,349 +12,36 @@
         "type": "LineString",
         "coordinates": [
           [
-            79.585,
-            30.62
-          ],
-          [
-            79.5905,
-            30.6286
-          ],
-          [
-            79.595,
-            30.638
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-001",
-        "name": "NH-07 Pandukeshwar Section",
-        "from_node": "JUNC-09",
-        "to_node": "SHELTER-05",
-        "from_name": "Govindghat Crossing",
-        "to_name": "Pandukeshwar Transit Relief Camp",
-        "distance_km": 3.0,
-        "speed_limit_kmh": 40,
-        "base_travel_time_min": 4.5,
-        "road_class": "PRIMARY_HIGHWAY",
-        "pavement_condition": "GOOD",
-        "slope_risk_score": 0.35,
-        "hazard_exposure_score": 0.35,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 7.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.593,
-            30.642
-          ],
-          [
-            79.5945,
-            30.6396
-          ],
-          [
-            79.595,
-            30.638
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-002",
-        "name": "Pandukeshwar Internal Access",
-        "from_node": "HAB-16",
-        "to_node": "SHELTER-05",
-        "from_name": "Pandukeshwar Lower",
-        "to_name": "Pandukeshwar Transit Relief Camp",
-        "distance_km": 0.65,
-        "speed_limit_kmh": 25,
-        "base_travel_time_min": 1.6,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "GOOD",
-        "slope_risk_score": 0.4,
-        "hazard_exposure_score": 0.4,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.593,
-            30.642
-          ],
-          [
-            79.5895,
-            30.6306
-          ],
-          [
-            79.585,
-            30.62
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-003",
-        "name": "Govindghat Link Road",
-        "from_node": "HAB-16",
-        "to_node": "JUNC-09",
-        "from_name": "Pandukeshwar Lower",
-        "to_name": "Govindghat Crossing",
-        "distance_km": 3.46,
-        "speed_limit_kmh": 35,
-        "base_travel_time_min": 5.9,
-        "road_class": "DISTRICT_ROAD",
-        "pavement_condition": "GOOD",
-        "slope_risk_score": 0.3,
-        "hazard_exposure_score": 0.3,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.585,
-            30.62
-          ],
-          [
-            79.5726,
-            30.59335
-          ],
-          [
-            79.5592,
-            30.5675
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-004",
-        "name": "Parsari Mountain Bypass",
-        "from_node": "JUNC-09",
-        "to_node": "HAB-08",
-        "from_name": "Govindghat Crossing",
-        "to_name": "Parsari Settlement",
-        "distance_km": 8.56,
-        "speed_limit_kmh": 20,
-        "base_travel_time_min": 25.7,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.65,
-        "hazard_exposure_score": 0.65,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.5592,
-            30.5675
-          ],
-          [
-            79.5618,
-            30.5644
-          ],
-          [
-            79.5634,
-            30.5621
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-005",
-        "name": "Parsari-Sunil Upper Track",
-        "from_node": "HAB-08",
-        "to_node": "HAB-02",
-        "from_name": "Parsari Settlement",
-        "to_name": "Sunil Ward (Subsidence Zone)",
-        "distance_km": 0.97,
-        "speed_limit_kmh": 20,
-        "base_travel_time_min": 2.9,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "DAMAGED",
-        "slope_risk_score": 0.75,
-        "hazard_exposure_score": 0.75,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.5634,
-            30.5621
-          ],
-          [
-            79.5632,
-            30.56065
-          ],
-          [
-            79.562,
-            30.56
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-006",
-        "name": "Sunil Ward Link Road",
-        "from_node": "HAB-02",
-        "to_node": "JUNC-10",
-        "from_name": "Sunil Ward (Subsidence Zone)",
-        "to_name": "Sunil Ropeway Junction",
-        "distance_km": 0.6,
-        "speed_limit_kmh": 25,
-        "base_travel_time_min": 1.4,
-        "road_class": "DISTRICT_ROAD",
-        "pavement_condition": "DAMAGED",
-        "slope_risk_score": 0.85,
-        "hazard_exposure_score": 0.85,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.562,
-            30.56
-          ],
-          [
-            79.565,
-            30.5571
-          ],
-          [
-            79.567,
-            30.555
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-007",
-        "name": "Sunil-Central Chowk Arterial",
-        "from_node": "JUNC-10",
-        "to_node": "JUNC-01",
-        "from_name": "Sunil Ropeway Junction",
-        "to_name": "Joshimath Central Chowk (NH-07)",
-        "distance_km": 0.99,
-        "speed_limit_kmh": 35,
-        "base_travel_time_min": 1.7,
-        "road_class": "PRIMARY_HIGHWAY",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.55,
-        "hazard_exposure_score": 0.55,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 7.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
             79.5681,
             30.5574
           ],
           [
-            79.56805,
-            30.5558
+            79.57079999999999,
+            30.561300000000003
           ],
           [
-            79.567,
-            30.555
+            79.5735,
+            30.5592
           ]
         ]
       },
       "properties": {
-        "id": "ROAD-008",
-        "name": "Manohar Bagh Link Road",
+        "id": "ROAD-01",
+        "name": "Badrinath National Highway (NH-07)",
+        "district": "Chamoli",
         "from_node": "HAB-01",
-        "to_node": "JUNC-01",
+        "to_node": "SH-01",
         "from_name": "Manohar Bagh Ward",
-        "to_name": "Joshimath Central Chowk (NH-07)",
-        "distance_km": 0.6,
-        "speed_limit_kmh": 20,
-        "base_travel_time_min": 1.8,
-        "road_class": "DISTRICT_ROAD",
-        "pavement_condition": "DAMAGED",
-        "slope_risk_score": 0.88,
-        "hazard_exposure_score": 0.88,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.5659,
-            30.5582
-          ],
-          [
-            79.56695,
-            30.5562
-          ],
-          [
-            79.567,
-            30.555
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-009",
-        "name": "Upper Bazaar Main Access",
-        "from_node": "HAB-07",
-        "to_node": "JUNC-01",
-        "from_name": "Upper Bazaar Sector",
-        "to_name": "Joshimath Central Chowk (NH-07)",
-        "distance_km": 0.6,
-        "speed_limit_kmh": 30,
-        "base_travel_time_min": 1.2,
-        "road_class": "DISTRICT_ROAD",
+        "to_name": "Govt Girls Inter College (GGIC)",
+        "distance_km": 1.4,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 3.5,
+        "road_class": "STATE_HIGHWAY",
         "pavement_condition": "GOOD",
-        "slope_risk_score": 0.4,
-        "hazard_exposure_score": 0.4,
+        "slope_risk_score": 0.52,
+        "hazard_exposure_score": 0.75,
         "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "blocked_reason": null
       }
     },
     {
@@ -366,37 +50,36 @@
         "type": "LineString",
         "coordinates": [
           [
-            79.5648,
-            30.5547
+            79.5634,
+            30.5621
           ],
           [
-            79.5664,
-            30.55445
+            79.56845,
+            30.563650000000003
           ],
           [
-            79.567,
-            30.555
+            79.5735,
+            30.5592
           ]
         ]
       },
       "properties": {
-        "id": "ROAD-010",
-        "name": "Gandhi Nagar Corridor",
-        "from_node": "HAB-06",
-        "to_node": "JUNC-01",
-        "from_name": "Gandhi Nagar Ward",
-        "to_name": "Joshimath Central Chowk (NH-07)",
-        "distance_km": 0.6,
-        "speed_limit_kmh": 25,
-        "base_travel_time_min": 1.4,
+        "id": "ROAD-02",
+        "name": "Joshimath Upper Ring Arterial",
+        "district": "Chamoli",
+        "from_node": "HAB-02",
+        "to_node": "SH-01",
+        "from_name": "Sunil Ward (Subsidence Zone)",
+        "to_name": "Govt Girls Inter College (GGIC)",
+        "distance_km": 2.1,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 5.0,
         "road_class": "DISTRICT_ROAD",
         "pavement_condition": "FAIR",
-        "slope_risk_score": 0.6,
-        "hazard_exposure_score": 0.6,
+        "slope_risk_score": 0.59,
+        "hazard_exposure_score": 0.85,
         "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "blocked_reason": null
       }
     },
     {
@@ -405,115 +88,36 @@
         "type": "LineString",
         "coordinates": [
           [
-            79.5695,
-            30.5532
+            79.5652,
+            30.5528
           ],
           [
-            79.56875,
-            30.5537
+            79.57165,
+            30.5535
           ],
           [
-            79.567,
-            30.555
+            79.5781,
+            30.5482
           ]
         ]
       },
       "properties": {
-        "id": "ROAD-011",
-        "name": "Singhdhar Incline Road",
+        "id": "ROAD-03",
+        "name": "Auli Ropeway Evacuation Spur",
+        "district": "Chamoli",
         "from_node": "HAB-03",
-        "to_node": "JUNC-01",
-        "from_name": "Singhdhar Ward",
-        "to_name": "Joshimath Central Chowk (NH-07)",
-        "distance_km": 0.6,
-        "speed_limit_kmh": 20,
-        "base_travel_time_min": 1.8,
+        "to_node": "SH-03",
+        "from_name": "Singhdhar Ground Rupture Sector",
+        "to_name": "Auli Road Relief Camp (Army Cantonment)",
+        "distance_km": 3.8,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 7.5,
         "road_class": "DISTRICT_ROAD",
-        "pavement_condition": "DAMAGED",
-        "slope_risk_score": 0.8,
-        "hazard_exposure_score": 0.8,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.5776,
-            30.5598
-          ],
-          [
-            79.5728,
-            30.557
-          ],
-          [
-            79.567,
-            30.555
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-012",
-        "name": "Ravigram Link Road",
-        "from_node": "HAB-05",
-        "to_node": "JUNC-01",
-        "from_name": "Ravigram Village",
-        "to_name": "Joshimath Central Chowk (NH-07)",
-        "distance_km": 1.55,
-        "speed_limit_kmh": 25,
-        "base_travel_time_min": 3.7,
-        "road_class": "DISTRICT_ROAD",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.65,
-        "hazard_exposure_score": 0.65,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.567,
-            30.555
-          ],
-          [
-            79.5715,
-            30.5596
-          ],
-          [
-            79.575,
-            30.565
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-013",
-        "name": "Joshimath Cantt Safe Route",
-        "from_node": "JUNC-01",
-        "to_node": "SHELTER-04",
-        "from_name": "Joshimath Central Chowk (NH-07)",
-        "to_name": "Joshimath Cantonment Prefab Safe Camp",
-        "distance_km": 1.82,
-        "speed_limit_kmh": 40,
-        "base_travel_time_min": 2.7,
-        "road_class": "PRIMARY_HIGHWAY",
         "pavement_condition": "GOOD",
-        "slope_risk_score": 0.3,
+        "slope_risk_score": 0.21,
         "hazard_exposure_score": 0.3,
         "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 7.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "blocked_reason": null
       }
     },
     {
@@ -522,388 +126,36 @@
         "type": "LineString",
         "coordinates": [
           [
-            79.567,
-            30.555
-          ],
-          [
-            79.57,
-            30.5521
-          ],
-          [
-            79.572,
-            30.55
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-014",
-        "name": "Joshimath-Marwari Descent (R17)",
-        "from_node": "JUNC-01",
-        "to_node": "JUNC-02",
-        "from_name": "Joshimath Central Chowk (NH-07)",
-        "to_name": "Marwari Bridge Junction",
-        "distance_km": 0.99,
-        "speed_limit_kmh": 30,
-        "base_travel_time_min": 2.0,
-        "road_class": "PRIMARY_HIGHWAY",
-        "pavement_condition": "DAMAGED",
-        "slope_risk_score": 0.78,
-        "hazard_exposure_score": 0.78,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 7.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.5742,
+            79.5615,
             30.5489
           ],
           [
-            79.5736,
-            30.54905
+            79.49715,
+            30.49305
           ],
           [
-            79.572,
-            30.55
+            79.4328,
+            30.4312
           ]
         ]
       },
       "properties": {
-        "id": "ROAD-015",
-        "name": "Marwari Ghat Access",
+        "id": "ROAD-04",
+        "name": "Pipalkoti Valley Highway Connector",
+        "district": "Chamoli",
         "from_node": "HAB-04",
-        "to_node": "JUNC-02",
-        "from_name": "Marwari (Alaknanda Banks)",
-        "to_name": "Marwari Bridge Junction",
-        "distance_km": 0.6,
-        "speed_limit_kmh": 20,
-        "base_travel_time_min": 1.8,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "DAMAGED",
-        "slope_risk_score": 0.82,
-        "hazard_exposure_score": 0.82,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.572,
-            30.55
-          ],
-          [
-            79.554,
-            30.5401
-          ],
-          [
-            79.535,
-            30.531
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-016",
-        "name": "Marwari-Selang Sector NH-07",
-        "from_node": "JUNC-02",
-        "to_node": "JUNC-12",
-        "from_name": "Marwari Bridge Junction",
-        "to_name": "Selang Curve",
-        "distance_km": 5.58,
-        "speed_limit_kmh": 35,
-        "base_travel_time_min": 9.6,
-        "road_class": "PRIMARY_HIGHWAY",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.6,
-        "hazard_exposure_score": 0.6,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 7.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.539,
-            30.534
-          ],
-          [
-            79.5375,
-            30.5321
-          ],
-          [
-            79.535,
-            30.531
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-017",
-        "name": "Selang Access Track",
-        "from_node": "HAB-17",
-        "to_node": "JUNC-12",
-        "from_name": "Selang Terrace",
-        "to_name": "Selang Curve",
-        "distance_km": 0.69,
-        "speed_limit_kmh": 25,
-        "base_travel_time_min": 1.7,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.45,
-        "hazard_exposure_score": 0.45,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.535,
-            30.531
-          ],
-          [
-            79.529,
-            30.5246
-          ],
-          [
-            79.522,
-            30.519
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-018",
-        "name": "Selang-Helang Highway",
-        "from_node": "JUNC-12",
-        "to_node": "JUNC-03",
-        "from_name": "Selang Curve",
-        "to_name": "Helang Bypass Intersection",
-        "distance_km": 2.47,
-        "speed_limit_kmh": 40,
-        "base_travel_time_min": 3.7,
-        "road_class": "PRIMARY_HIGHWAY",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.5,
-        "hazard_exposure_score": 0.5,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 7.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.5192,
-            30.5186
-          ],
-          [
-            79.5211,
-            30.5184
-          ],
-          [
-            79.522,
-            30.519
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-019",
-        "name": "Helang Village Feeder",
-        "from_node": "HAB-09",
-        "to_node": "JUNC-03",
-        "from_name": "Helang Valley Cluster",
-        "to_name": "Helang Bypass Intersection",
-        "distance_km": 0.6,
-        "speed_limit_kmh": 25,
-        "base_travel_time_min": 1.4,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.5,
-        "hazard_exposure_score": 0.5,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.522,
-            30.519
-          ],
-          [
-            79.5195,
-            30.5176
-          ],
-          [
-            79.516,
-            30.517
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-020",
-        "name": "Helang Community Center Route",
-        "from_node": "JUNC-03",
-        "to_node": "SHELTER-03",
-        "from_name": "Helang Bypass Intersection",
-        "to_name": "Helang Mandir Community Relief Shelter",
-        "distance_km": 0.84,
-        "speed_limit_kmh": 30,
-        "base_travel_time_min": 1.7,
-        "road_class": "DISTRICT_ROAD",
+        "to_node": "SH-04",
+        "from_name": "Marwari Lower Ward",
+        "to_name": "Pipalkoti Polytechnic Transit Base",
+        "distance_km": 14.5,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 24.0,
+        "road_class": "STATE_HIGHWAY",
         "pavement_condition": "GOOD",
-        "slope_risk_score": 0.35,
-        "hazard_exposure_score": 0.35,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.522,
-            30.519
-          ],
-          [
-            79.4915,
-            30.4941
-          ],
-          [
-            79.46,
-            30.47
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-021",
-        "name": "Helang-Gulabkoti Stretch",
-        "from_node": "JUNC-03",
-        "to_node": "JUNC-04",
-        "from_name": "Helang Bypass Intersection",
-        "to_name": "Gulabkoti Ridge Turn",
-        "distance_km": 10.88,
-        "speed_limit_kmh": 40,
-        "base_travel_time_min": 16.3,
-        "road_class": "PRIMARY_HIGHWAY",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.55,
-        "hazard_exposure_score": 0.55,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 7.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.465,
-            30.4725
-          ],
-          [
-            79.463,
-            30.47085
-          ],
-          [
-            79.46,
-            30.47
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-022",
-        "name": "Gulabkoti Ridge Road",
-        "from_node": "HAB-12",
-        "to_node": "JUNC-04",
-        "from_name": "Gulabkoti Hamlet",
-        "to_name": "Gulabkoti Ridge Turn",
-        "distance_km": 0.74,
-        "speed_limit_kmh": 25,
-        "base_travel_time_min": 1.8,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.45,
-        "hazard_exposure_score": 0.45,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.4891,
-            30.4982
-          ],
-          [
-            79.47505,
-            30.4837
-          ],
-          [
-            79.46,
-            30.47
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-023",
-        "name": "Pakhi Village Byway",
-        "from_node": "HAB-10",
-        "to_node": "JUNC-04",
-        "from_name": "Pakhi Village",
-        "to_name": "Gulabkoti Ridge Turn",
-        "distance_km": 5.67,
-        "speed_limit_kmh": 25,
-        "base_travel_time_min": 13.6,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "GOOD",
-        "slope_risk_score": 0.4,
+        "slope_risk_score": 0.28,
         "hazard_exposure_score": 0.4,
         "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "blocked_reason": null
       }
     },
     {
@@ -912,583 +164,36 @@
         "type": "LineString",
         "coordinates": [
           [
-            79.46,
-            30.47
+            76.1685,
+            11.5362
           ],
           [
-            79.446,
-            30.4521
+            76.14675,
+            11.5481
           ],
           [
-            79.431,
-            30.435
+            76.125,
+            11.554
           ]
         ]
       },
       "properties": {
-        "id": "ROAD-024",
-        "name": "Gulabkoti to Pipalkoti NH-07",
-        "from_node": "JUNC-04",
-        "to_node": "JUNC-05",
-        "from_name": "Gulabkoti Ridge Turn",
-        "to_name": "Pipalkoti Valley Gate",
-        "distance_km": 6.45,
-        "speed_limit_kmh": 45,
-        "base_travel_time_min": 8.6,
-        "road_class": "PRIMARY_HIGHWAY",
-        "pavement_condition": "GOOD",
-        "slope_risk_score": 0.25,
-        "hazard_exposure_score": 0.25,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 7.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.431,
-            30.435
-          ],
-          [
-            79.4305,
-            30.43235
-          ],
-          [
-            79.429,
-            30.4305
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-025",
-        "name": "Pipalkoti Central Relief Access",
-        "from_node": "JUNC-05",
-        "to_node": "SHELTER-01",
-        "from_name": "Pipalkoti Valley Gate",
-        "to_name": "Pipalkoti Central Degree College Relief Hub",
-        "distance_km": 0.73,
-        "speed_limit_kmh": 45,
-        "base_travel_time_min": 1.0,
-        "road_class": "PRIMARY_HIGHWAY",
-        "pavement_condition": "GOOD",
-        "slope_risk_score": 0.15,
-        "hazard_exposure_score": 0.15,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 7.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.4285,
-            30.432
-          ],
-          [
-            79.42925,
-            30.43085
-          ],
-          [
-            79.429,
-            30.4305
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-026",
-        "name": "Pipalkoti South Feeder",
-        "from_node": "HAB-11",
-        "to_node": "SHELTER-01",
-        "from_name": "Pipalkoti South",
-        "to_name": "Pipalkoti Central Degree College Relief Hub",
-        "distance_km": 0.6,
-        "speed_limit_kmh": 35,
-        "base_travel_time_min": 1.0,
-        "road_class": "DISTRICT_ROAD",
-        "pavement_condition": "GOOD",
-        "slope_risk_score": 0.1,
-        "hazard_exposure_score": 0.1,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.431,
-            30.435
-          ],
-          [
-            79.406,
-            30.4221
-          ],
-          [
-            79.38,
-            30.41
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-027",
-        "name": "Pipalkoti-Chamoli Valley Highway",
-        "from_node": "JUNC-05",
-        "to_node": "JUNC-06",
-        "from_name": "Pipalkoti Valley Gate",
-        "to_name": "Chamoli Tri-junction",
-        "distance_km": 7.6,
-        "speed_limit_kmh": 50,
-        "base_travel_time_min": 9.1,
-        "road_class": "PRIMARY_HIGHWAY",
-        "pavement_condition": "GOOD",
-        "slope_risk_score": 0.2,
-        "hazard_exposure_score": 0.2,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 7.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.38,
-            30.41
-          ],
-          [
-            79.3895,
-            30.4071
-          ],
-          [
-            79.398,
-            30.405
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-028",
-        "name": "Chamoli Polytechnic Link",
-        "from_node": "JUNC-06",
-        "to_node": "SHELTER-07",
-        "from_name": "Chamoli Tri-junction",
-        "to_name": "Chamoli Polytechnic Safe Zone",
-        "distance_km": 2.44,
-        "speed_limit_kmh": 40,
-        "base_travel_time_min": 3.7,
-        "road_class": "DISTRICT_ROAD",
-        "pavement_condition": "GOOD",
-        "slope_risk_score": 0.15,
-        "hazard_exposure_score": 0.15,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.38,
-            30.41
-          ],
-          [
-            79.3605,
-            30.4121
-          ],
-          [
-            79.34,
-            30.415
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-029",
-        "name": "Chamoli-Gopeshwar Mountain Highway",
-        "from_node": "JUNC-06",
-        "to_node": "JUNC-07",
-        "from_name": "Chamoli Tri-junction",
-        "to_name": "Gopeshwar Access Link",
-        "distance_km": 5.24,
-        "speed_limit_kmh": 40,
-        "base_travel_time_min": 7.9,
-        "road_class": "PRIMARY_HIGHWAY",
-        "pavement_condition": "GOOD",
-        "slope_risk_score": 0.25,
-        "hazard_exposure_score": 0.25,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 7.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.34,
-            30.415
-          ],
-          [
-            79.3365,
-            30.4161
-          ],
-          [
-            79.332,
-            30.418
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-030",
-        "name": "Gopeshwar Stadium Relief Road",
-        "from_node": "JUNC-07",
-        "to_node": "SHELTER-02",
-        "from_name": "Gopeshwar Access Link",
-        "to_name": "Gopeshwar District Sports Complex",
-        "distance_km": 1.13,
-        "speed_limit_kmh": 35,
-        "base_travel_time_min": 1.9,
-        "road_class": "DISTRICT_ROAD",
-        "pavement_condition": "GOOD",
-        "slope_risk_score": 0.1,
-        "hazard_exposure_score": 0.1,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.34,
-            30.415
-          ],
-          [
-            79.348,
-            30.4081
-          ],
-          [
-            79.355,
-            30.402
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-031",
-        "name": "Ghingran Extension Road",
-        "from_node": "JUNC-07",
-        "to_node": "SHELTER-06",
-        "from_name": "Gopeshwar Access Link",
-        "to_name": "Ghingran Resettlement Facility",
-        "distance_km": 2.75,
-        "speed_limit_kmh": 35,
-        "base_travel_time_min": 4.7,
-        "road_class": "DISTRICT_ROAD",
-        "pavement_condition": "GOOD",
-        "slope_risk_score": 0.15,
-        "hazard_exposure_score": 0.15,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.567,
-            30.555
-          ],
-          [
-            79.583,
-            30.5346
-          ],
-          [
-            79.598,
-            30.515
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-032",
-        "name": "Joshimath-Dhak Bypass",
-        "from_node": "JUNC-01",
-        "to_node": "JUNC-11",
-        "from_name": "Joshimath Central Chowk (NH-07)",
-        "to_name": "Dhak Morh",
-        "distance_km": 7.22,
-        "speed_limit_kmh": 30,
-        "base_travel_time_min": 14.4,
+        "id": "ROAD-WY-01",
+        "name": "Meppadi-Chooralmala Arterial Road",
+        "district": "Wayanad",
+        "from_node": "HAB-WY-01",
+        "to_node": "SH-WY-01",
+        "from_name": "Chooralmala Town Center",
+        "to_name": "St. Joseph Higher Secondary School Meppadi",
+        "distance_km": 4.8,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 8.0,
         "road_class": "DISTRICT_ROAD",
         "pavement_condition": "FAIR",
-        "slope_risk_score": 0.5,
-        "hazard_exposure_score": 0.5,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.605,
-            30.512
-          ],
-          [
-            79.602,
-            30.5131
-          ],
-          [
-            79.598,
-            30.515
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-033",
-        "name": "Dhak Village Track",
-        "from_node": "HAB-18",
-        "to_node": "JUNC-11",
-        "from_name": "Dhak Village Slope",
-        "to_name": "Dhak Morh",
-        "distance_km": 1.01,
-        "speed_limit_kmh": 20,
-        "base_travel_time_min": 3.0,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.55,
-        "hazard_exposure_score": 0.55,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.62,
-            30.505
-          ],
-          [
-            79.6095,
-            30.5096
-          ],
-          [
-            79.598,
-            30.515
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-034",
-        "name": "Subhai Cluster Link",
-        "from_node": "HAB-19",
-        "to_node": "JUNC-11",
-        "from_name": "Subhai Cluster",
-        "to_name": "Dhak Morh",
-        "distance_km": 3.21,
-        "speed_limit_kmh": 25,
-        "base_travel_time_min": 7.7,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.45,
-        "hazard_exposure_score": 0.45,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.598,
-            30.515
-          ],
-          [
-            79.612,
-            30.5036
-          ],
-          [
-            79.625,
-            30.493
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-035",
-        "name": "Dhak-Tapovan Road",
-        "from_node": "JUNC-11",
-        "to_node": "JUNC-08",
-        "from_name": "Dhak Morh",
-        "to_name": "Tapovan Powerhouse Fork",
-        "distance_km": 4.81,
-        "speed_limit_kmh": 30,
-        "base_travel_time_min": 9.6,
-        "road_class": "DISTRICT_ROAD",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.65,
-        "hazard_exposure_score": 0.65,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.6289,
-            30.4951
-          ],
-          [
-            79.62745,
-            30.49365
-          ],
-          [
-            79.625,
-            30.493
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-036",
-        "name": "Tapovan Riverside Approach",
-        "from_node": "HAB-13",
-        "to_node": "JUNC-08",
-        "from_name": "Tapovan Riverside",
-        "to_name": "Tapovan Powerhouse Fork",
-        "distance_km": 0.6,
-        "speed_limit_kmh": 20,
-        "base_travel_time_min": 1.8,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "DAMAGED",
-        "slope_risk_score": 0.85,
-        "hazard_exposure_score": 0.85,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.625,
-            30.493
-          ],
-          [
-            79.629,
-            30.4916
-          ],
-          [
-            79.632,
-            30.491
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-037",
-        "name": "Tapovan High School Route",
-        "from_node": "JUNC-08",
-        "to_node": "SHELTER-08",
-        "from_name": "Tapovan Powerhouse Fork",
-        "to_name": "Tapovan High School Transit Center",
-        "distance_km": 0.96,
-        "speed_limit_kmh": 30,
-        "base_travel_time_min": 1.9,
-        "road_class": "DISTRICT_ROAD",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.45,
-        "hazard_exposure_score": 0.45,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.625,
-            30.493
-          ],
-          [
-            79.6617,
-            30.4889
-          ],
-          [
-            79.6974,
-            30.4856
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-038",
-        "name": "Tapovan-Reni Gorge Road",
-        "from_node": "JUNC-08",
-        "to_node": "HAB-14",
-        "from_name": "Tapovan Powerhouse Fork",
-        "to_name": "Reni Disaster Zone",
-        "distance_km": 9.44,
-        "speed_limit_kmh": 20,
-        "base_travel_time_min": 28.3,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "DAMAGED",
-        "slope_risk_score": 0.9,
+        "slope_risk_score": 0.63,
         "hazard_exposure_score": 0.9,
         "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "blocked_reason": null
       }
     },
     {
@@ -1497,37 +202,36 @@
         "type": "LineString",
         "coordinates": [
           [
-            79.6974,
-            30.4856
+            76.1798,
+            11.5491
           ],
           [
-            79.7098,
-            30.49115
+            76.1524,
+            11.554549999999999
           ],
           [
-            79.7212,
-            30.4975
+            76.125,
+            11.554
           ]
         ]
       },
       "properties": {
-        "id": "ROAD-039",
-        "name": "Reni-Lata Upstream Trail",
-        "from_node": "HAB-14",
-        "to_node": "HAB-15",
-        "from_name": "Reni Disaster Zone",
-        "to_name": "Lata Village Highbank",
-        "distance_km": 3.56,
-        "speed_limit_kmh": 15,
-        "base_travel_time_min": 14.3,
-        "road_class": "RURAL_LINK",
+        "id": "ROAD-WY-02",
+        "name": "Chooralmala-Mundakkai Bailey Bridge Corridor",
+        "district": "Wayanad",
+        "from_node": "HAB-WY-02",
+        "to_node": "SH-WY-01",
+        "from_name": "Mundakkai High Settlement",
+        "to_name": "St. Joseph Higher Secondary School Meppadi",
+        "distance_km": 6.2,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 12.0,
+        "road_class": "DISTRICT_ROAD",
         "pavement_condition": "FAIR",
-        "slope_risk_score": 0.7,
-        "hazard_exposure_score": 0.7,
+        "slope_risk_score": 0.66,
+        "hazard_exposure_score": 0.95,
         "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "blocked_reason": null
       }
     },
     {
@@ -1536,37 +240,36 @@
         "type": "LineString",
         "coordinates": [
           [
-            79.522,
-            30.519
+            76.162,
+            11.5305
           ],
           [
-            79.504,
-            30.5466
+            76.123,
+            11.57375
           ],
           [
-            79.485,
-            30.575
+            76.084,
+            11.611
           ]
         ]
       },
       "properties": {
-        "id": "ROAD-040",
-        "name": "Helang-Urgam Valley Rural Road",
-        "from_node": "JUNC-03",
-        "to_node": "HAB-20",
-        "from_name": "Helang Bypass Intersection",
-        "to_name": "Urgam Valley Fringe",
-        "distance_km": 9.67,
-        "speed_limit_kmh": 20,
-        "base_travel_time_min": 29.0,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.6,
-        "hazard_exposure_score": 0.6,
+        "id": "ROAD-WY-03",
+        "name": "Vellarmala-Kalpetta Highway Spur",
+        "district": "Wayanad",
+        "from_node": "HAB-WY-03",
+        "to_node": "SH-WY-02",
+        "from_name": "Vellarmala School Ward",
+        "to_name": "Kalpetta Town Community Relief Hall",
+        "distance_km": 11.5,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 18.0,
+        "road_class": "STATE_HIGHWAY",
+        "pavement_condition": "GOOD",
+        "slope_risk_score": 0.32,
+        "hazard_exposure_score": 0.45,
         "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "blocked_reason": null
       }
     },
     {
@@ -1575,154 +278,36 @@
         "type": "LineString",
         "coordinates": [
           [
-            79.5681,
-            30.5574
+            76.192,
+            11.558
           ],
           [
-            79.57335,
-            30.5582
+            76.11699999999999,
+            11.556000000000001
           ],
           [
-            79.5776,
-            30.5598
+            76.042,
+            11.548
           ]
         ]
       },
       "properties": {
-        "id": "ROAD-041",
-        "name": "Manohar-Ravigram Evacuation Trail",
-        "from_node": "HAB-01",
-        "to_node": "HAB-05",
-        "from_name": "Manohar Bagh Ward",
-        "to_name": "Ravigram Village",
-        "distance_km": 1.28,
-        "speed_limit_kmh": 15,
-        "base_travel_time_min": 5.1,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.7,
-        "hazard_exposure_score": 0.7,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.5634,
-            30.5621
-          ],
-          [
-            79.5618,
-            30.5644
-          ],
-          [
-            79.5592,
-            30.5675
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-042",
-        "name": "Sunil Upper Escarpment Track",
-        "from_node": "HAB-02",
-        "to_node": "HAB-08",
-        "from_name": "Sunil Ward (Subsidence Zone)",
-        "to_name": "Parsari Settlement",
-        "distance_km": 0.97,
-        "speed_limit_kmh": 15,
-        "base_travel_time_min": 3.9,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "DAMAGED",
-        "slope_risk_score": 0.8,
-        "hazard_exposure_score": 0.8,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.5695,
-            30.5532
-          ],
-          [
-            79.56765,
-            30.55355
-          ],
-          [
-            79.5648,
-            30.5547
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-043",
-        "name": "Singhdhar-Gandhi Nagar Connecting Alley",
-        "from_node": "HAB-03",
-        "to_node": "HAB-06",
-        "from_name": "Singhdhar Ward",
-        "to_name": "Gandhi Nagar Ward",
-        "distance_km": 0.65,
-        "speed_limit_kmh": 15,
-        "base_travel_time_min": 2.6,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.65,
-        "hazard_exposure_score": 0.65,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.5776,
-            30.5598
-          ],
-          [
-            79.5768,
-            30.562
-          ],
-          [
-            79.575,
-            30.565
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-044",
-        "name": "Ravigram Army Helipad Bypass",
-        "from_node": "HAB-05",
-        "to_node": "SHELTER-04",
-        "from_name": "Ravigram Village",
-        "to_name": "Joshimath Cantonment Prefab Safe Camp",
-        "distance_km": 0.85,
-        "speed_limit_kmh": 30,
-        "base_travel_time_min": 1.7,
+        "id": "ROAD-WY-04",
+        "name": "Attamala-Vythiri Relief Bypass",
+        "district": "Wayanad",
+        "from_node": "HAB-WY-04",
+        "to_node": "SH-WY-03",
+        "from_name": "Attamala Tea Plantation Colony",
+        "to_name": "Vythiri Govt Higher Secondary Camp",
+        "distance_km": 14.0,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 22.0,
         "road_class": "DISTRICT_ROAD",
         "pavement_condition": "GOOD",
         "slope_risk_score": 0.35,
-        "hazard_exposure_score": 0.35,
+        "hazard_exposure_score": 0.5,
         "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "blocked_reason": null
       }
     },
     {
@@ -1731,37 +316,36 @@
         "type": "LineString",
         "coordinates": [
           [
-            79.5648,
-            30.5547
+            76.885,
+            31.942
           ],
           [
-            79.5819,
-            30.53445
+            76.9115,
+            31.83
           ],
           [
-            79.598,
-            30.515
+            76.938,
+            31.712
           ]
         ]
       },
       "properties": {
-        "id": "ROAD-045",
-        "name": "Gandhi Nagar-Dhak Emergency Track",
-        "from_node": "HAB-06",
-        "to_node": "JUNC-11",
-        "from_name": "Gandhi Nagar Ward",
-        "to_name": "Dhak Morh",
-        "distance_km": 7.34,
-        "speed_limit_kmh": 20,
-        "base_travel_time_min": 22.0,
-        "road_class": "RURAL_LINK",
+        "id": "ROAD-MD-01",
+        "name": "NH-154 Mandi-Kotropi Bypass",
+        "district": "Mandi",
+        "from_node": "HAB-MD-01",
+        "to_node": "SH-MD-01",
+        "from_name": "Kotropi NH-154 Slip Zone",
+        "to_name": "Mandi District Sports Complex Relief Center",
+        "distance_km": 16.5,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 26.0,
+        "road_class": "STATE_HIGHWAY",
         "pavement_condition": "FAIR",
-        "slope_risk_score": 0.6,
-        "hazard_exposure_score": 0.6,
+        "slope_risk_score": 0.62,
+        "hazard_exposure_score": 0.88,
         "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "blocked_reason": null
       }
     },
     {
@@ -1770,115 +354,36 @@
         "type": "LineString",
         "coordinates": [
           [
-            79.5192,
-            30.5186
+            77.052,
+            31.671
           ],
           [
-            79.5296,
-            30.5259
+            77.042,
+            31.680999999999997
           ],
           [
-            79.539,
-            30.534
+            77.032,
+            31.685
           ]
         ]
       },
       "properties": {
-        "id": "ROAD-046",
-        "name": "Helang-Selang Terraced Link",
-        "from_node": "HAB-09",
-        "to_node": "HAB-17",
-        "from_name": "Helang Valley Cluster",
-        "to_name": "Selang Terrace",
-        "distance_km": 3.46,
-        "speed_limit_kmh": 20,
-        "base_travel_time_min": 10.4,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.55,
-        "hazard_exposure_score": 0.55,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.4891,
-            30.4982
-          ],
-          [
-            79.47755,
-            30.48495
-          ],
-          [
-            79.465,
-            30.4725
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-047",
-        "name": "Pakhi-Gulabkoti Footbridge Route",
-        "from_node": "HAB-10",
-        "to_node": "HAB-12",
-        "from_name": "Pakhi Village",
-        "to_name": "Gulabkoti Hamlet",
-        "distance_km": 4.95,
-        "speed_limit_kmh": 20,
-        "base_travel_time_min": 14.9,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.45,
-        "hazard_exposure_score": 0.45,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.465,
-            30.4725
-          ],
-          [
-            79.4475,
-            30.4511
-          ],
-          [
-            79.429,
-            30.4305
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-048",
-        "name": "Gulabkoti-Pipalkoti Direct Slope Road",
-        "from_node": "HAB-12",
-        "to_node": "SHELTER-01",
-        "from_name": "Gulabkoti Hamlet",
-        "to_name": "Pipalkoti Central Degree College Relief Hub",
-        "distance_km": 7.84,
-        "speed_limit_kmh": 30,
-        "base_travel_time_min": 15.7,
+        "id": "ROAD-MD-02",
+        "name": "Pandoh Dam High-Spur Arterial",
+        "district": "Mandi",
+        "from_node": "HAB-MD-02",
+        "to_node": "SH-MD-02",
+        "from_name": "Pandoh Dam Downstream Ward",
+        "to_name": "Pandoh Govt Senior Secondary Safe Base",
+        "distance_km": 3.2,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 6.0,
         "road_class": "DISTRICT_ROAD",
         "pavement_condition": "GOOD",
-        "slope_risk_score": 0.3,
-        "hazard_exposure_score": 0.3,
+        "slope_risk_score": 0.49,
+        "hazard_exposure_score": 0.7,
         "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "blocked_reason": null
       }
     },
     {
@@ -1887,154 +392,36 @@
         "type": "LineString",
         "coordinates": [
           [
-            79.6289,
-            30.4951
+            76.715,
+            31.815
           ],
           [
-            79.60245,
-            30.52965
+            76.8035,
+            31.677500000000002
           ],
           [
-            79.575,
-            30.565
+            76.892,
+            31.534
           ]
         ]
       },
       "properties": {
-        "id": "ROAD-049",
-        "name": "Tapovan-Joshimath High Ridge Emergency Road",
-        "from_node": "HAB-13",
-        "to_node": "SHELTER-04",
-        "from_name": "Tapovan Riverside",
-        "to_name": "Joshimath Cantonment Prefab Safe Camp",
-        "distance_km": 12.6,
-        "speed_limit_kmh": 25,
-        "base_travel_time_min": 30.2,
+        "id": "ROAD-MD-03",
+        "name": "Dharampur-Sundernagar Connector",
+        "district": "Mandi",
+        "from_node": "HAB-MD-03",
+        "to_node": "SH-MD-03",
+        "from_name": "Dharampur Market Lowlands",
+        "to_name": "Sundernagar Community Relief Hall",
+        "distance_km": 18.0,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 25.0,
         "road_class": "DISTRICT_ROAD",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.55,
-        "hazard_exposure_score": 0.55,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.605,
-            30.512
-          ],
-          [
-            79.561,
-            30.5141
-          ],
-          [
-            79.516,
-            30.517
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-050",
-        "name": "Dhak-Helang Mountain Connector",
-        "from_node": "HAB-18",
-        "to_node": "SHELTER-03",
-        "from_name": "Dhak Village Slope",
-        "to_name": "Helang Mandir Community Relief Shelter",
-        "distance_km": 11.53,
-        "speed_limit_kmh": 20,
-        "base_travel_time_min": 34.6,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "FAIR",
-        "slope_risk_score": 0.6,
-        "hazard_exposure_score": 0.6,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.62,
-            30.505
-          ],
-          [
-            79.62495,
-            30.49965
-          ],
-          [
-            79.6289,
-            30.4951
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-051",
-        "name": "Subhai-Tapovan Creek Path",
-        "from_node": "HAB-19",
-        "to_node": "HAB-13",
-        "from_name": "Subhai Cluster",
-        "to_name": "Tapovan Riverside",
-        "distance_km": 1.88,
-        "speed_limit_kmh": 15,
-        "base_travel_time_min": 7.5,
-        "road_class": "RURAL_LINK",
-        "pavement_condition": "DAMAGED",
-        "slope_risk_score": 0.75,
-        "hazard_exposure_score": 0.75,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.485,
-            30.575
-          ],
-          [
-            79.4575,
-            30.50235
-          ],
-          [
-            79.429,
-            30.4305
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-052",
-        "name": "Urgam-Pipalkoti Forest Fire Road",
-        "from_node": "HAB-20",
-        "to_node": "SHELTER-01",
-        "from_name": "Urgam Valley Fringe",
-        "to_name": "Pipalkoti Central Degree College Relief Hub",
-        "distance_km": 22.87,
-        "speed_limit_kmh": 25,
-        "base_travel_time_min": 54.9,
-        "road_class": "RURAL_LINK",
         "pavement_condition": "GOOD",
-        "slope_risk_score": 0.4,
+        "slope_risk_score": 0.28,
         "hazard_exposure_score": 0.4,
         "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 3.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "blocked_reason": null
       }
     },
     {
@@ -2043,37 +430,36 @@
         "type": "LineString",
         "coordinates": [
           [
-            79.516,
-            30.517
+            73.486,
+            18.021
           ],
           [
-            79.473,
-            30.47335
+            73.4605,
+            18.0595
           ],
           [
-            79.429,
-            30.4305
+            73.435,
+            18.092
           ]
         ]
       },
       "properties": {
-        "id": "ROAD-053",
-        "name": "Helang to Pipalkoti Transit Route",
-        "from_node": "SHELTER-03",
-        "to_node": "SHELTER-01",
-        "from_name": "Helang Mandir Community Relief Shelter",
-        "to_name": "Pipalkoti Central Degree College Relief Hub",
-        "distance_km": 17.19,
-        "speed_limit_kmh": 45,
-        "base_travel_time_min": 22.9,
-        "road_class": "PRIMARY_HIGHWAY",
-        "pavement_condition": "GOOD",
-        "slope_risk_score": 0.3,
-        "hazard_exposure_score": 0.3,
+        "id": "ROAD-RG-01",
+        "name": "Mahad-Taliye Rural Access Road",
+        "district": "Raigad",
+        "from_node": "HAB-RG-01",
+        "to_node": "SH-RG-01",
+        "from_name": "Taliye Village Cliff Foot",
+        "to_name": "Mahad Municipal High School Safe Shelter",
+        "distance_km": 8.5,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 15.0,
+        "road_class": "DISTRICT_ROAD",
+        "pavement_condition": "FAIR",
+        "slope_risk_score": 0.59,
+        "hazard_exposure_score": 0.85,
         "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 7.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "blocked_reason": null
       }
     },
     {
@@ -2082,115 +468,188 @@
         "type": "LineString",
         "coordinates": [
           [
-            79.429,
-            30.4305
+            73.424,
+            18.084
           ],
           [
-            79.381,
-            30.42385
+            73.35400000000001,
+            18.1705
           ],
           [
-            79.332,
-            30.418
+            73.284,
+            18.251
           ]
         ]
       },
       "properties": {
-        "id": "ROAD-054",
-        "name": "Pipalkoti to Gopeshwar District Connector",
-        "from_node": "SHELTER-01",
-        "to_node": "SHELTER-02",
-        "from_name": "Pipalkoti Central Degree College Relief Hub",
-        "to_name": "Gopeshwar District Sports Complex",
-        "distance_km": 12.69,
-        "speed_limit_kmh": 50,
-        "base_travel_time_min": 15.2,
-        "road_class": "PRIMARY_HIGHWAY",
-        "pavement_condition": "GOOD",
-        "slope_risk_score": 0.2,
-        "hazard_exposure_score": 0.2,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 7.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.429,
-            30.4305
-          ],
-          [
-            79.414,
-            30.41735
-          ],
-          [
-            79.398,
-            30.405
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-055",
-        "name": "Pipalkoti to Chamoli Poly Link",
-        "from_node": "SHELTER-01",
-        "to_node": "SHELTER-07",
-        "from_name": "Pipalkoti Central Degree College Relief Hub",
-        "to_name": "Chamoli Polytechnic Safe Zone",
-        "distance_km": 5.55,
-        "speed_limit_kmh": 50,
-        "base_travel_time_min": 6.7,
-        "road_class": "PRIMARY_HIGHWAY",
-        "pavement_condition": "GOOD",
-        "slope_risk_score": 0.2,
-        "hazard_exposure_score": 0.2,
-        "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 7.0,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            79.398,
-            30.405
-          ],
-          [
-            79.377,
-            30.4031
-          ],
-          [
-            79.355,
-            30.402
-          ]
-        ]
-      },
-      "properties": {
-        "id": "ROAD-056",
-        "name": "Chamoli to Ghingran Valley Cut",
-        "from_node": "SHELTER-07",
-        "to_node": "SHELTER-06",
-        "from_name": "Chamoli Polytechnic Safe Zone",
-        "to_name": "Ghingran Resettlement Facility",
-        "distance_km": 5.59,
-        "speed_limit_kmh": 40,
-        "base_travel_time_min": 8.4,
+        "id": "ROAD-RG-02",
+        "name": "Savitri Flood Bypass to Mangaon",
+        "district": "Raigad",
+        "from_node": "HAB-RG-02",
+        "to_node": "SH-RG-02",
+        "from_name": "Mahad Savitri Riverbank",
+        "to_name": "Mangaon Disaster Evacuation Hall",
+        "distance_km": 14.2,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 20.0,
         "road_class": "DISTRICT_ROAD",
         "pavement_condition": "GOOD",
-        "slope_risk_score": 0.15,
-        "hazard_exposure_score": 0.15,
+        "slope_risk_score": 0.45,
+        "hazard_exposure_score": 0.65,
         "is_blocked": false,
-        "blocked_reason": null,
-        "width_meters": 4.5,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "blocked_reason": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            95.185,
+            27.795
+          ],
+          [
+            95.19,
+            27.803
+          ],
+          [
+            95.195,
+            27.805
+          ]
+        ]
+      },
+      "properties": {
+        "id": "ROAD-DH-01",
+        "name": "NH-515 Jonai Flood Relief Highway",
+        "district": "Dhemaji",
+        "from_node": "HAB-DH-01",
+        "to_node": "SH-DH-01",
+        "from_name": "Jonai Brahmaputra Bank Ward",
+        "to_name": "Jonai College High-Ground Relief Camp",
+        "distance_km": 3.5,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 6.0,
+        "road_class": "STATE_HIGHWAY",
+        "pavement_condition": "GOOD",
+        "slope_risk_score": 0.56,
+        "hazard_exposure_score": 0.8,
+        "is_blocked": false,
+        "blocked_reason": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            94.721,
+            27.592
+          ],
+          [
+            94.7265,
+            27.5995
+          ],
+          [
+            94.732,
+            27.601
+          ]
+        ]
+      },
+      "properties": {
+        "id": "ROAD-DH-02",
+        "name": "Silapathar Embankment Crest Arterial",
+        "district": "Dhemaji",
+        "from_node": "HAB-DH-02",
+        "to_node": "SH-DH-02",
+        "from_name": "Silapathar Lowland Cluster",
+        "to_name": "Silapathar Town Hall Safe Shelter",
+        "distance_km": 4.1,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 7.0,
+        "road_class": "DISTRICT_ROAD",
+        "pavement_condition": "GOOD",
+        "slope_risk_score": 0.52,
+        "hazard_exposure_score": 0.75,
+        "is_blocked": false,
+        "blocked_reason": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.435,
+            27.065
+          ],
+          [
+            88.45349999999999,
+            27.0665
+          ],
+          [
+            88.472,
+            27.062
+          ]
+        ]
+      },
+      "properties": {
+        "id": "ROAD-DJ-01",
+        "name": "NH-10 Teesta Valley High-Priority Route",
+        "district": "Darjeeling",
+        "from_node": "HAB-DJ-01",
+        "to_node": "SH-DJ-01",
+        "from_name": "Teesta Bazaar Low Basin",
+        "to_name": "Kalimpong Town Hall Safe Base",
+        "distance_km": 7.8,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 14.0,
+        "road_class": "STATE_HIGHWAY",
+        "pavement_condition": "FAIR",
+        "slope_risk_score": 0.62,
+        "hazard_exposure_score": 0.88,
+        "is_blocked": false,
+        "blocked_reason": null
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            88.291,
+            26.882
+          ],
+          [
+            88.276,
+            26.966500000000003
+          ],
+          [
+            88.261,
+            27.045
+          ]
+        ]
+      },
+      "properties": {
+        "id": "ROAD-DJ-02",
+        "name": "Kurseong-Darjeeling Ridge Highway",
+        "district": "Darjeeling",
+        "from_node": "HAB-DJ-02",
+        "to_node": "SH-DJ-02",
+        "from_name": "Paglajhora Slide Exposure Ward",
+        "to_name": "Darjeeling Gymkhana Elevated Relief Camp",
+        "distance_km": 12.4,
+        "speed_limit_kmh": 35.0,
+        "base_travel_time_min": 21.0,
+        "road_class": "STATE_HIGHWAY",
+        "pavement_condition": "GOOD",
+        "slope_risk_score": 0.42,
+        "hazard_exposure_score": 0.6,
+        "is_blocked": false,
+        "blocked_reason": null
       }
     }
   ]

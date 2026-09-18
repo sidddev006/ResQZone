@@ -26,24 +26,42 @@ async function fetchJSON(endpoint, options = {}) {
 }
 
 export const api = {
+  // Regions Catalog
+  getRegions: () => fetchJSON('/regions'),
+
   // Dashboard
-  getKPIs: () => fetchJSON('/dashboard/kpis'),
+  getKPIs: (district = null) => {
+    const query = district && district !== 'ALL' ? `?district=${encodeURIComponent(district)}` : '';
+    return fetchJSON(`/dashboard/kpis${query}`);
+  },
 
   // Hazards
-  getHazardZones: () => fetchJSON('/hazards/zones'),
+  getHazardZones: (district = null) => {
+    const query = district && district !== 'ALL' ? `?district=${encodeURIComponent(district)}` : '';
+    return fetchJSON(`/hazards/zones${query}`);
+  },
 
   // Habitations
-  getHabitations: (riskCategory = null) => {
-    const query = riskCategory ? `?risk_category=${riskCategory}` : '';
-    return fetchJSON(`/habitations${query}`);
+  getHabitations: (params = {}) => {
+    const p = new URLSearchParams();
+    if (params.district && params.district !== 'ALL') p.append('district', params.district);
+    if (params.risk_category && params.risk_category !== 'ALL') p.append('risk_category', params.risk_category);
+    const qs = p.toString() ? `?${p.toString()}` : '';
+    return fetchJSON(`/habitations${qs}`);
   },
   getHabitationDetail: (id) => fetchJSON(`/habitations/${id}`),
 
   // Capacity & Shelters
-  getSheltersCapacity: () => fetchJSON('/capacity/shelters'),
+  getSheltersCapacity: (district = null) => {
+    const query = district && district !== 'ALL' ? `?district=${encodeURIComponent(district)}` : '';
+    return fetchJSON(`/capacity/shelters${query}`);
+  },
 
   // Routing
-  getRoadNetwork: () => fetchJSON('/routes/network'),
+  getRoadNetwork: (district = null) => {
+    const query = district && district !== 'ALL' ? `?district=${encodeURIComponent(district)}` : '';
+    return fetchJSON(`/routes/network${query}`);
+  },
   calculateRoute: (originNode, destinationNode, blockedRoadIds = []) =>
     fetchJSON('/routes/calculate', {
       method: 'POST',

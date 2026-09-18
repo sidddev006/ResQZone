@@ -2,18 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Building2, Droplets, Utensils, Bed, Stethoscope, AlertCircle, ShieldCheck } from 'lucide-react';
 import { api } from '../../api/client';
 
-export default function CarryingCapacityView() {
+export default function CarryingCapacityView({ selectedRegion = 'ALL', currentRegionObj }) {
   const [shelters, setShelters] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadShelters();
-  }, []);
+  }, [selectedRegion]);
 
   const loadShelters = async () => {
     try {
       setLoading(true);
-      const data = await api.getSheltersCapacity();
+      const districtParam = selectedRegion === 'ALL' ? null : (currentRegionObj?.district || selectedRegion);
+      const data = await api.getSheltersCapacity(districtParam);
       setShelters(data || []);
     } catch (err) {
       console.error(err);
@@ -39,12 +40,12 @@ export default function CarryingCapacityView() {
   return (
     <div className="space-y-5 pb-12 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="p-6 rounded-2xl bg-[#0B0F17]/90 backdrop-blur-xl border border-white/10 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-6 rounded-2xl bg-[#0B0F17]/90 backdrop-blur-xl border border-slate-800 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center space-x-2 mb-1 text-xs font-mono text-cyan-400">
             <span>HUMANITARIAN STANDARDS SPHERE & WHO</span>
             <span>•</span>
-            <span className="text-slate-400">DISTRICT RELIEF NODES</span>
+            <span className="text-slate-400">{currentRegionObj?.name?.toUpperCase() || 'PAN-INDIA RELIEF GRID'}</span>
           </div>
           <h2 className="text-xl font-bold text-white font-mono">Shelter Carrying Capacity & Resource Bottlenecks</h2>
           <p className="text-xs text-slate-400 mt-0.5">

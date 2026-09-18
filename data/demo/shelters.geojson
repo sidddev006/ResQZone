@@ -1,11 +1,9 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "title": "ResQZone Relief Shelters & Carrying Capacity - Chamoli District",
-    "generated_at": "2026-09-18T18:46:07.975647+00:00",
-    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84",
-    "source": "District Emergency Operations Centre (DEOC) Chamoli",
-    "is_synthetic": true
+    "title": "ResQZone Safe Shelters - Pan India",
+    "generated_at": "2026-09-18T19:38:50.982799+00:00",
+    "crs": "CRS84"
   },
   "features": [
     {
@@ -13,233 +11,31 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          79.429,
-          30.4305
+          79.5735,
+          30.5592
         ]
       },
       "properties": {
-        "id": "SHELTER-01",
-        "name": "Pipalkoti Central Degree College Relief Hub",
-        "type": "GOVERNMENT_COLLEGE",
-        "rated_capacity": 1800,
-        "safe_occupancy": 1500,
-        "current_occupancy": 320,
-        "effective_safe_capacity": 1300,
-        "available_capacity": 980,
-        "capacity_utilization_pct": 24.6,
+        "id": "SH-01",
+        "name": "Govt Girls Inter College (GGIC)",
+        "district": "Chamoli",
+        "type": "SCHOOL",
+        "rated_capacity": 650,
+        "safe_occupancy": 520,
+        "current_occupancy": 180,
+        "water_supply_lpd": 9000,
+        "sanitation_toilets": 30,
+        "food_meals_daily": 1800,
+        "medical_isolation_beds": 16,
+        "power_backup": true,
+        "effective_safe_capacity": 520,
+        "bottleneck_resource": "beds",
         "capacity_status": "AVAILABLE",
-        "bottleneck_resource": "sanitation",
-        "resource_capacities": {
-          "water_supported_people": 1666,
-          "sanitation_supported_people": 1300,
-          "food_supported_people": 1500,
-          "bed_supported_people": 1500,
-          "medical_supported_people": 2250
-        },
-        "water_supply_lpd": 25000,
-        "sanitation_toilets": 65,
-        "food_meals_daily": 4500,
-        "medical_isolation_beds": 45,
-        "power_backup": true,
-        "operating_status": "ACTIVE",
-        "accessibility_score": 0.95,
-        "is_open": true,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          79.332,
-          30.418
-        ]
-      },
-      "properties": {
-        "id": "SHELTER-02",
-        "name": "Gopeshwar District Sports Complex",
-        "type": "STADIUM_COMPLEX",
-        "rated_capacity": 3000,
-        "safe_occupancy": 2400,
-        "current_occupancy": 480,
-        "effective_safe_capacity": 1800,
-        "available_capacity": 1320,
-        "capacity_utilization_pct": 26.7,
-        "capacity_status": "AVAILABLE",
-        "bottleneck_resource": "sanitation",
-        "resource_capacities": {
-          "water_supported_people": 2400,
-          "sanitation_supported_people": 1800,
-          "food_supported_people": 2400,
-          "bed_supported_people": 2400,
-          "medical_supported_people": 4000
-        },
-        "water_supply_lpd": 36000,
-        "sanitation_toilets": 90,
-        "food_meals_daily": 7200,
-        "medical_isolation_beds": 80,
-        "power_backup": true,
-        "operating_status": "ACTIVE",
-        "accessibility_score": 0.9,
-        "is_open": true,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          79.516,
-          30.517
-        ]
-      },
-      "properties": {
-        "id": "SHELTER-03",
-        "name": "Helang Mandir Community Relief Shelter",
-        "type": "COMMUNITY_HALL",
-        "rated_capacity": 600,
-        "safe_occupancy": 480,
-        "current_occupancy": 390,
-        "effective_safe_capacity": 320,
-        "available_capacity": 0,
-        "capacity_utilization_pct": 121.9,
-        "capacity_status": "OVER_CAPACITY",
-        "bottleneck_resource": "sanitation",
-        "resource_capacities": {
-          "water_supported_people": 366,
-          "sanitation_supported_people": 320,
-          "food_supported_people": 500,
-          "bed_supported_people": 480,
-          "medical_supported_people": 400
-        },
-        "water_supply_lpd": 5500,
-        "sanitation_toilets": 16,
-        "food_meals_daily": 1500,
-        "medical_isolation_beds": 8,
-        "power_backup": true,
-        "operating_status": "HIGH_LOAD",
-        "accessibility_score": 0.82,
-        "is_open": true,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          79.575,
-          30.565
-        ]
-      },
-      "properties": {
-        "id": "SHELTER-04",
-        "name": "Joshimath Cantonment Prefab Safe Camp",
-        "type": "ARMY_PREFAB_SHELTER",
-        "rated_capacity": 1200,
-        "safe_occupancy": 950,
-        "current_occupancy": 760,
-        "effective_safe_capacity": 840,
-        "available_capacity": 80,
-        "capacity_utilization_pct": 90.5,
-        "capacity_status": "HIGH_LOAD",
-        "bottleneck_resource": "sanitation",
-        "resource_capacities": {
-          "water_supported_people": 1066,
-          "sanitation_supported_people": 840,
-          "food_supported_people": 1000,
-          "bed_supported_people": 950,
-          "medical_supported_people": 1750
-        },
-        "water_supply_lpd": 16000,
-        "sanitation_toilets": 42,
-        "food_meals_daily": 3000,
-        "medical_isolation_beds": 35,
-        "power_backup": true,
-        "operating_status": "HIGH_LOAD",
-        "accessibility_score": 0.78,
-        "is_open": true,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          79.595,
-          30.638
-        ]
-      },
-      "properties": {
-        "id": "SHELTER-05",
-        "name": "Pandukeshwar Transit Relief Camp",
-        "type": "PILGRIM_GUEST_HOUSE",
-        "rated_capacity": 700,
-        "safe_occupancy": 550,
-        "current_occupancy": 110,
-        "effective_safe_capacity": 360,
-        "available_capacity": 250,
-        "capacity_utilization_pct": 30.6,
-        "capacity_status": "AVAILABLE",
-        "bottleneck_resource": "sanitation",
-        "resource_capacities": {
-          "water_supported_people": 480,
-          "sanitation_supported_people": 360,
-          "food_supported_people": 533,
-          "bed_supported_people": 550,
-          "medical_supported_people": 500
-        },
-        "water_supply_lpd": 7200,
-        "sanitation_toilets": 18,
-        "food_meals_daily": 1600,
-        "medical_isolation_beds": 10,
-        "power_backup": false,
-        "operating_status": "ACTIVE",
-        "accessibility_score": 0.72,
-        "is_open": true,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          79.355,
-          30.402
-        ]
-      },
-      "properties": {
-        "id": "SHELTER-06",
-        "name": "Ghingran Resettlement Facility",
-        "type": "INSTITUTIONAL_CAMPUS",
-        "rated_capacity": 1500,
-        "safe_occupancy": 1200,
-        "current_occupancy": 150,
-        "effective_safe_capacity": 1100,
-        "available_capacity": 950,
-        "capacity_utilization_pct": 13.6,
-        "capacity_status": "AVAILABLE",
-        "bottleneck_resource": "sanitation",
-        "resource_capacities": {
-          "water_supported_people": 1466,
-          "sanitation_supported_people": 1100,
-          "food_supported_people": 1333,
-          "bed_supported_people": 1200,
-          "medical_supported_people": 1500
-        },
-        "water_supply_lpd": 22000,
-        "sanitation_toilets": 55,
-        "food_meals_daily": 4000,
-        "medical_isolation_beds": 30,
-        "power_backup": true,
+        "capacity_utilization_pct": 34.6,
         "operating_status": "ACTIVE",
         "accessibility_score": 0.88,
         "is_open": true,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
       }
     },
     {
@@ -247,38 +43,191 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          79.398,
-          30.405
+          79.5694,
+          30.5541
         ]
       },
       "properties": {
-        "id": "SHELTER-07",
-        "name": "Chamoli Polytechnic Safe Zone",
-        "type": "POLYTECHNIC_COLLEGE",
-        "rated_capacity": 1000,
-        "safe_occupancy": 850,
-        "current_occupancy": 210,
-        "effective_safe_capacity": 760,
-        "available_capacity": 550,
-        "capacity_utilization_pct": 27.6,
+        "id": "SH-02",
+        "name": "Joshimath Municipal Community Hall",
+        "district": "Chamoli",
+        "type": "COMMUNITY_HALL",
+        "rated_capacity": 500,
+        "safe_occupancy": 400,
+        "current_occupancy": 120,
+        "water_supply_lpd": 6500,
+        "sanitation_toilets": 22,
+        "food_meals_daily": 1300,
+        "medical_isolation_beds": 12,
+        "power_backup": true,
+        "effective_safe_capacity": 400,
+        "bottleneck_resource": "beds",
         "capacity_status": "AVAILABLE",
-        "bottleneck_resource": "sanitation",
-        "resource_capacities": {
-          "water_supported_people": 933,
-          "sanitation_supported_people": 760,
-          "food_supported_people": 866,
-          "bed_supported_people": 850,
-          "medical_supported_people": 1000
-        },
-        "water_supply_lpd": 14000,
+        "capacity_utilization_pct": 30.0,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.5781,
+          30.5482
+        ]
+      },
+      "properties": {
+        "id": "SH-03",
+        "name": "Auli Road Relief Camp (Army Cantonment)",
+        "district": "Chamoli",
+        "type": "MILITARY_BASE",
+        "rated_capacity": 1200,
+        "safe_occupancy": 960,
+        "current_occupancy": 250,
+        "water_supply_lpd": 18000,
+        "sanitation_toilets": 55,
+        "food_meals_daily": 3600,
+        "medical_isolation_beds": 35,
+        "power_backup": true,
+        "effective_safe_capacity": 960,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 26.0,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.4328,
+          30.4312
+        ]
+      },
+      "properties": {
+        "id": "SH-04",
+        "name": "Pipalkoti Polytechnic Transit Base",
+        "district": "Chamoli",
+        "type": "TRANSIT_CAMP",
+        "rated_capacity": 1500,
+        "safe_occupancy": 1200,
+        "current_occupancy": 310,
+        "water_supply_lpd": 22000,
+        "sanitation_toilets": 70,
+        "food_meals_daily": 4500,
+        "medical_isolation_beds": 45,
+        "power_backup": true,
+        "effective_safe_capacity": 1200,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 25.8,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.125,
+          11.554
+        ]
+      },
+      "properties": {
+        "id": "SH-WY-01",
+        "name": "St. Joseph Higher Secondary School Meppadi",
+        "district": "Wayanad",
+        "type": "SCHOOL",
+        "rated_capacity": 1200,
+        "safe_occupancy": 960,
+        "current_occupancy": 420,
+        "water_supply_lpd": 17000,
+        "sanitation_toilets": 50,
+        "food_meals_daily": 3500,
+        "medical_isolation_beds": 30,
+        "power_backup": true,
+        "effective_safe_capacity": 960,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 43.8,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.084,
+          11.611
+        ]
+      },
+      "properties": {
+        "id": "SH-WY-02",
+        "name": "Kalpetta Town Community Relief Hall",
+        "district": "Wayanad",
+        "type": "COMMUNITY_HALL",
+        "rated_capacity": 1800,
+        "safe_occupancy": 1440,
+        "current_occupancy": 580,
+        "water_supply_lpd": 25000,
+        "sanitation_toilets": 75,
+        "food_meals_daily": 5200,
+        "medical_isolation_beds": 50,
+        "power_backup": true,
+        "effective_safe_capacity": 1440,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 40.3,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.042,
+          11.548
+        ]
+      },
+      "properties": {
+        "id": "SH-WY-03",
+        "name": "Vythiri Govt Higher Secondary Camp",
+        "district": "Wayanad",
+        "type": "SCHOOL",
+        "rated_capacity": 900,
+        "safe_occupancy": 720,
+        "current_occupancy": 210,
+        "water_supply_lpd": 12500,
         "sanitation_toilets": 38,
         "food_meals_daily": 2600,
-        "medical_isolation_beds": 20,
+        "medical_isolation_beds": 24,
         "power_backup": true,
+        "effective_safe_capacity": 720,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 29.2,
         "operating_status": "ACTIVE",
-        "accessibility_score": 0.85,
+        "accessibility_score": 0.88,
         "is_open": true,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
       }
     },
     {
@@ -286,38 +235,415 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          79.632,
-          30.491
+          76.138,
+          11.528
         ]
       },
       "properties": {
-        "id": "SHELTER-08",
-        "name": "Tapovan High School Transit Center",
-        "type": "GOVERNMENT_SCHOOL",
-        "rated_capacity": 450,
-        "safe_occupancy": 350,
-        "current_occupancy": 80,
-        "effective_safe_capacity": 240,
-        "available_capacity": 160,
-        "capacity_utilization_pct": 33.3,
+        "id": "SH-WY-04",
+        "name": "Rippon Tea Estate Community Shelter",
+        "district": "Wayanad",
+        "type": "TRANSIT_CAMP",
+        "rated_capacity": 750,
+        "safe_occupancy": 600,
+        "current_occupancy": 160,
+        "water_supply_lpd": 10500,
+        "sanitation_toilets": 32,
+        "food_meals_daily": 2100,
+        "medical_isolation_beds": 18,
+        "power_backup": true,
+        "effective_safe_capacity": 600,
+        "bottleneck_resource": "beds",
         "capacity_status": "AVAILABLE",
-        "bottleneck_resource": "sanitation",
-        "resource_capacities": {
-          "water_supported_people": 266,
-          "sanitation_supported_people": 240,
-          "food_supported_people": 366,
-          "bed_supported_people": 350,
-          "medical_supported_people": 250
-        },
-        "water_supply_lpd": 4000,
-        "sanitation_toilets": 12,
-        "food_meals_daily": 1100,
-        "medical_isolation_beds": 5,
-        "power_backup": false,
-        "operating_status": "STANDBY",
-        "accessibility_score": 0.65,
-        "is_open": false,
-        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+        "capacity_utilization_pct": 26.7,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.938,
+          31.712
+        ]
+      },
+      "properties": {
+        "id": "SH-MD-01",
+        "name": "Mandi District Sports Complex Relief Center",
+        "district": "Mandi",
+        "type": "SPORTS_COMPLEX",
+        "rated_capacity": 2000,
+        "safe_occupancy": 1600,
+        "current_occupancy": 480,
+        "water_supply_lpd": 28000,
+        "sanitation_toilets": 85,
+        "food_meals_daily": 5800,
+        "medical_isolation_beds": 60,
+        "power_backup": true,
+        "effective_safe_capacity": 1600,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 30.0,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.032,
+          31.685
+        ]
+      },
+      "properties": {
+        "id": "SH-MD-02",
+        "name": "Pandoh Govt Senior Secondary Safe Base",
+        "district": "Mandi",
+        "type": "SCHOOL",
+        "rated_capacity": 850,
+        "safe_occupancy": 680,
+        "current_occupancy": 220,
+        "water_supply_lpd": 11500,
+        "sanitation_toilets": 36,
+        "food_meals_daily": 2400,
+        "medical_isolation_beds": 20,
+        "power_backup": true,
+        "effective_safe_capacity": 680,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 32.4,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.892,
+          31.534
+        ]
+      },
+      "properties": {
+        "id": "SH-MD-03",
+        "name": "Sundernagar Community Relief Hall",
+        "district": "Mandi",
+        "type": "COMMUNITY_HALL",
+        "rated_capacity": 1400,
+        "safe_occupancy": 1120,
+        "current_occupancy": 310,
+        "water_supply_lpd": 19000,
+        "sanitation_toilets": 60,
+        "food_meals_daily": 4000,
+        "medical_isolation_beds": 35,
+        "power_backup": true,
+        "effective_safe_capacity": 1120,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 27.7,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.435,
+          18.092
+        ]
+      },
+      "properties": {
+        "id": "SH-RG-01",
+        "name": "Mahad Municipal High School Safe Shelter",
+        "district": "Raigad",
+        "type": "SCHOOL",
+        "rated_capacity": 1300,
+        "safe_occupancy": 1040,
+        "current_occupancy": 390,
+        "water_supply_lpd": 18000,
+        "sanitation_toilets": 55,
+        "food_meals_daily": 3800,
+        "medical_isolation_beds": 32,
+        "power_backup": true,
+        "effective_safe_capacity": 1040,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 37.5,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.284,
+          18.251
+        ]
+      },
+      "properties": {
+        "id": "SH-RG-02",
+        "name": "Mangaon Disaster Evacuation Hall",
+        "district": "Raigad",
+        "type": "COMMUNITY_HALL",
+        "rated_capacity": 1600,
+        "safe_occupancy": 1280,
+        "current_occupancy": 320,
+        "water_supply_lpd": 22000,
+        "sanitation_toilets": 68,
+        "food_meals_daily": 4600,
+        "medical_isolation_beds": 42,
+        "power_backup": true,
+        "effective_safe_capacity": 1280,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 25.0,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.475,
+          17.994
+        ]
+      },
+      "properties": {
+        "id": "SH-RG-03",
+        "name": "Poladpur ITI Elevated Relief Base",
+        "district": "Raigad",
+        "type": "TRANSIT_CAMP",
+        "rated_capacity": 800,
+        "safe_occupancy": 640,
+        "current_occupancy": 180,
+        "water_supply_lpd": 11000,
+        "sanitation_toilets": 34,
+        "food_meals_daily": 2300,
+        "medical_isolation_beds": 20,
+        "power_backup": true,
+        "effective_safe_capacity": 640,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 28.1,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          95.195,
+          27.805
+        ]
+      },
+      "properties": {
+        "id": "SH-DH-01",
+        "name": "Jonai College High-Ground Relief Camp",
+        "district": "Dhemaji",
+        "type": "COLLEGE",
+        "rated_capacity": 1500,
+        "safe_occupancy": 1200,
+        "current_occupancy": 460,
+        "water_supply_lpd": 21000,
+        "sanitation_toilets": 64,
+        "food_meals_daily": 4400,
+        "medical_isolation_beds": 38,
+        "power_backup": true,
+        "effective_safe_capacity": 1200,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 38.3,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          94.732,
+          27.601
+        ]
+      },
+      "properties": {
+        "id": "SH-DH-02",
+        "name": "Silapathar Town Hall Safe Shelter",
+        "district": "Dhemaji",
+        "type": "COMMUNITY_HALL",
+        "rated_capacity": 1100,
+        "safe_occupancy": 880,
+        "current_occupancy": 290,
+        "water_supply_lpd": 15000,
+        "sanitation_toilets": 46,
+        "food_meals_daily": 3200,
+        "medical_isolation_beds": 28,
+        "power_backup": true,
+        "effective_safe_capacity": 880,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 33.0,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          94.591,
+          27.492
+        ]
+      },
+      "properties": {
+        "id": "SH-DH-03",
+        "name": "Dhemaji District Stadium Relief Base",
+        "district": "Dhemaji",
+        "type": "STADIUM",
+        "rated_capacity": 2200,
+        "safe_occupancy": 1760,
+        "current_occupancy": 610,
+        "water_supply_lpd": 31000,
+        "sanitation_toilets": 95,
+        "food_meals_daily": 6400,
+        "medical_isolation_beds": 65,
+        "power_backup": true,
+        "effective_safe_capacity": 1760,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 34.7,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.472,
+          27.062
+        ]
+      },
+      "properties": {
+        "id": "SH-DJ-01",
+        "name": "Kalimpong Town Hall Safe Base",
+        "district": "Darjeeling",
+        "type": "COMMUNITY_HALL",
+        "rated_capacity": 1400,
+        "safe_occupancy": 1120,
+        "current_occupancy": 330,
+        "water_supply_lpd": 19000,
+        "sanitation_toilets": 58,
+        "food_meals_daily": 4100,
+        "medical_isolation_beds": 36,
+        "power_backup": true,
+        "effective_safe_capacity": 1120,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 29.5,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.261,
+          27.045
+        ]
+      },
+      "properties": {
+        "id": "SH-DJ-02",
+        "name": "Darjeeling Gymkhana Elevated Relief Camp",
+        "district": "Darjeeling",
+        "type": "TRANSIT_CAMP",
+        "rated_capacity": 1600,
+        "safe_occupancy": 1280,
+        "current_occupancy": 390,
+        "water_supply_lpd": 22500,
+        "sanitation_toilets": 70,
+        "food_meals_daily": 4700,
+        "medical_isolation_beds": 42,
+        "power_backup": true,
+        "effective_safe_capacity": 1280,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 30.5,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          88.455,
+          27.085
+        ]
+      },
+      "properties": {
+        "id": "SH-DJ-03",
+        "name": "Melli Safe Ridge High School Shelter",
+        "district": "Darjeeling",
+        "type": "SCHOOL",
+        "rated_capacity": 850,
+        "safe_occupancy": 680,
+        "current_occupancy": 170,
+        "water_supply_lpd": 11500,
+        "sanitation_toilets": 36,
+        "food_meals_daily": 2500,
+        "medical_isolation_beds": 22,
+        "power_backup": true,
+        "effective_safe_capacity": 680,
+        "bottleneck_resource": "beds",
+        "capacity_status": "AVAILABLE",
+        "capacity_utilization_pct": 25.0,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T19:38:50.982799+00:00"
       }
     }
   ]

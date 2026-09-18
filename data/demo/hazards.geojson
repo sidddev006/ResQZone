@@ -1,11 +1,9 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "title": "ResQZone Multi-Hazard Zones - Chamoli District",
-    "generated_at": "2026-09-18T18:46:07.975647+00:00",
-    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84",
-    "source": "GSI & IIRS ISRO InSAR Deformation Survey 2024-2026",
-    "is_synthetic": true
+    "title": "ResQZone Multi-Hazard Zones - Pan India",
+    "generated_at": "2026-09-18T19:38:50.982799+00:00",
+    "crs": "CRS84"
   },
   "features": [
     {
@@ -44,21 +42,19 @@
       "properties": {
         "id": "HAZ-01",
         "name": "Joshimath Core Subsidence Red Zone",
-        "hazard_type": "LANDSLIDE",
+        "district": "Chamoli",
+        "hazard_type": "SUBSIDENCE",
         "severity": "CRITICAL",
         "risk_score": 0.94,
-        "confidence_score": 0.89,
+        "confidence_score": 0.91,
         "area_sqkm": 2.85,
         "drivers": {
-          "24h_rainfall_anomaly": "HIGH (+142%)",
-          "slope_instability": "EXTREME (38\u00b0-44\u00b0)",
-          "recent_insar_deformation": "HIGH (7.4 cm/month subsidence)",
-          "historical_landslide_density": "HIGH",
-          "habitation_exposure": "CRITICAL (5,400+ residents)"
+          "primary_vector": "SUBSIDENCE",
+          "district": "Chamoli",
+          "severity": "CRITICAL"
         },
         "color": "#EF4444",
-        "stroke_color": "#B91C1C",
-        "warning_message": "Immediate evacuation advisory issued. High likelihood of sudden structural failure and deep slip plane movement."
+        "warning_message": "Active ground fissures detected along Manohar Bagh and Sunil wards."
       }
     },
     {
@@ -68,143 +64,95 @@
         "coordinates": [
           [
             [
-              79.545,
-              30.547
+              79.62,
+              30.49
             ],
             [
-              79.559,
-              30.543
+              79.695,
+              30.48
             ],
             [
-              79.578,
-              30.545
+              79.71,
+              30.495
             ],
             [
-              79.585,
-              30.552
+              79.635,
+              30.51
             ],
             [
-              79.575,
-              30.555
-            ],
-            [
-              79.545,
-              30.547
+              79.62,
+              30.49
             ]
           ]
         ]
       },
       "properties": {
         "id": "HAZ-02",
-        "name": "Marwari-Alaknanda Flash Flood Buffer",
-        "hazard_type": "FLOOD",
-        "severity": "HIGH",
-        "risk_score": 0.81,
-        "confidence_score": 0.84,
-        "area_sqkm": 1.95,
-        "drivers": {
-          "river_discharge_anomaly": "HIGH (3,400 cumecs surge)",
-          "low_elevation_channel": "CRITICAL (1520m terrace)",
-          "upstream_debris_dam": "MODERATE",
-          "flow_velocity": "4.8 m/s"
-        },
-        "color": "#F97316",
-        "stroke_color": "#C2410C",
-        "warning_message": "Flash flood surge alert along Alaknanda riverbed. Low-lying riverbanks at high inundation risk."
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              79.51,
-              30.512
-            ],
-            [
-              79.528,
-              30.525
-            ],
-            [
-              79.535,
-              30.518
-            ],
-            [
-              79.522,
-              30.505
-            ],
-            [
-              79.51,
-              30.512
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "id": "HAZ-03",
-        "name": "Helang Escarpment Slope Movement Zone",
-        "hazard_type": "LANDSLIDE",
-        "severity": "WARNING",
-        "risk_score": 0.68,
-        "confidence_score": 0.82,
-        "area_sqkm": 1.45,
-        "drivers": {
-          "roadcut_toe_erosion": "HIGH",
-          "steep_schist_bedding": "MODERATE",
-          "soil_saturation": "85%"
-        },
-        "color": "#EAB308",
-        "stroke_color": "#A16207",
-        "warning_message": "Tension crack propagation noted along Helang-Marwari bypass road."
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              79.62,
-              30.485
-            ],
-            [
-              79.645,
-              30.502
-            ],
-            [
-              79.655,
-              30.49
-            ],
-            [
-              79.63,
-              30.475
-            ],
-            [
-              79.62,
-              30.485
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "id": "HAZ-04",
-        "name": "Tapovan Dhauliganga Glacial Flood Corridor",
-        "hazard_type": "FLOOD",
+        "name": "Raini-Tapovan GLOF & Flash Flood Corridor",
+        "district": "Chamoli",
+        "hazard_type": "GLOF",
         "severity": "CRITICAL",
-        "risk_score": 0.87,
-        "confidence_score": 0.86,
-        "area_sqkm": 3.1,
+        "risk_score": 0.91,
+        "confidence_score": 0.91,
+        "area_sqkm": 4.1,
         "drivers": {
-          "glacial_lake_level": "WARNING",
-          "debris_choked_gorge": "HIGH",
-          "72h_rainfall": "246.8 mm"
+          "primary_vector": "GLOF",
+          "district": "Chamoli",
+          "severity": "CRITICAL"
+        },
+        "color": "#DC2626",
+        "warning_message": "Rishiganga and Dhauliganga confluence flash flood inundation threat."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.16,
+              11.53
+            ],
+            [
+              76.195,
+              11.545
+            ],
+            [
+              76.198,
+              11.57
+            ],
+            [
+              76.175,
+              11.565
+            ],
+            [
+              76.155,
+              11.54
+            ],
+            [
+              76.16,
+              11.53
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "HAZ-WY-01",
+        "name": "Chooralmala-Mundakkai Debris Avalanche Red Zone",
+        "district": "Wayanad",
+        "hazard_type": "LANDSLIDE",
+        "severity": "CRITICAL",
+        "risk_score": 0.98,
+        "confidence_score": 0.91,
+        "area_sqkm": 5.4,
+        "drivers": {
+          "primary_vector": "LANDSLIDE",
+          "district": "Wayanad",
+          "severity": "CRITICAL"
         },
         "color": "#EF4444",
-        "stroke_color": "#B91C1C",
-        "warning_message": "High alert for sudden sediment-laden flash surges in Dhauliganga channel."
+        "warning_message": "Severe slope collapse with high-speed boulder and slurry debris avalanche."
       }
     },
     {
@@ -214,44 +162,326 @@
         "coordinates": [
           [
             [
-              79.54,
-              30.54
+              76.14,
+              11.52
             ],
             [
-              79.585,
-              30.575
+              76.17,
+              11.535
             ],
             [
-              79.61,
-              30.55
+              76.165,
+              11.555
             ],
             [
-              79.56,
-              30.52
+              76.135,
+              11.535
             ],
             [
-              79.54,
-              30.54
+              76.14,
+              11.52
             ]
           ]
         ]
       },
       "properties": {
-        "id": "HAZ-05",
-        "name": "Main Central Thrust (MCT) Seismic Exposure Buffer",
-        "hazard_type": "EARTHQUAKE_EXPOSURE",
+        "id": "HAZ-WY-02",
+        "name": "Iruvaizhinji River Flash Surge Corridor",
+        "district": "Wayanad",
+        "hazard_type": "FLASH_FLOOD",
         "severity": "HIGH",
-        "risk_score": 0.72,
-        "confidence_score": 0.9,
-        "area_sqkm": 6.8,
+        "risk_score": 0.85,
+        "confidence_score": 0.91,
+        "area_sqkm": 3.2,
         "drivers": {
-          "tectonic_proximity": "Within 4 km of MCT Fault Line",
-          "seismic_zone": "Zone V (Highest Indian Vulnerability)",
-          "structural_masonry_vulnerability": "78% non-engineered stone structures"
+          "primary_vector": "FLASH_FLOOD",
+          "district": "Wayanad",
+          "severity": "HIGH"
         },
-        "color": "#8B5CF6",
-        "stroke_color": "#6D28D9",
-        "warning_message": "Static tectonic exposure scenario layer based on Geological Survey of India seismic mapping."
+        "color": "#F97316",
+        "warning_message": "Rapid river swell threatening bridges and low-lying tea estate colonies."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.87,
+              31.93
+            ],
+            [
+              76.9,
+              31.935
+            ],
+            [
+              76.905,
+              31.955
+            ],
+            [
+              76.875,
+              31.95
+            ],
+            [
+              76.87,
+              31.93
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "HAZ-MD-01",
+        "name": "Kotropi Massive Landslide Scar Zone",
+        "district": "Mandi",
+        "hazard_type": "LANDSLIDE",
+        "severity": "CRITICAL",
+        "risk_score": 0.95,
+        "confidence_score": 0.91,
+        "area_sqkm": 3.8,
+        "drivers": {
+          "primary_vector": "LANDSLIDE",
+          "district": "Mandi",
+          "severity": "CRITICAL"
+        },
+        "color": "#EF4444",
+        "warning_message": "Recurrent structural highway collapse zone with massive regolith slide."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              76.92,
+              31.69
+            ],
+            [
+              77.06,
+              31.66
+            ],
+            [
+              77.07,
+              31.68
+            ],
+            [
+              76.93,
+              31.72
+            ],
+            [
+              76.92,
+              31.69
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "HAZ-MD-02",
+        "name": "Beas River Gorge Inundation Zone",
+        "district": "Mandi",
+        "hazard_type": "FLASH_FLOOD",
+        "severity": "HIGH",
+        "risk_score": 0.87,
+        "confidence_score": 0.91,
+        "area_sqkm": 4.5,
+        "drivers": {
+          "primary_vector": "FLASH_FLOOD",
+          "district": "Mandi",
+          "severity": "HIGH"
+        },
+        "color": "#F97316",
+        "warning_message": "Pandoh Dam high-discharge flood corridor exceeding red danger marks."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.475,
+              18.01
+            ],
+            [
+              73.495,
+              18.015
+            ],
+            [
+              73.5,
+              18.03
+            ],
+            [
+              73.48,
+              18.028
+            ],
+            [
+              73.475,
+              18.01
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "HAZ-RG-01",
+        "name": "Taliye Cliff Failure Risk Polygon",
+        "district": "Raigad",
+        "hazard_type": "LANDSLIDE",
+        "severity": "CRITICAL",
+        "risk_score": 0.96,
+        "confidence_score": 0.91,
+        "area_sqkm": 2.2,
+        "drivers": {
+          "primary_vector": "LANDSLIDE",
+          "district": "Raigad",
+          "severity": "CRITICAL"
+        },
+        "color": "#EF4444",
+        "warning_message": "Laterite hillock liquefaction hazard threatening foothill habitations."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.41,
+              18.07
+            ],
+            [
+              73.445,
+              18.075
+            ],
+            [
+              73.45,
+              18.1
+            ],
+            [
+              73.415,
+              18.095
+            ],
+            [
+              73.41,
+              18.07
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "HAZ-RG-02",
+        "name": "Savitri River Flash Flood Plain",
+        "district": "Raigad",
+        "hazard_type": "FLASH_FLOOD",
+        "severity": "HIGH",
+        "risk_score": 0.89,
+        "confidence_score": 0.91,
+        "area_sqkm": 4.8,
+        "drivers": {
+          "primary_vector": "FLASH_FLOOD",
+          "district": "Raigad",
+          "severity": "HIGH"
+        },
+        "color": "#F97316",
+        "warning_message": "High tide backwater push causing rapid town inundation in Mahad."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              95.16,
+              27.78
+            ],
+            [
+              95.21,
+              27.79
+            ],
+            [
+              95.215,
+              27.82
+            ],
+            [
+              95.165,
+              27.81
+            ],
+            [
+              95.16,
+              27.78
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "HAZ-DH-01",
+        "name": "Brahmaputra Bank Embankment Breach Red Zone",
+        "district": "Dhemaji",
+        "hazard_type": "RIVER_FLOOD",
+        "severity": "CRITICAL",
+        "risk_score": 0.95,
+        "confidence_score": 0.91,
+        "area_sqkm": 8.5,
+        "drivers": {
+          "primary_vector": "RIVER_FLOOD",
+          "district": "Dhemaji",
+          "severity": "CRITICAL"
+        },
+        "color": "#EF4444",
+        "warning_message": "Direct erosion and riverbank collapse cutting off Jonai link road."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              88.41,
+              27.04
+            ],
+            [
+              88.45,
+              27.05
+            ],
+            [
+              88.46,
+              27.085
+            ],
+            [
+              88.42,
+              27.075
+            ],
+            [
+              88.41,
+              27.04
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": "HAZ-DJ-01",
+        "name": "Teesta Canyon GLOF Inundation Corridor",
+        "district": "Darjeeling",
+        "hazard_type": "GLOF",
+        "severity": "CRITICAL",
+        "risk_score": 0.96,
+        "confidence_score": 0.91,
+        "area_sqkm": 6.2,
+        "drivers": {
+          "primary_vector": "GLOF",
+          "district": "Darjeeling",
+          "severity": "CRITICAL"
+        },
+        "color": "#EF4444",
+        "warning_message": "High-velocity glacial surge wave along NH-10 Teesta highway."
       }
     }
   ]

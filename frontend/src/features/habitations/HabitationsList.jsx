@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Home, Search, ShieldAlert, Filter, ChevronRight, MapPin, Sparkles } from 'lucide-react';
 import { api } from '../../api/client';
 
-export default function HabitationsList({ onInspectHabitation, onLaunchSimulation }) {
+export default function HabitationsList({
+  onInspectHabitation,
+  onLaunchSimulation,
+  selectedRegion = 'ALL',
+  currentRegionObj
+}) {
   const [habitations, setHabitations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -10,12 +15,13 @@ export default function HabitationsList({ onInspectHabitation, onLaunchSimulatio
 
   useEffect(() => {
     loadHabitations();
-  }, []);
+  }, [selectedRegion]);
 
   const loadHabitations = async () => {
     try {
       setLoading(true);
-      const data = await api.getHabitations();
+      const districtParam = selectedRegion === 'ALL' ? null : (currentRegionObj?.district || selectedRegion);
+      const data = await api.getHabitations({ district: districtParam });
       setHabitations(data || []);
     } catch (err) {
       console.error(err);
@@ -25,7 +31,9 @@ export default function HabitationsList({ onInspectHabitation, onLaunchSimulatio
   };
 
   const filtered = habitations.filter((h) => {
-    const matchSearch = h.name.toLowerCase().includes(search.toLowerCase()) || h.id.toLowerCase().includes(search.toLowerCase());
+    const matchSearch = h.name.toLowerCase().includes(search.toLowerCase()) || 
+      h.id.toLowerCase().includes(search.toLowerCase()) ||
+      h.district.toLowerCase().includes(search.toLowerCase());
     const matchCat = filterCategory === 'ALL' || h.risk_category === filterCategory;
     return matchSearch && matchCat;
   });
@@ -42,15 +50,15 @@ export default function HabitationsList({ onInspectHabitation, onLaunchSimulatio
   return (
     <div className="space-y-5 pb-12 max-w-7xl mx-auto">
       {/* Header Banner */}
-      <div className="p-6 rounded-2xl bg-[#0B0F17]/90 backdrop-blur-xl border border-white/10 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-6 rounded-2xl bg-[#0B0F17]/90 backdrop-blur-xl border border-slate-800 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center space-x-2 mb-1 text-xs font-mono text-cyan-400">
             <span>SETTLEMENT REGISTRY</span>
             <span>•</span>
-            <span className="text-slate-400">CHAMOLI OPERATIONAL SECTORS</span>
+            <span className="text-slate-400">{currentRegionObj?.name?.toUpperCase() || 'PAN-INDIA MONITORING'}</span>
           </div>
           <h2 className="text-xl font-bold text-white font-mono">Habitations & Vulnerability Ledger</h2>
-          <p className="text-xs text-slate-400 mt-0.5">20 Surveyed Wards & Mountain Villages with Monitored Displacement Factors</p>
+          <p className="text-xs text-slate-400 mt-0.5">{habitations.length} Monitored Settlements & High-Risk Wards Across Active Sectors</p>
         </div>
 
         {/* Search & Filter */}
