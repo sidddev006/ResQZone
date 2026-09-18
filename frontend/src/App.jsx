@@ -23,6 +23,18 @@ export default function App() {
   const [unreadAlerts, setUnreadAlerts] = useState(0);
   const [regions, setRegions] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState('ALL');
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('resqzone_theme') || 'light';
+  });
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('resqzone_theme', theme);
+  }, [theme]);
 
   useEffect(() => {
     // Initial fetch of unread alerts count
@@ -48,9 +60,9 @@ export default function App() {
   const currentRegionObj = regions.find(r => r.id === selectedRegion) || (regions.length > 0 ? regions[0] : null);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-slate-950">
+    <div className={`flex h-screen overflow-hidden ${theme === 'dark' ? 'dark bg-[#090D16] text-slate-100' : 'bg-[#F8FAFC] text-slate-900'} selection:bg-sky-500 selection:text-white transition-colors duration-200`}>
       {/* Sidebar Navigation */}
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} theme={theme} />
 
       {/* Main Workspace */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
@@ -62,15 +74,18 @@ export default function App() {
           selectedRegion={selectedRegion}
           onSelectRegion={setSelectedRegion}
           currentRegionObj={currentRegionObj}
+          theme={theme}
+          onToggleTheme={() => setTheme(t => t === 'dark' ? 'light' : 'dark')}
         />
 
-        <main className={`flex-1 min-w-0 overflow-y-auto ${activeTab === 'map' ? 'p-3 overflow-hidden' : 'p-6'} scroll-smooth bg-[#07090E] bg-tactical-grid`}>
+        <main className={`flex-1 min-w-0 overflow-y-auto ${activeTab === 'map' ? 'p-3 overflow-hidden' : 'p-5 sm:p-7 lg:p-8'} scroll-smooth ${theme === 'dark' ? 'bg-[#090D16]' : 'bg-[#F8FAFC]'} bg-saas-grid`}>
           {activeTab === 'dashboard' && (
             <DashboardOverview
               onNavigate={setActiveTab}
               onSelectHabitation={handleInspectHabitation}
               selectedRegion={selectedRegion}
               currentRegionObj={currentRegionObj}
+              theme={theme}
             />
           )}
 
@@ -81,6 +96,7 @@ export default function App() {
               onSelectRegion={setSelectedRegion}
               regions={regions}
               currentRegionObj={currentRegionObj}
+              theme={theme}
             />
           )}
 
@@ -90,6 +106,7 @@ export default function App() {
               onLaunchSimulation={() => setActiveTab('resq_twin')}
               selectedRegion={selectedRegion}
               currentRegionObj={currentRegionObj}
+              theme={theme}
             />
           )}
 
@@ -97,6 +114,7 @@ export default function App() {
             <CarryingCapacityView
               selectedRegion={selectedRegion}
               currentRegionObj={currentRegionObj}
+              theme={theme}
             />
           )}
 
@@ -104,6 +122,7 @@ export default function App() {
             <RelocationPlanner
               selectedRegion={selectedRegion}
               currentRegionObj={currentRegionObj}
+              theme={theme}
             />
           )}
 
@@ -111,14 +130,15 @@ export default function App() {
             <ResQTwinSimulator
               selectedRegion={selectedRegion}
               currentRegionObj={currentRegionObj}
+              theme={theme}
             />
           )}
 
-          {activeTab === 'alerts' && <AlertsManager selectedRegion={selectedRegion} />}
+          {activeTab === 'alerts' && <AlertsManager selectedRegion={selectedRegion} theme={theme} />}
 
-          {activeTab === 'reports' && <ReportViewer selectedRegion={selectedRegion} />}
+          {activeTab === 'reports' && <ReportViewer selectedRegion={selectedRegion} theme={theme} />}
 
-          {activeTab === 'system' && <SystemHealthView selectedRegion={selectedRegion} />}
+          {activeTab === 'system' && <SystemHealthView selectedRegion={selectedRegion} theme={theme} />}
         </main>
       </div>
 
@@ -126,6 +146,7 @@ export default function App() {
       <EvidenceModal
         habitation={selectedHabitation}
         onClose={() => setSelectedHabitation(null)}
+        theme={theme}
       />
 
       <AICopilotModal
@@ -133,6 +154,7 @@ export default function App() {
         onClose={() => setCopilotOpen(false)}
         onSelectHabitation={handleInspectHabitation}
         onNavigate={setActiveTab}
+        theme={theme}
       />
     </div>
   );

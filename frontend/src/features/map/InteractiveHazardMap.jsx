@@ -4,12 +4,18 @@ import {
   Layers, Eye, EyeOff, Shield, AlertTriangle, Building, Navigation, 
   RefreshCw, Crosshair, Compass, Mountain, Maximize2, Minimize2, 
   Route, CheckCircle2, ChevronRight, X, Activity, Radio, MapPin,
-  Search, Filter, Users, ArrowUpRight, Droplets, Bed, ExternalLink, HelpCircle
+  Search, Filter, Users, ArrowUpRight, Droplets, Bed, ExternalLink, HelpCircle,
+  Key, Settings, Info, Check
 } from 'lucide-react';
 import { api } from '../../api/client';
 
 // Basemap Tile Providers
 const BASEMAPS = {
+  positron: {
+    name: 'Carto Light (Apple)',
+    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    attribution: '&copy; <a href="https://carto.com/">CARTO</a>'
+  },
   tactical_dark: {
     name: 'Tactical Dark',
     url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
@@ -26,7 +32,7 @@ const BASEMAPS = {
     attribution: 'Map data &copy; OpenTopoMap (CC-BY-SA)'
   },
   voyager: {
-    name: 'Voyager Light',
+    name: 'Voyager Natural',
     url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
     attribution: '&copy; CARTO'
   }
@@ -91,8 +97,11 @@ export default function InteractiveHazardMap({
   selectedRegion = 'ALL',
   onSelectRegion,
   regions = [],
-  currentRegionObj
+  currentRegionObj,
+  theme = 'light'
 }) {
+  const isDark = theme === 'dark';
+
   // Core Data
   const [hazards, setHazards] = useState([]);
   const [habitations, setHabitations] = useState([]);
@@ -103,8 +112,40 @@ export default function InteractiveHazardMap({
   // UNITED24 View Mode: 'map' (GIS Map View) or 'grid' (Ledger Grid View)
   const [viewMode, setViewMode] = useState('map');
 
-  // Basemap & Layers
-  const [currentBasemap, setCurrentBasemap] = useState('tactical_dark');
+  // Mapbox Token & Dynamic API Key modal state
+  const [mapboxToken, setMapboxToken] = useState(() => {
+    return localStorage.getItem('resqzone_mapbox_token') || '';
+  });
+  const [tempToken, setTempToken] = useState(mapboxToken);
+  const [showApiKeyModal, setShowApiKeyModal] = useState(false);
+
+  // Dynamic Basemaps incorporating Mapbox if token provided
+  const activeBaseMaps = useMemo(() => {
+    const maps = { ...BASEMAPS };
+    if (mapboxToken) {
+      maps.mapbox_satellite = {
+        name: 'Mapbox Satellite HD',
+        url: `https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=${mapboxToken}`,
+        attribution: '&copy; <a href="https://www.mapbox.com/">Mapbox</a>'
+      };
+      maps.mapbox_streets = {
+        name: 'Mapbox Streets HD',
+        url: `https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token=${mapboxToken}`,
+        attribution: '&copy; <a href="https://www.mapbox.com/">Mapbox</a>'
+      };
+      maps.mapbox_dark = {
+        name: 'Mapbox Dark HD',
+        url: `https://api.mapbox.com/styles/v1/mapbox/navigation-night-v1/tiles/{z}/{x}/{y}?access_token=${mapboxToken}`,
+        attribution: '&copy; <a href="https://www.mapbox.com/">Mapbox</a>'
+      };
+    }
+    return maps;
+  }, [mapboxToken]);
+
+  // Basemap & Layers (defaults to light clean positron in light mode, dark in dark mode)
+  const [currentBasemap, setCurrentBasemap] = useState(() => {
+    return isDark ? 'tactical_dark' : 'positron';
+  });
   const [showHazards, setShowHazards] = useState(true);
   const [showHabitations, setShowHabitations] = useState(true);
   const [showShelters, setShowShelters] = useState(true);
@@ -242,42 +283,50 @@ export default function InteractiveHazardMap({
   };
 
   return (
-    <div className={`relative flex flex-col ${isFullscreen ? 'fixed inset-0 z-50 bg-[#07090E]' : 'h-[calc(100vh-8.5rem)] rounded-xl overflow-hidden border border-slate-800/80 shadow-2xl bg-[#07090E]'}`}>
+    <div className={`relative flex flex-col ${isFullscreen ? 'fixed inset-0 z-50' : 'h-[calc(100vh-8.5rem)] rounded-2xl overflow-hidden shadow-2xl border'} ${
+      isDark ? 'bg-[#090D16] border-white/[0.08]' : 'bg-white border-slate-200'
+    }`}>
       
-      {/* 1. ELEKEN / UNITED24 HEADER CONTROL BAR */}
-      <div className="z-20 px-4 py-2.5 bg-[#0B0F17]/95 backdrop-blur-md border-b border-slate-800/80 flex flex-wrap items-center justify-between gap-3 text-xs">
+      {/* 1. MODERN HEADER CONTROL BAR */}
+      <div className={`z-20 px-4 py-2.5 border-b flex flex-wrap items-center justify-between gap-3 text-xs transition-colors ${
+        isDark ? 'bg-[#0B0F19]/95 border-white/[0.08] text-white' : 'bg-white/95 border-slate-200 text-slate-800'
+      }`}>
         
         {/* Left: View Mode Toggle (Map View vs Ledger Grid View) */}
         <div className="flex items-center space-x-2">
-          <div className="flex items-center bg-[#070B12] p-1 rounded-lg border border-slate-800/90 shadow-inner">
+          <div className={`flex items-center p-1 rounded-xl border ${
+            isDark ? 'bg-[#060910] border-slate-800' : 'bg-slate-100 border-slate-200'
+          }`}>
             <button
               onClick={() => setViewMode('map')}
-              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-medium transition-all ${
+              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 viewMode === 'map'
-                  ? 'bg-cyan-500 text-slate-950 font-bold shadow-md shadow-cyan-500/25'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                  ? (isDark ? 'bg-sky-500 text-slate-950 font-bold shadow-md shadow-sky-500/25' : 'bg-white text-sky-950 font-bold shadow-sm')
+                  : (isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900')
               }`}
             >
               <Compass className="w-3.5 h-3.5" />
-              <span>Map View</span>
+              <span>Interactive Map</span>
             </button>
             <button
               onClick={() => setViewMode('grid')}
-              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-medium transition-all ${
+              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 viewMode === 'grid'
-                  ? 'bg-cyan-500 text-slate-950 font-bold shadow-md shadow-cyan-500/25'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                  ? (isDark ? 'bg-sky-500 text-slate-950 font-bold shadow-md shadow-sky-500/25' : 'bg-white text-sky-950 font-bold shadow-sm')
+                  : (isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900')
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
-              <span>Ledger Grid View</span>
+              <span>Settlement Ledger</span>
             </button>
           </div>
 
           {/* Active Theater Indicator */}
-          <div className="hidden sm:flex items-center space-x-2 px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-[11px]">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span className="font-semibold">{currentRegionObj?.name || 'All India National Grid'}</span>
+          <div className={`hidden sm:flex items-center space-x-2 px-3 py-1.5 rounded-xl border text-xs font-semibold ${
+            isDark ? 'bg-sky-500/10 border-sky-500/30 text-sky-300' : 'bg-sky-50 border-sky-200 text-sky-700'
+          }`}>
+            <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
+            <span>{currentRegionObj?.name || 'All India National Grid'}</span>
           </div>
         </div>
 
@@ -285,15 +334,17 @@ export default function InteractiveHazardMap({
         {viewMode === 'map' && (
           <div className="flex items-center flex-wrap gap-2">
             {/* Basemap Switcher */}
-            <div className="flex items-center bg-[#131A2B] rounded-lg p-0.5 border border-slate-800">
-              {Object.entries(BASEMAPS).map(([key, bmp]) => (
+            <div className={`flex items-center rounded-xl p-0.5 border ${
+              isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-100 border-slate-200'
+            }`}>
+              {Object.entries(activeBaseMaps).map(([key, bmp]) => (
                 <button
                   key={key}
                   onClick={() => setCurrentBasemap(key)}
-                  className={`px-2 py-1 rounded text-[11px] font-mono transition-all ${
+                  className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all ${
                     currentBasemap === key
-                      ? 'bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/40'
-                      : 'text-slate-400 hover:text-slate-200'
+                      ? (isDark ? 'bg-sky-500/20 text-sky-300 font-bold border border-sky-500/40' : 'bg-white text-sky-800 font-bold shadow-sm border border-slate-200')
+                      : (isDark ? 'text-slate-400 hover:text-slate-200' : 'text-slate-600 hover:text-slate-900')
                   }`}
                 >
                   {bmp.name.split(' ')[0]}
@@ -301,12 +352,30 @@ export default function InteractiveHazardMap({
               ))}
             </div>
 
+            {/* GIS Map API Key & Layers Modal Button */}
+            <button
+              onClick={() => setShowApiKeyModal(true)}
+              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border font-bold text-xs transition-all ${
+                isDark 
+                  ? 'bg-amber-500/15 border-amber-500/30 text-amber-300 hover:bg-amber-500/25' 
+                  : 'bg-amber-50 border-amber-300 text-amber-800 hover:bg-amber-100 shadow-sm'
+              }`}
+              title="Configure Map API Keys (Mapbox, Google, etc.)"
+            >
+              <Key className="w-3.5 h-3.5 text-amber-500" />
+              <span>Map API Key & Layers</span>
+            </button>
+
             {/* Layer Toggles */}
-            <div className="flex items-center space-x-1 bg-[#131A2B] p-0.5 rounded-lg border border-slate-800 text-[11px] font-mono">
+            <div className={`flex items-center space-x-1 p-0.5 rounded-xl border text-[11px] font-semibold ${
+              isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-100 border-slate-200'
+            }`}>
               <button
                 onClick={() => setShowHazards(!showHazards)}
-                className={`flex items-center space-x-1 px-2 py-1 rounded transition-colors ${
-                  showHazards ? 'text-rose-400 bg-rose-500/10 font-semibold' : 'text-slate-500 line-through'
+                className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg transition-all ${
+                  showHazards 
+                    ? (isDark ? 'text-rose-400 bg-rose-500/15 font-bold' : 'text-rose-700 bg-rose-50 font-bold border border-rose-200 shadow-xs') 
+                    : 'text-slate-400 opacity-60 line-through'
                 }`}
                 title="Toggle Multi-Hazard Zones"
               >
@@ -315,8 +384,10 @@ export default function InteractiveHazardMap({
               </button>
               <button
                 onClick={() => setShowHabitations(!showHabitations)}
-                className={`flex items-center space-x-1 px-2 py-1 rounded transition-colors ${
-                  showHabitations ? 'text-cyan-400 bg-cyan-500/10 font-semibold' : 'text-slate-500 line-through'
+                className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg transition-all ${
+                  showHabitations 
+                    ? (isDark ? 'text-sky-400 bg-sky-500/15 font-bold' : 'text-sky-700 bg-sky-50 font-bold border border-sky-200 shadow-xs') 
+                    : 'text-slate-400 opacity-60 line-through'
                 }`}
                 title="Toggle Habitations"
               >
@@ -325,8 +396,10 @@ export default function InteractiveHazardMap({
               </button>
               <button
                 onClick={() => setShowShelters(!showShelters)}
-                className={`flex items-center space-x-1 px-2 py-1 rounded transition-colors ${
-                  showShelters ? 'text-emerald-400 bg-emerald-500/10 font-semibold' : 'text-slate-500 line-through'
+                className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg transition-all ${
+                  showShelters 
+                    ? (isDark ? 'text-emerald-400 bg-emerald-500/15 font-bold' : 'text-emerald-700 bg-emerald-50 font-bold border border-emerald-200 shadow-xs') 
+                    : 'text-slate-400 opacity-60 line-through'
                 }`}
                 title="Toggle Shelters"
               >
@@ -339,14 +412,18 @@ export default function InteractiveHazardMap({
             <div className="flex items-center space-x-1">
               <button
                 onClick={() => setFitTrigger(prev => prev + 1)}
-                className="p-1.5 rounded-lg bg-[#131A2B] hover:bg-[#1C253B] text-slate-300 hover:text-white border border-slate-800 transition-colors"
+                className={`p-1.5 rounded-xl border transition-colors ${
+                  isDark ? 'bg-slate-900 hover:bg-slate-800 text-slate-300 border-slate-800' : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200 shadow-sm'
+                }`}
                 title="Fit Region Bounds"
               >
                 <Crosshair className="w-3.5 h-3.5" />
               </button>
               <button
                 onClick={() => setIsFullscreen(!isFullscreen)}
-                className="p-1.5 rounded-lg bg-[#131A2B] hover:bg-[#1C253B] text-slate-300 hover:text-white border border-slate-800 transition-colors"
+                className={`p-1.5 rounded-xl border transition-colors ${
+                  isDark ? 'bg-slate-900 hover:bg-slate-800 text-slate-300 border-slate-800' : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200 shadow-sm'
+                }`}
                 title={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
               >
                 {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
@@ -406,8 +483,9 @@ export default function InteractiveHazardMap({
 
               {/* Basemap Tile Layer */}
               <TileLayer
-                url={BASEMAPS[currentBasemap].url}
-                attribution={BASEMAPS[currentBasemap].attribution}
+                key={currentBasemap}
+                url={(activeBaseMaps[currentBasemap] || BASEMAPS.positron || BASEMAPS.tactical_dark).url}
+                attribution={(activeBaseMaps[currentBasemap] || BASEMAPS.positron || BASEMAPS.tactical_dark).attribution}
                 maxZoom={18}
               />
 
@@ -994,6 +1072,117 @@ export default function InteractiveHazardMap({
             )}
           </div>
         )}
+
+      {/* GIS MAP API KEY & LAYERS SETTINGS MODAL */}
+      {showApiKeyModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+          <div className={`w-full max-w-2xl rounded-3xl p-6 sm:p-8 border shadow-2xl space-y-6 ${
+            isDark ? 'bg-[#0F172A] border-white/[0.1] text-white' : 'bg-white border-slate-200 text-slate-900'
+          }`}>
+            {/* Modal Header */}
+            <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+              <div className="flex items-center space-x-3">
+                <div className="p-2.5 rounded-2xl bg-amber-500/10 text-amber-500 border border-amber-500/20">
+                  <Key className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold">GIS Map Layers & API Key Settings</h3>
+                  <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                    Configure Mapbox tokens, live GIS tile endpoints, and basemap layers
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowApiKeyModal(false)}
+                className="p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Zero-Key Built-in Layers Reassurance */}
+            <div className={`p-4 rounded-2xl border text-xs space-y-2 ${
+              isDark ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-300' : 'bg-emerald-50/80 border-emerald-200 text-emerald-800'
+            }`}>
+              <div className="flex items-center space-x-2 font-bold text-sm">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                <span>Active Built-In Map Providers (Zero API Key Needed)</span>
+              </div>
+              <p className="leading-relaxed">
+                ResQZone is pre-configured with 4 high-performance, open tile networks that work 100% out of the box with zero keys:
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 pt-1 text-[11px] font-medium">
+                <div>• <strong>Carto Light (Apple):</strong> Clean luminous vector map</div>
+                <div>• <strong>Tactical Dark:</strong> High-contrast night mission map</div>
+                <div>• <strong>Esri World Imagery:</strong> Sub-meter aerial photography</div>
+                <div>• <strong>Topographic Terrain:</strong> Contour elevation relief</div>
+              </div>
+            </div>
+
+            {/* Mapbox Token Input Section */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-bold">Mapbox Integration (HD Satellite & Navigation)</span>
+                <a
+                  href="https://account.mapbox.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-semibold text-sky-600 dark:text-sky-400 hover:underline flex items-center space-x-1"
+                >
+                  <span>Get Free Mapbox Key</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+
+              <div className={`p-3.5 rounded-xl border text-xs space-y-1.5 ${
+                isDark ? 'bg-slate-900 border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-600'
+              }`}>
+                <div className="font-semibold text-slate-800 dark:text-slate-200">How to get your Mapbox API key:</div>
+                <ol className="list-decimal list-inside space-y-1 text-[11px] leading-relaxed">
+                  <li>Visit <strong className="text-sky-500">account.mapbox.com</strong> and create a free account (includes 50,000 free map loads every month).</li>
+                  <li>On the dashboard under <strong>Access Tokens</strong>, click copy on your <strong>Default public token</strong>.</li>
+                  <li>Paste your token (format: <code className="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono text-[10px]">pk.eyJ1...</code>) below and click Save.</li>
+                </ol>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center gap-2">
+                <input
+                  type="text"
+                  value={tempToken}
+                  onChange={(e) => setTempToken(e.target.value)}
+                  placeholder="Paste Mapbox token: pk.eyJ1..."
+                  className={`w-full flex-1 px-4 py-2.5 rounded-xl border text-xs font-mono focus:outline-none focus:ring-2 focus:ring-sky-500 ${
+                    isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'
+                  }`}
+                />
+                <button
+                  onClick={() => {
+                    const cleaned = tempToken.trim();
+                    localStorage.setItem('resqzone_mapbox_token', cleaned);
+                    setMapboxToken(cleaned);
+                    if (cleaned) {
+                      setCurrentBasemap('mapbox_satellite');
+                    }
+                    setShowApiKeyModal(false);
+                  }}
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs shadow-md shadow-sky-500/20 transition-all shrink-0"
+                >
+                  Save & Activate
+                </button>
+              </div>
+            </div>
+
+            {/* Additional Providers Reference */}
+            <div className={`pt-3 border-t text-[11px] space-y-1 ${
+              isDark ? 'border-slate-800 text-slate-400' : 'border-slate-200 text-slate-500'
+            }`}>
+              <div><strong>Google Maps:</strong> Key generated via <em>console.cloud.google.com</em> &rarr; Google Maps JavaScript API.</div>
+              <div><strong>ISRO Bhuvan:</strong> India geospatial datasets are served via open WMS at <em>bhuvan.nrsc.gov.in</em>.</div>
+              <div><strong>MapTiler:</strong> Cloud vector tiles available with a free key at <em>cloud.maptiler.com</em>.</div>
+            </div>
+          </div>
+        </div>
+      )}
 
       </div>
     </div>
