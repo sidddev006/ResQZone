@@ -7,7 +7,6 @@ export default function AlertsManager() {
   const [loading, setLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);
 
-  // New alert form
   const [title, setTitle] = useState('');
   const [severity, setSeverity] = useState('WARNING');
   const [category, setCategory] = useState('LANDSLIDE_ALERT');
@@ -65,91 +64,86 @@ export default function AlertsManager() {
 
   const getSeverityBadge = (sev) => {
     switch (sev) {
-      case 'CRITICAL': return 'bg-red-500/20 text-red-400 border-red-500/40';
-      case 'WARNING': return 'bg-orange-500/20 text-orange-400 border-orange-500/40';
-      case 'WATCH': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/40';
-      default: return 'bg-blue-500/20 text-blue-400 border-blue-500/40';
+      case 'CRITICAL': return 'bg-rose-50 text-rose-700 border-rose-200';
+      case 'WARNING': return 'bg-amber-50 text-amber-800 border-amber-200';
+      case 'WATCH': return 'bg-yellow-50 text-yellow-800 border-yellow-200';
+      default: return 'bg-stone-100 text-stone-700 border-stone-200';
     }
   };
 
   return (
-    <div className="space-y-6 pb-12">
+    <div className="space-y-5 pb-12 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-red-600/20 text-red-400 flex items-center justify-center">
-            <BellRing className="w-5 h-5" />
-          </div>
-          <div>
-            <h2 className="text-xl font-bold text-white">Emergency Alerts & Broadcast Center</h2>
-            <p className="text-xs text-slate-400">
-              Multi-channel operational notifications (Dashboard, FCM Push, SMS broadcast)
-            </p>
-          </div>
+      <div className="p-6 rounded-xl bg-white border border-stone-200/80 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h2 className="text-base font-semibold text-stone-900">Emergency Alerts & Notification Feed</h2>
+          <p className="text-xs text-stone-500 mt-0.5">
+            Multi-channel notifications dispatched to DEOC dashboard, field FCM terminals, and citizen SMS gateways
+          </p>
         </div>
 
         <button
           onClick={() => setShowCreateModal(true)}
-          className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs flex items-center space-x-2 shadow-lg shadow-red-950/50 transition-all"
+          className="px-3.5 py-1.5 rounded-lg bg-stone-900 hover:bg-stone-800 text-white font-medium text-xs flex items-center space-x-1.5 shadow-xs transition-colors"
         >
           <Send className="w-3.5 h-3.5" />
-          <span>Dispatch Emergency Alert</span>
+          <span>Dispatch Notice</span>
         </button>
       </div>
 
       {/* Alerts Feed */}
       <div className="space-y-3">
         {loading ? (
-          <div className="p-8 text-center text-xs text-slate-400 bg-slate-900 rounded-2xl">Loading alerts...</div>
+          <div className="p-8 text-center text-xs text-stone-400 bg-white rounded-xl border border-stone-200">Loading alerts...</div>
         ) : alerts.length === 0 ? (
-          <div className="p-8 text-center text-xs text-slate-400 bg-slate-900 rounded-2xl">No active alerts.</div>
+          <div className="p-8 text-center text-xs text-stone-400 bg-white rounded-xl border border-stone-200">No active alerts.</div>
         ) : (
           alerts.map((a) => (
             <div
               key={a.id}
-              className={`p-5 rounded-2xl bg-slate-900/90 border transition-all space-y-3 ${
-                a.is_read ? 'border-slate-800 opacity-80' : 'border-slate-700 shadow-lg'
+              className={`p-5 rounded-xl bg-white border transition-all space-y-3 shadow-card ${
+                a.is_read ? 'border-stone-200/60 opacity-75' : 'border-stone-200'
               }`}
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <div className="flex items-center space-x-2.5">
-                  <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold border ${getSeverityBadge(a.severity)}`}>
+                <div className="flex items-center space-x-2">
+                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-semibold border ${getSeverityBadge(a.severity)}`}>
                     {a.severity}
                   </span>
-                  <span className="font-bold text-white text-sm">{a.title}</span>
+                  <span className="font-semibold text-stone-900 text-sm">{a.title}</span>
                 </div>
-                <div className="text-[11px] font-mono text-slate-400">
+                <div className="text-[11px] font-mono text-stone-400">
                   {new Date(a.created_at).toLocaleString()}
                 </div>
               </div>
 
-              <div className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-xs text-stone-600 leading-relaxed">
                 {a.message}
-              </div>
+              </p>
 
-              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs">
-                <strong className="text-amber-400">Recommended Action:</strong>{' '}
-                <span className="text-slate-300">{a.recommended_action}</span>
+              <div className="p-3 rounded-lg bg-stone-50 border border-stone-100 text-xs">
+                <span className="font-medium text-stone-900">Recommended Action: </span>
+                <span className="text-stone-700">{a.recommended_action}</span>
               </div>
 
               {/* Delivery Metadata */}
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-800 text-[11px] text-slate-400">
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-stone-100 text-[11px] text-stone-500">
                 <div className="flex items-center space-x-3">
-                  <span className="flex items-center space-x-1 text-emerald-400">
+                  <span className="flex items-center space-x-1 text-emerald-700">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                     <span>FCM: {a.fcm_status || 'Delivered'}</span>
                   </span>
-                  <span className="flex items-center space-x-1 text-blue-400">
+                  <span className="flex items-center space-x-1 text-stone-600">
                     <Radio className="w-3.5 h-3.5" />
                     <span>SMS: {a.sms_status || 'Broadcasted'}</span>
                   </span>
-                  <span className="text-slate-500">Target: {a.target_area} ({a.affected_population?.toLocaleString()} citizens)</span>
+                  <span className="text-stone-400">Target: {a.target_area} ({a.affected_population?.toLocaleString()} citizens)</span>
                 </div>
 
                 {!a.is_read && (
                   <button
                     onClick={() => handleAcknowledge(a.id)}
-                    className="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold transition-colors"
+                    className="px-2.5 py-1 rounded-md bg-stone-100 hover:bg-stone-200 text-stone-700 font-medium transition-colors border border-stone-200"
                   >
                     Acknowledge
                   </button>
@@ -162,29 +156,29 @@ export default function AlertsManager() {
 
       {/* Modal: Create Alert */}
       {showCreateModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
-          <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-lg p-6 space-y-4 shadow-2xl">
-            <h3 className="font-bold text-white text-base">Dispatch Operational Alert</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/30 backdrop-blur-xs">
+          <div className="bg-white border border-stone-200 rounded-xl w-full max-w-lg p-6 space-y-4 shadow-elevated">
+            <h3 className="font-semibold text-stone-900 text-sm">Dispatch Operational Alert</h3>
             <form onSubmit={handleCreate} className="space-y-3 text-xs">
               <div>
-                <label className="text-slate-400 block mb-1">Alert Title</label>
+                <label className="text-stone-500 block mb-1">Alert Title</label>
                 <input
                   type="text"
                   placeholder="e.g. Subsidence fissure extension detected"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   required
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white"
+                  className="w-full bg-white border border-stone-200 rounded-lg p-2 text-stone-900"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-slate-400 block mb-1">Severity Tier</label>
+                  <label className="text-stone-500 block mb-1">Severity Tier</label>
                   <select
                     value={severity}
                     onChange={(e) => setSeverity(e.target.value)}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white"
+                    className="w-full bg-white border border-stone-200 rounded-lg p-2 text-stone-900"
                   >
                     <option value="CRITICAL">CRITICAL (Red Alert)</option>
                     <option value="WARNING">WARNING (Orange)</option>
@@ -193,49 +187,47 @@ export default function AlertsManager() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-slate-400 block mb-1">Target Area</label>
+                  <label className="text-stone-500 block mb-1">Target Area</label>
                   <input
                     type="text"
                     value={targetArea}
                     onChange={(e) => setTargetArea(e.target.value)}
                     required
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white"
+                    className="w-full bg-white border border-stone-200 rounded-lg p-2 text-stone-900"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-slate-400 block mb-1">Affected Population Estimate</label>
+                <label className="text-stone-500 block mb-1">Affected Population</label>
                 <input
                   type="number"
                   value={affectedPop}
                   onChange={(e) => setAffectedPop(e.target.value)}
                   required
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white font-mono"
+                  className="w-full bg-white border border-stone-200 rounded-lg p-2 text-stone-900 font-mono"
                 />
               </div>
 
               <div>
-                <label className="text-slate-400 block mb-1">Alert Message</label>
+                <label className="text-stone-500 block mb-1">Detailed Message</label>
                 <textarea
                   rows="3"
-                  placeholder="Detailed multi-sensor fusion observation..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   required
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white"
+                  className="w-full bg-white border border-stone-200 rounded-lg p-2 text-stone-900"
                 ></textarea>
               </div>
 
               <div>
-                <label className="text-slate-400 block mb-1">Recommended Action</label>
+                <label className="text-stone-500 block mb-1">Recommended Action</label>
                 <input
                   type="text"
-                  placeholder="Evacuation order or route diversion notice"
                   value={action}
                   onChange={(e) => setAction(e.target.value)}
                   required
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white"
+                  className="w-full bg-white border border-stone-200 rounded-lg p-2 text-stone-900"
                 />
               </div>
 
@@ -243,15 +235,15 @@ export default function AlertsManager() {
                 <button
                   type="button"
                   onClick={() => setShowCreateModal(false)}
-                  className="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 font-semibold"
+                  className="px-3 py-1.5 rounded-lg bg-stone-100 text-stone-700 font-medium"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold shadow-lg shadow-red-950/50"
+                  className="px-3 py-1.5 rounded-lg bg-stone-900 hover:bg-stone-800 text-white font-medium shadow-xs"
                 >
-                  Broadcast Alert Now
+                  Broadcast Alert
                 </button>
               </div>
             </form>

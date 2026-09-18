@@ -8,30 +8,29 @@ import {
   Cpu,
   BellRing,
   FileText,
-  Activity,
-  ChevronRight
+  Activity
 } from 'lucide-react';
 
 export default function Sidebar({ activeTab, setActiveTab }) {
   const menuItems = [
-    { id: 'dashboard', label: 'Command Center', icon: LayoutDashboard, badge: null },
-    { id: 'map', label: 'Multi-Hazard GIS Map', icon: Map, badge: 'GIS' },
-    { id: 'habitations', label: 'Habitations & Risk', icon: Home, badge: '20' },
-    { id: 'capacity', label: 'Carrying Capacity', icon: Building2, badge: '8' },
-    { id: 'relocation', label: 'Relocation Planner', icon: Navigation2, badge: 'Opt' },
-    { id: 'resq_twin', label: 'ResQ Twin (Digital Twin)', icon: Cpu, badge: 'Novel' },
-    { id: 'alerts', label: 'Alerts & Broadcast', icon: BellRing, badge: null },
-    { id: 'reports', label: 'Incident Reports', icon: FileText, badge: null },
-    { id: 'system', label: 'Data Sources & Audits', icon: Activity, badge: 'Health' },
+    { id: 'dashboard', label: 'Command Center', icon: LayoutDashboard },
+    { id: 'map', label: 'Multi-Hazard GIS Map', icon: Map },
+    { id: 'habitations', label: 'Habitations & Risk', icon: Home, count: '20' },
+    { id: 'capacity', label: 'Carrying Capacity', icon: Building2, count: '8' },
+    { id: 'relocation', label: 'Relocation Planner', icon: Navigation2 },
+    { id: 'resq_twin', label: 'ResQ Twin (Simulator)', icon: Cpu, badge: 'What-If' },
+    { id: 'alerts', label: 'Alerts & Broadcast', icon: BellRing },
+    { id: 'reports', label: 'Incident Reports', icon: FileText },
+    { id: 'system', label: 'Data Sources & Audits', icon: Activity },
   ];
 
   return (
-    <aside className="w-64 bg-slate-900 border-r border-slate-800 flex flex-col justify-between shrink-0 select-none">
+    <aside className="w-60 bg-stone-50/70 border-r border-stone-200/80 flex flex-col justify-between shrink-0 select-none">
       <div className="py-4">
-        <div className="px-5 mb-3 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-          Decision Support Modules
+        <div className="px-4 mb-2 text-[11px] font-medium text-stone-400 uppercase tracking-wider">
+          Decision Modules
         </div>
-        <nav className="space-y-1 px-3">
+        <nav className="space-y-0.5 px-2">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -39,26 +38,23 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-colors ${
                   isActive
-                    ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 shadow-sm'
-                    : 'text-slate-300 hover:bg-slate-800/70 hover:text-white'
+                    ? 'bg-white text-stone-900 font-semibold shadow-xs border border-stone-200/70'
+                    : 'text-stone-600 hover:bg-stone-100/80 hover:text-stone-900 font-normal'
                 }`}
               >
-                <div className="flex items-center space-x-3">
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-emerald-400' : 'text-slate-400'}`} />
+                <div className="flex items-center space-x-2.5">
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-stone-900' : 'text-stone-400'}`} />
                   <span>{item.label}</span>
                 </div>
+                {item.count && (
+                  <span className="text-[10px] text-stone-400 font-mono">
+                    {item.count}
+                  </span>
+                )}
                 {item.badge && (
-                  <span
-                    className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${
-                      item.badge === 'Novel'
-                        ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/40'
-                        : isActive
-                        ? 'bg-emerald-500/20 text-emerald-300'
-                        : 'bg-slate-800 text-slate-400'
-                    }`}
-                  >
+                  <span className="text-[10px] px-1.5 py-0.2 rounded bg-amber-100/80 text-amber-800 font-medium">
                     {item.badge}
                   </span>
                 )}
@@ -68,14 +64,14 @@ export default function Sidebar({ activeTab, setActiveTab }) {
         </nav>
       </div>
 
-      {/* Bottom Operational Status */}
-      <div className="p-4 m-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
-        <div className="flex items-center space-x-2 text-xs font-semibold text-slate-300 mb-1">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>Mesh Engine Online</span>
+      {/* Bottom Quiet System Info */}
+      <div className="p-3 m-2.5 rounded-lg bg-white border border-stone-200/70 shadow-xs">
+        <div className="flex items-center space-x-1.5 text-[11px] font-medium text-stone-800 mb-0.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          <span>Inference Engine Ready</span>
         </div>
-        <p className="text-[11px] text-slate-400 leading-relaxed">
-          PostGIS spatial indices & XGBoost inference ready for Chamoli district.
+        <p className="text-[10px] text-stone-500 leading-relaxed">
+          Spatial graph and gradient boosted models synchronized for Chamoli.
         </p>
       </div>
     </aside>

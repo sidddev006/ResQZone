@@ -32,7 +32,7 @@ export default function DashboardOverview({ onNavigate, onSelectHabitation }) {
         api.getAlerts()
       ]);
       setKpis(kpiData);
-      setAlerts(alertData.slice(0, 3));
+      setAlerts(alertData.slice(0, 2));
     } catch (err) {
       console.error(err);
     } finally {
@@ -41,185 +41,163 @@ export default function DashboardOverview({ onNavigate, onSelectHabitation }) {
   };
 
   const chartData = [
-    { name: 'Critical', count: kpis?.critical_zones_count || 3, color: '#EF4444' },
-    { name: 'Warning', count: kpis?.warning_zones_count || 5, color: '#F97316' },
-    { name: 'Watch', count: 8, color: '#EAB308' },
-    { name: 'Safe', count: 4, color: '#10B981' }
+    { name: 'Critical', count: kpis?.critical_zones_count || 3, color: '#dc2626' },
+    { name: 'Warning', count: kpis?.warning_zones_count || 5, color: '#ea580c' },
+    { name: 'Watch', count: 8, color: '#d97706' },
+    { name: 'Safe', count: 4, color: '#16a34a' }
   ];
 
   return (
-    <div className="space-y-6 pb-12">
-      {/* Header Banner */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-indigo-950/40 border border-slate-800 shadow-xl">
+    <div className="space-y-6 pb-12 max-w-7xl mx-auto">
+      {/* Executive Header Banner */}
+      <div className="bg-white p-6 rounded-xl border border-stone-200/80 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center space-x-2">
-            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-red-500/10 text-red-400 border border-red-500/30">
-              Active Monsoonal InSAR Watch
+          <div className="flex items-center space-x-2 mb-1">
+            <span className="text-[11px] font-mono font-medium text-stone-500 uppercase tracking-wider">
+              Chamoli-Joshimath District Grid
             </span>
-            <span className="text-xs text-slate-400">Chamoli High-Altitude Grid</span>
+            <span className="text-stone-300">•</span>
+            <span className="text-[11px] text-amber-700 font-medium">Active Monsoonal InSAR Watch</span>
           </div>
-          <h1 className="text-2xl font-black text-white tracking-tight mt-1">
-            Vulnerability & Carrying Capacity Command Center
+          <h1 className="text-xl font-semibold text-stone-900 tracking-tight">
+            Vulnerability & Relocation Command Center
           </h1>
-          <p className="text-sm text-slate-400 mt-0.5">
-            Real-time multi-hazard fusion, shelter resource bottleneck detection, and constrained relocation decision support.
+          <p className="text-xs text-stone-500 mt-1 max-w-2xl leading-relaxed">
+            Deterministic GIS multi-hazard fusion, shelter carrying-capacity constraints, and constrained relocation decision support.
           </p>
         </div>
 
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-2.5 shrink-0">
           <button
             onClick={loadData}
-            className="flex items-center space-x-2 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 transition-all"
+            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-stone-50 text-stone-700 text-xs font-medium border border-stone-200 transition-colors shadow-xs"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-3.5 h-3.5 text-stone-400 ${loading ? 'animate-spin' : ''}`} />
             <span>Refresh State</span>
           </button>
           <button
             onClick={() => onNavigate('resq_twin')}
-            className="flex items-center space-x-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs shadow-lg shadow-emerald-950/50 transition-all"
+            className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-50 font-medium text-xs shadow-xs transition-colors"
           >
-            <Sparkles className="w-4 h-4 text-slate-950" />
+            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
             <span>Simulate ResQ Twin</span>
           </button>
         </div>
       </div>
 
-      {/* Critical Alert Bar if any */}
+      {/* Understated Alert Notice */}
       {alerts.length > 0 && (
-        <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 flex items-start justify-between gap-4">
+        <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200/80 flex items-start justify-between gap-4">
           <div className="flex items-start space-x-3">
-            <AlertOctagon className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+            <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
             <div>
               <div className="flex items-center space-x-2">
-                <span className="text-xs font-bold uppercase text-red-400">{alerts[0].severity} DISPATCH</span>
-                <span className="text-xs text-slate-400">• {alerts[0].target_area}</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">
+                  {alerts[0].severity}
+                </span>
+                <span className="text-xs font-medium text-amber-900">{alerts[0].title}</span>
               </div>
-              <p className="text-xs font-semibold text-slate-200 mt-0.5">{alerts[0].title}</p>
-              <p className="text-xs text-slate-400 mt-0.5">{alerts[0].recommended_action}</p>
+              <p className="text-xs text-stone-600 mt-1 leading-relaxed">{alerts[0].recommended_action}</p>
             </div>
           </div>
           <button
             onClick={() => onNavigate('alerts')}
-            className="shrink-0 text-xs font-semibold text-red-400 hover:text-red-300 flex items-center space-x-1"
+            className="shrink-0 text-xs font-medium text-amber-800 hover:text-amber-900 flex items-center space-x-1"
           >
-            <span>View All</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <span>Review Alerts</span>
+            <ArrowRight className="w-3 h-3" />
           </button>
         </div>
       )}
 
       {/* 8 Primary Decision KPIs */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5">
         {/* KPI 1 */}
-        <div className="p-4 rounded-2xl bg-slate-900/80 border border-red-500/30 relative overflow-hidden">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
-            <span>Critical Red Zones</span>
-            <AlertOctagon className="w-4 h-4 text-red-400" />
-          </div>
-          <div className="text-3xl font-black text-red-400">{kpis?.critical_zones_count ?? 3}</div>
-          <p className="text-[11px] text-slate-400 mt-1">Immediate evacuation priority</p>
+        <div className="p-4 rounded-xl bg-white border border-stone-200/80 shadow-card">
+          <span className="text-[11px] font-medium text-stone-500 block">Critical Red Zones</span>
+          <div className="text-2xl font-bold text-rose-600 mt-1 font-mono">{kpis?.critical_zones_count ?? 3}</div>
+          <p className="text-[11px] text-stone-400 mt-1">Compulsory evacuation</p>
         </div>
 
         {/* KPI 2 */}
-        <div className="p-4 rounded-2xl bg-slate-900/80 border border-amber-500/30 relative overflow-hidden">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
-            <span>Warning Sectors</span>
-            <AlertTriangle className="w-4 h-4 text-amber-400" />
-          </div>
-          <div className="text-3xl font-black text-amber-400">{kpis?.warning_zones_count ?? 5}</div>
-          <p className="text-[11px] text-slate-400 mt-1">Pre-evacuation standby</p>
+        <div className="p-4 rounded-xl bg-white border border-stone-200/80 shadow-card">
+          <span className="text-[11px] font-medium text-stone-500 block">Warning Sectors</span>
+          <div className="text-2xl font-bold text-amber-600 mt-1 font-mono">{kpis?.warning_zones_count ?? 5}</div>
+          <p className="text-[11px] text-stone-400 mt-1">Pre-evacuation standby</p>
         </div>
 
         {/* KPI 3 */}
-        <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 relative overflow-hidden">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
-            <span>People at Risk</span>
-            <Users className="w-4 h-4 text-indigo-400" />
-          </div>
-          <div className="text-3xl font-black text-white">{kpis?.people_at_risk?.toLocaleString() ?? '5,420'}</div>
-          <p className="text-[11px] text-indigo-300 mt-1">
+        <div className="p-4 rounded-xl bg-white border border-stone-200/80 shadow-card">
+          <span className="text-[11px] font-medium text-stone-500 block">Citizens at Risk</span>
+          <div className="text-2xl font-bold text-stone-900 mt-1 font-mono">{kpis?.people_at_risk?.toLocaleString() ?? '5,420'}</div>
+          <p className="text-[11px] text-stone-500 mt-1">
             {kpis?.vulnerable_people_at_risk?.toLocaleString() ?? '1,840'} high dependency
           </p>
         </div>
 
         {/* KPI 4 */}
-        <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 relative overflow-hidden">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
-            <span>Immediate Evacuees</span>
-            <ShieldAlert className="w-4 h-4 text-emerald-400" />
-          </div>
-          <div className="text-3xl font-black text-emerald-400">{kpis?.immediate_relocation_candidates_count ?? 6}</div>
-          <p className="text-[11px] text-slate-400 mt-1">Compulsory relocation</p>
+        <div className="p-4 rounded-xl bg-white border border-stone-200/80 shadow-card">
+          <span className="text-[11px] font-medium text-stone-500 block">Immediate Evacuees</span>
+          <div className="text-2xl font-bold text-stone-900 mt-1 font-mono">{kpis?.immediate_relocation_candidates_count ?? 6}</div>
+          <p className="text-[11px] text-stone-400 mt-1">Critical habitations</p>
         </div>
 
         {/* KPI 5 */}
-        <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 relative overflow-hidden">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
-            <span>Safe Shelter Capacity</span>
-            <Building className="w-4 h-4 text-blue-400" />
-          </div>
-          <div className="text-3xl font-black text-white">{kpis?.total_safe_capacity?.toLocaleString() ?? '7,200'}</div>
-          <p className="text-[11px] text-slate-400 mt-1">Resource-bottleneck adjusted</p>
+        <div className="p-4 rounded-xl bg-white border border-stone-200/80 shadow-card">
+          <span className="text-[11px] font-medium text-stone-500 block">Effective Safe Capacity</span>
+          <div className="text-2xl font-bold text-stone-900 mt-1 font-mono">{kpis?.total_safe_capacity?.toLocaleString() ?? '7,200'}</div>
+          <p className="text-[11px] text-stone-400 mt-1">Resource bottleneck adjusted</p>
         </div>
 
         {/* KPI 6 */}
-        <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 relative overflow-hidden">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
-            <span>Capacity Utilization</span>
-            <TrendingUp className="w-4 h-4 text-teal-400" />
-          </div>
-          <div className="text-3xl font-black text-teal-400">{kpis?.capacity_utilization_pct ?? 29.5}%</div>
-          <p className="text-[11px] text-slate-400 mt-1">{kpis?.available_safe_capacity?.toLocaleString() ?? '5,080'} safe spots open</p>
+        <div className="p-4 rounded-xl bg-white border border-stone-200/80 shadow-card">
+          <span className="text-[11px] font-medium text-stone-500 block">Shelter Utilization</span>
+          <div className="text-2xl font-bold text-emerald-700 mt-1 font-mono">{kpis?.capacity_utilization_pct ?? 29.5}%</div>
+          <p className="text-[11px] text-stone-500 mt-1">{kpis?.available_safe_capacity?.toLocaleString() ?? '5,080'} safe spots available</p>
         </div>
 
         {/* KPI 7 */}
-        <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 relative overflow-hidden">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
-            <span>Active Alerts</span>
-            <AlertOctagon className="w-4 h-4 text-red-400" />
-          </div>
-          <div className="text-3xl font-black text-red-400">{kpis?.unresolved_alerts_count ?? 3}</div>
-          <p className="text-[11px] text-slate-400 mt-1">Real-time sensor triggers</p>
+        <div className="p-4 rounded-xl bg-white border border-stone-200/80 shadow-card">
+          <span className="text-[11px] font-medium text-stone-500 block">Active Alerts</span>
+          <div className="text-2xl font-bold text-stone-900 mt-1 font-mono">{kpis?.unresolved_alerts_count ?? 2}</div>
+          <p className="text-[11px] text-stone-400 mt-1">Multi-sensor triggers</p>
         </div>
 
         {/* KPI 8 */}
-        <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 relative overflow-hidden">
-          <div className="flex items-center justify-between text-slate-400 text-xs mb-2">
-            <span>Data Sources Health</span>
-            <Activity className="w-4 h-4 text-emerald-400" />
-          </div>
-          <div className="text-3xl font-black text-emerald-400">{kpis?.data_sources_healthy ?? '6/6'}</div>
-          <p className="text-[11px] text-slate-400 mt-1">IMD, InSAR, DEM, OSM Fresh</p>
+        <div className="p-4 rounded-xl bg-white border border-stone-200/80 shadow-card">
+          <span className="text-[11px] font-medium text-stone-500 block">Data Sources Health</span>
+          <div className="text-2xl font-bold text-emerald-700 mt-1 font-mono">{kpis?.data_sources_healthy ?? '6/6'}</div>
+          <p className="text-[11px] text-stone-400 mt-1">IMD, InSAR, DEM, OSM Fresh</p>
         </div>
       </div>
 
       {/* Main Grid: Visual Risk Distribution & Fast Action Triggers */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* Left 2 Cols: Distribution Graph & Overview */}
-        <div className="lg:col-span-2 p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">
+        <div className="lg:col-span-2 p-6 rounded-xl bg-white border border-stone-200/80 shadow-card space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-base font-bold text-white">District Hazard Risk Classification</h3>
-              <p className="text-xs text-slate-400">Distribution of surveyed habitations across tiered risk levels</p>
+              <h3 className="text-sm font-semibold text-stone-900">District Hazard Classification</h3>
+              <p className="text-xs text-stone-500">Distribution of surveyed habitations across tiered risk categories</p>
             </div>
             <button
               onClick={() => onNavigate('habitations')}
-              className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center space-x-1"
+              className="text-xs font-medium text-stone-700 hover:text-stone-900 flex items-center space-x-1"
             >
-              <span>View All 20 Habitations</span>
+              <span>View All Habitations</span>
               <ArrowRight className="w-3 h-3" />
             </button>
           </div>
 
-          <div className="h-48 w-full">
+          <div className="h-44 w-full pt-2">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData} layout="vertical" margin={{ left: 20, right: 20, top: 10, bottom: 10 }}>
-                <XAxis type="number" stroke="#64748b" fontSize={11} />
-                <YAxis dataKey="name" type="category" stroke="#94a3b8" fontSize={12} width={70} />
+              <BarChart data={chartData} layout="vertical" margin={{ left: 10, right: 20, top: 5, bottom: 5 }}>
+                <XAxis type="number" stroke="#a8a29e" fontSize={11} tickLine={false} axisLine={false} />
+                <YAxis dataKey="name" type="category" stroke="#44403c" fontSize={12} width={65} tickLine={false} axisLine={false} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '0.5rem', color: '#f8fafc' }}
+                  contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e7e5e4', borderRadius: '0.5rem', color: '#1c1917', fontSize: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}
                 />
-                <Bar dataKey="count" radius={[0, 6, 6, 0]}>
+                <Bar dataKey="count" radius={[0, 4, 4, 0]} barSize={16}>
                   {chartData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
@@ -228,63 +206,63 @@ export default function DashboardOverview({ onNavigate, onSelectHabitation }) {
             </ResponsiveContainer>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-slate-800 text-center text-xs">
-            <div className="p-2 rounded-lg bg-red-500/10">
-              <span className="font-bold text-red-400 block">Manohar Bagh</span>
-              <span className="text-[10px] text-slate-400">Score: 0.94 (Subsidence)</span>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-3 border-t border-stone-100 text-xs">
+            <div className="p-2.5 rounded-lg bg-stone-50 border border-stone-100">
+              <span className="font-medium text-rose-700 block">Manohar Bagh</span>
+              <span className="text-[10px] text-stone-500">Score 0.94 • Subsidence</span>
             </div>
-            <div className="p-2 rounded-lg bg-red-500/10">
-              <span className="font-bold text-red-400 block">Sunil Ward</span>
-              <span className="text-[10px] text-slate-400">Score: 0.95 (Slope Slump)</span>
+            <div className="p-2.5 rounded-lg bg-stone-50 border border-stone-100">
+              <span className="font-medium text-rose-700 block">Sunil Ward</span>
+              <span className="text-[10px] text-stone-500">Score 0.95 • Slope Slump</span>
             </div>
-            <div className="p-2 rounded-lg bg-orange-500/10">
-              <span className="font-bold text-orange-400 block">Marwari</span>
-              <span className="text-[10px] text-slate-400">Score: 0.81 (Flash Flood)</span>
+            <div className="p-2.5 rounded-lg bg-stone-50 border border-stone-100">
+              <span className="font-medium text-amber-700 block">Marwari</span>
+              <span className="text-[10px] text-stone-500">Score 0.81 • Flash Flood</span>
             </div>
-            <div className="p-2 rounded-lg bg-emerald-500/10">
-              <span className="font-bold text-emerald-400 block">Pipalkoti</span>
-              <span className="text-[10px] text-slate-400">Score: 0.15 (Safe Basin)</span>
+            <div className="p-2.5 rounded-lg bg-stone-50 border border-stone-100">
+              <span className="font-medium text-emerald-700 block">Pipalkoti</span>
+              <span className="text-[10px] text-stone-500">Score 0.15 • Safe Basin</span>
             </div>
           </div>
         </div>
 
         {/* Right Col: Quick Execution Cards */}
         <div className="space-y-4">
-          <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-950/40 to-slate-900 border border-indigo-500/30 space-y-3">
+          <div className="p-5 rounded-xl bg-white border border-stone-200/80 shadow-card space-y-3">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
-                <Sparkles className="w-4 h-4" />
+              <div className="w-7 h-7 rounded-lg bg-amber-50 text-amber-800 flex items-center justify-center border border-amber-200/60">
+                <Sparkles className="w-3.5 h-3.5" />
               </div>
-              <h4 className="font-bold text-white text-sm">ResQ Twin Digital Simulator</h4>
+              <h4 className="font-semibold text-stone-900 text-xs">ResQ Twin Digital Simulator</h4>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="text-xs text-stone-500 leading-relaxed">
               Test what happens when Road R17 is blocked or Shelter S2 reaches capacity. Calculate the exact delta from baseline.
             </p>
             <button
               onClick={() => onNavigate('resq_twin')}
-              className="w-full py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold flex items-center justify-center space-x-2 transition-colors"
+              className="w-full py-2 px-3 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-50 text-xs font-medium flex items-center justify-center space-x-1.5 transition-colors shadow-xs"
             >
-              <span>Launch ResQ Twin</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>Launch Simulator</span>
+              <ArrowRight className="w-3.5 h-3.5 text-stone-400" />
             </button>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
+          <div className="p-5 rounded-xl bg-white border border-stone-200/80 shadow-card space-y-3">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-                <Layers className="w-4 h-4" />
+              <div className="w-7 h-7 rounded-lg bg-stone-100 text-stone-700 flex items-center justify-center border border-stone-200">
+                <Layers className="w-3.5 h-3.5" />
               </div>
-              <h4 className="font-bold text-white text-sm">Interactive GIS Map</h4>
+              <h4 className="font-semibold text-stone-900 text-xs">Interactive GIS Layers</h4>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Explore landslide polygons, flood corridors, fault line buffers, shelters, and connected road segments on Leaflet.
+            <p className="text-xs text-stone-500 leading-relaxed">
+              Inspect multi-hazard polygons, relief shelter coordinates, and road networks directly on the Leaflet map.
             </p>
             <button
               onClick={() => onNavigate('map')}
-              className="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 text-xs font-semibold flex items-center justify-center space-x-2 transition-colors"
+              className="w-full py-2 px-3 rounded-lg bg-white hover:bg-stone-50 text-stone-700 border border-stone-200 text-xs font-medium flex items-center justify-center space-x-1.5 transition-colors shadow-xs"
             >
-              <span>Open GIS Map View</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>Open GIS Map</span>
+              <ArrowRight className="w-3.5 h-3.5 text-stone-400" />
             </button>
           </div>
         </div>
