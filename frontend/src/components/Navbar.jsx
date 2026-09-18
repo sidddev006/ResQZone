@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Sparkles, Bell, Clock, Activity, MapPin, ChevronDown, 
-  Sun, Moon, Shield, Radio, Layers
+  Sun, Moon, Shield, Radio, Layers, Menu
 } from 'lucide-react';
 
 export default function Navbar({
@@ -13,7 +13,8 @@ export default function Navbar({
   onSelectRegion,
   currentRegionObj,
   theme = 'light',
-  onToggleTheme
+  onToggleTheme,
+  onToggleMobileMenu
 }) {
   const [timeStr, setTimeStr] = useState('');
   const [regionMenuOpen, setRegionMenuOpen] = useState(false);
@@ -43,9 +44,18 @@ export default function Navbar({
         : 'bg-white/85 border-slate-200/80 text-slate-900 shadow-sm'
     }`}>
       {/* Brand & Multi-Region Pills */}
-      <div className="flex items-center space-x-4">
-        <div className="flex items-center space-x-3">
-          <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 via-blue-600 to-indigo-600 text-white font-bold text-base shadow-md shadow-sky-500/20">
+      <div className="flex items-center space-x-2.5 sm:space-x-4">
+        {/* Mobile Hamburger Button (< lg) */}
+        <button
+          onClick={onToggleMobileMenu}
+          className="lg:hidden p-2 rounded-xl text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          title="Open Navigation Menu"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+
+        <div className="flex items-center space-x-2.5 sm:space-x-3">
+          <div className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-sky-500 via-blue-600 to-indigo-600 text-white font-bold text-sm sm:text-base shadow-md shadow-sky-500/20">
             R
             <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-white dark:border-slate-900 animate-pulse"></span>
           </div>

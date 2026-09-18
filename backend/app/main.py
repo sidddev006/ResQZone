@@ -6,8 +6,11 @@ from contextlib import asynccontextmanager
 from typing import List
 import json
 import asyncio
+import os
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 from backend.app.core.config import settings
 from backend.app.db.session import engine, Base
@@ -125,3 +128,24 @@ async def websocket_live_feed(websocket: WebSocket):
         ws_manager.disconnect(websocket)
     except Exception:
         ws_manager.disconnect(websocket)
+
+
+# ==========================================
+# PRODUCTION SPA STATIC FILE SERVING
+# ==========================================
+frontend_dist = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../frontend/dist"))
+if os.path.exists(frontend_dist):
+    assets_dir = os.path.join(frontend_dist, "assets")
+    if os.path.exists(assets_dir):
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+
+    @app.get("/{full_path:path}", include_in_schema=False)
+    def serve_frontend_spa(full_path: str):
+        target = os.path.join(frontend_dist, full_path)
+        if full_path and os.path.exists(target) and os.path.isfile(target):
+            return FileResponse(target)
+        index_file = os.path.join(frontend_dist, "index.html")
+        if os.path.exists(index_file):
+            return FileResponse(index_file)
+        return {"message": "ResQZone API Online. Frontend dist is building..."}
+

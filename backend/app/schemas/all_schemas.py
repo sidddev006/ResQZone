@@ -102,6 +102,7 @@ class RouteQueryRequest(BaseModel):
 # Copilot Request & Response
 class CopilotQueryRequest(BaseModel):
     query: str
+    api_key: Optional[str] = None
 
 
 class CopilotQueryResponse(BaseModel):

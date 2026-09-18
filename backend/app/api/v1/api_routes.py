@@ -631,7 +631,7 @@ def acknowledge_alert(alert_id: str, db: Session = Depends(get_db)):
 # ==========================================
 @api_router.post("/copilot/query", response_model=CopilotQueryResponse, tags=["AI Copilot"])
 def ask_copilot(req: CopilotQueryRequest, db: Session = Depends(get_db)):
-    return copilot_engine.process_query(req.query, db)
+    return copilot_engine.process_query(req.query, db, api_key=req.api_key)
 
 
 # ==========================================

@@ -10,10 +10,17 @@ import {
   FileText,
   Activity,
   ShieldCheck,
-  ChevronRight
+  ChevronRight,
+  X
 } from 'lucide-react';
 
-export default function Sidebar({ activeTab, setActiveTab, theme = 'light' }) {
+export default function Sidebar({ 
+  activeTab, 
+  setActiveTab, 
+  theme = 'light',
+  isOpenMobile = false,
+  onCloseMobile = () => {}
+}) {
   const isDark = theme === 'dark';
 
   const sections = [
@@ -43,11 +50,33 @@ export default function Sidebar({ activeTab, setActiveTab, theme = 'light' }) {
     }
   ];
 
-  return (
-    <aside className={`w-64 flex flex-col justify-between shrink-0 select-none border-r transition-colors duration-200 ${
-      isDark ? 'bg-[#090D16] border-white/[0.08]' : 'bg-white border-slate-200/90'
-    }`}>
-      <div className="py-6 px-4">
+  const handleSelectTab = (id) => {
+    setActiveTab(id);
+    onCloseMobile();
+  };
+
+  const content = (
+    <div className="flex flex-col h-full justify-between">
+      <div className="py-5 px-4 overflow-y-auto">
+        {/* Mobile Header with Close Button */}
+        <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-200/80 dark:border-slate-800 lg:hidden">
+          <div className="flex items-center space-x-2.5">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 text-white font-bold flex items-center justify-center text-sm shadow-md">
+              R
+            </div>
+            <div>
+              <span className="font-extrabold text-sm block leading-tight">ResQZone</span>
+              <span className="text-[10px] text-slate-400 font-medium">Disaster Operations</span>
+            </div>
+          </div>
+          <button
+            onClick={onCloseMobile}
+            className="p-1.5 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-white"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
         {/* Navigation Sections */}
         <div className="space-y-6">
           {sections.map((sec, idx) => (
@@ -64,7 +93,7 @@ export default function Sidebar({ activeTab, setActiveTab, theme = 'light' }) {
                   return (
                     <button
                       key={item.id}
-                      onClick={() => setActiveTab(item.id)}
+                      onClick={() => handleSelectTab(item.id)}
                       className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all group ${
                         isActive
                           ? (isDark 
@@ -98,7 +127,7 @@ export default function Sidebar({ activeTab, setActiveTab, theme = 'light' }) {
       </div>
 
       {/* Bottom System Status Widget */}
-      <div className="p-4">
+      <div className="p-4 shrink-0">
         <div className={`p-4 rounded-2xl border ${
           isDark 
             ? 'bg-slate-900/90 border-slate-800 text-slate-300' 
@@ -120,6 +149,35 @@ export default function Sidebar({ activeTab, setActiveTab, theme = 'light' }) {
           </div>
         </div>
       </div>
-    </aside>
+    </div>
+  );
+
+  return (
+    <>
+      {/* Desktop Sidebar (lg and up) */}
+      <aside className={`hidden lg:flex w-64 flex-col justify-between shrink-0 select-none border-r transition-colors duration-200 ${
+        isDark ? 'bg-[#090D16] border-white/[0.08]' : 'bg-white border-slate-200/90'
+      }`}>
+        {content}
+      </aside>
+
+      {/* Mobile Drawer Overlay (< lg) */}
+      {isOpenMobile && (
+        <div className="fixed inset-0 z-50 lg:hidden flex">
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+            onClick={onCloseMobile}
+          />
+
+          {/* Drawer Panel */}
+          <aside className={`relative w-72 max-w-[85vw] h-full shadow-2xl flex flex-col z-10 transition-transform ${
+            isDark ? 'bg-[#0B0F19] text-white border-r border-slate-800' : 'bg-white text-slate-900 border-r border-slate-200'
+          }`}>
+            {content}
+          </aside>
+        </div>
+      )}
+    </>
   );
 }

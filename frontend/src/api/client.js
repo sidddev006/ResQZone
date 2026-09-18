@@ -3,7 +3,7 @@
  * Connects to FastAPI backend with graceful fallbacks and consistent error handling.
  */
 
-const API_BASE = '/api/v1';
+const API_BASE = (import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace(/\/$/, '') : '') + '/api/v1';
 
 async function fetchJSON(endpoint, options = {}) {
   try {
@@ -109,10 +109,10 @@ export const api = {
     }),
 
   // Copilot
-  askCopilot: (query) =>
+  askCopilot: (query, apiKey = null) =>
     fetchJSON('/copilot/query', {
       method: 'POST',
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({ query, api_key: apiKey }),
     }),
 
   // Reports
