@@ -1,0 +1,9 @@
+shelter_id,name,safe_occupancy,current_occupancy,effective_capacity,bottleneck,water_liters_per_day,toilets_count,meals_per_day,medical_beds,generator_backup
+SHELTER-01,Pipalkoti Central Degree College Relief Hub,1500,320,1300,sanitation,25000,65,4500,45,YES
+SHELTER-02,Gopeshwar District Sports Complex,2400,480,1800,sanitation,36000,90,7200,80,YES
+SHELTER-03,Helang Mandir Community Relief Shelter,480,390,320,sanitation,5500,16,1500,8,YES
+SHELTER-04,Joshimath Cantonment Prefab Safe Camp,950,760,840,sanitation,16000,42,3000,35,YES
+SHELTER-05,Pandukeshwar Transit Relief Camp,550,110,360,sanitation,7200,18,1600,10,NO
+SHELTER-06,Ghingran Resettlement Facility,1200,150,1100,sanitation,22000,55,4000,30,YES
+SHELTER-07,Chamoli Polytechnic Safe Zone,850,210,760,sanitation,14000,38,2600,20,YES
+SHELTER-08,Tapovan High School Transit Center,350,80,240,sanitation,4000,12,1100,5,NO

@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgis/postgis:15-3.3
+    container_name: resqzone-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: resqzone
+      POSTGRES_PASSWORD: resqzone_password
+      POSTGRES_DB: resqzone_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U resqzone -d resqzone_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: resqzone-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - ENVIRONMENT=production
+      - DEBUG=False
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DATABASE_URL=postgresql://resqzone:resqzone_password@db:5432/resqzone_db
+      - DATA_MODE=DEMO
+      - SECRET_KEY=resqzone-hackathon-2026-super-secret-key-change-in-prod
+      - CORS_ORIGINS=["http://localhost","http://localhost:80","http://localhost:5173","http://localhost:3000"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: resqzone-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+volumes:
+  pgdata:

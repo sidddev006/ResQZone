@@ -1,0 +1,21 @@
+habitation_id,name,total_population,households,elderly_60_plus,children_under_10,persons_with_disability,chronic_medical_needs,fragile_structures,bpl_households,female_headed_households
+HAB-01,Manohar Bagh Ward,1420,285,195,280,38,52,262,119,51
+HAB-02,Sunil Ward (Subsidence Zone),1850,360,240,350,45,68,342,151,64
+HAB-03,Singhdhar Ward,1680,330,210,315,42,60,290,138,59
+HAB-04,Marwari (Alaknanda Banks),960,190,110,180,22,31,150,79,34
+HAB-05,Ravigram Village,2100,410,265,390,51,74,344,172,73
+HAB-06,Gandhi Nagar Ward,1340,260,170,255,32,48,223,109,46
+HAB-07,Upper Bazaar Sector,2450,480,290,440,58,88,364,201,86
+HAB-08,Parsari Settlement,780,150,95,140,18,24,121,63,27
+HAB-09,Helang Valley Cluster,1250,240,150,230,28,40,156,100,43
+HAB-10,Pakhi Village,890,175,105,165,20,29,101,73,31
+HAB-11,Pipalkoti South,3100,620,340,580,70,110,279,260,111
+HAB-12,Gulabkoti Hamlet,640,125,78,115,15,21,90,52,22
+HAB-13,Tapovan Riverside,1580,310,180,290,36,54,275,130,55
+HAB-14,Reni Disaster Zone,420,80,55,75,12,16,75,33,14
+HAB-15,Lata Village Highbank,580,110,72,105,14,19,68,46,19
+HAB-16,Pandukeshwar Lower,1120,220,135,210,26,38,165,92,39
+HAB-17,Selang Terrace,760,145,90,135,17,24,101,60,26
+HAB-18,Dhak Village Slope,830,160,100,150,19,27,118,67,28
+HAB-19,Subhai Cluster,690,130,82,120,16,22,88,54,23
+HAB-20,Urgam Valley Fringe,920,180,110,165,21,30,115,75,32

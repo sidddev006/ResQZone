@@ -1,0 +1,324 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "title": "ResQZone Relief Shelters & Carrying Capacity - Chamoli District",
+    "generated_at": "2026-09-18T18:46:07.975647+00:00",
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84",
+    "source": "District Emergency Operations Centre (DEOC) Chamoli",
+    "is_synthetic": true
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.429,
+          30.4305
+        ]
+      },
+      "properties": {
+        "id": "SHELTER-01",
+        "name": "Pipalkoti Central Degree College Relief Hub",
+        "type": "GOVERNMENT_COLLEGE",
+        "rated_capacity": 1800,
+        "safe_occupancy": 1500,
+        "current_occupancy": 320,
+        "effective_safe_capacity": 1300,
+        "available_capacity": 980,
+        "capacity_utilization_pct": 24.6,
+        "capacity_status": "AVAILABLE",
+        "bottleneck_resource": "sanitation",
+        "resource_capacities": {
+          "water_supported_people": 1666,
+          "sanitation_supported_people": 1300,
+          "food_supported_people": 1500,
+          "bed_supported_people": 1500,
+          "medical_supported_people": 2250
+        },
+        "water_supply_lpd": 25000,
+        "sanitation_toilets": 65,
+        "food_meals_daily": 4500,
+        "medical_isolation_beds": 45,
+        "power_backup": true,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.95,
+        "is_open": true,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.332,
+          30.418
+        ]
+      },
+      "properties": {
+        "id": "SHELTER-02",
+        "name": "Gopeshwar District Sports Complex",
+        "type": "STADIUM_COMPLEX",
+        "rated_capacity": 3000,
+        "safe_occupancy": 2400,
+        "current_occupancy": 480,
+        "effective_safe_capacity": 1800,
+        "available_capacity": 1320,
+        "capacity_utilization_pct": 26.7,
+        "capacity_status": "AVAILABLE",
+        "bottleneck_resource": "sanitation",
+        "resource_capacities": {
+          "water_supported_people": 2400,
+          "sanitation_supported_people": 1800,
+          "food_supported_people": 2400,
+          "bed_supported_people": 2400,
+          "medical_supported_people": 4000
+        },
+        "water_supply_lpd": 36000,
+        "sanitation_toilets": 90,
+        "food_meals_daily": 7200,
+        "medical_isolation_beds": 80,
+        "power_backup": true,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.9,
+        "is_open": true,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.516,
+          30.517
+        ]
+      },
+      "properties": {
+        "id": "SHELTER-03",
+        "name": "Helang Mandir Community Relief Shelter",
+        "type": "COMMUNITY_HALL",
+        "rated_capacity": 600,
+        "safe_occupancy": 480,
+        "current_occupancy": 390,
+        "effective_safe_capacity": 320,
+        "available_capacity": 0,
+        "capacity_utilization_pct": 121.9,
+        "capacity_status": "OVER_CAPACITY",
+        "bottleneck_resource": "sanitation",
+        "resource_capacities": {
+          "water_supported_people": 366,
+          "sanitation_supported_people": 320,
+          "food_supported_people": 500,
+          "bed_supported_people": 480,
+          "medical_supported_people": 400
+        },
+        "water_supply_lpd": 5500,
+        "sanitation_toilets": 16,
+        "food_meals_daily": 1500,
+        "medical_isolation_beds": 8,
+        "power_backup": true,
+        "operating_status": "HIGH_LOAD",
+        "accessibility_score": 0.82,
+        "is_open": true,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.575,
+          30.565
+        ]
+      },
+      "properties": {
+        "id": "SHELTER-04",
+        "name": "Joshimath Cantonment Prefab Safe Camp",
+        "type": "ARMY_PREFAB_SHELTER",
+        "rated_capacity": 1200,
+        "safe_occupancy": 950,
+        "current_occupancy": 760,
+        "effective_safe_capacity": 840,
+        "available_capacity": 80,
+        "capacity_utilization_pct": 90.5,
+        "capacity_status": "HIGH_LOAD",
+        "bottleneck_resource": "sanitation",
+        "resource_capacities": {
+          "water_supported_people": 1066,
+          "sanitation_supported_people": 840,
+          "food_supported_people": 1000,
+          "bed_supported_people": 950,
+          "medical_supported_people": 1750
+        },
+        "water_supply_lpd": 16000,
+        "sanitation_toilets": 42,
+        "food_meals_daily": 3000,
+        "medical_isolation_beds": 35,
+        "power_backup": true,
+        "operating_status": "HIGH_LOAD",
+        "accessibility_score": 0.78,
+        "is_open": true,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.595,
+          30.638
+        ]
+      },
+      "properties": {
+        "id": "SHELTER-05",
+        "name": "Pandukeshwar Transit Relief Camp",
+        "type": "PILGRIM_GUEST_HOUSE",
+        "rated_capacity": 700,
+        "safe_occupancy": 550,
+        "current_occupancy": 110,
+        "effective_safe_capacity": 360,
+        "available_capacity": 250,
+        "capacity_utilization_pct": 30.6,
+        "capacity_status": "AVAILABLE",
+        "bottleneck_resource": "sanitation",
+        "resource_capacities": {
+          "water_supported_people": 480,
+          "sanitation_supported_people": 360,
+          "food_supported_people": 533,
+          "bed_supported_people": 550,
+          "medical_supported_people": 500
+        },
+        "water_supply_lpd": 7200,
+        "sanitation_toilets": 18,
+        "food_meals_daily": 1600,
+        "medical_isolation_beds": 10,
+        "power_backup": false,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.72,
+        "is_open": true,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.355,
+          30.402
+        ]
+      },
+      "properties": {
+        "id": "SHELTER-06",
+        "name": "Ghingran Resettlement Facility",
+        "type": "INSTITUTIONAL_CAMPUS",
+        "rated_capacity": 1500,
+        "safe_occupancy": 1200,
+        "current_occupancy": 150,
+        "effective_safe_capacity": 1100,
+        "available_capacity": 950,
+        "capacity_utilization_pct": 13.6,
+        "capacity_status": "AVAILABLE",
+        "bottleneck_resource": "sanitation",
+        "resource_capacities": {
+          "water_supported_people": 1466,
+          "sanitation_supported_people": 1100,
+          "food_supported_people": 1333,
+          "bed_supported_people": 1200,
+          "medical_supported_people": 1500
+        },
+        "water_supply_lpd": 22000,
+        "sanitation_toilets": 55,
+        "food_meals_daily": 4000,
+        "medical_isolation_beds": 30,
+        "power_backup": true,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.88,
+        "is_open": true,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.398,
+          30.405
+        ]
+      },
+      "properties": {
+        "id": "SHELTER-07",
+        "name": "Chamoli Polytechnic Safe Zone",
+        "type": "POLYTECHNIC_COLLEGE",
+        "rated_capacity": 1000,
+        "safe_occupancy": 850,
+        "current_occupancy": 210,
+        "effective_safe_capacity": 760,
+        "available_capacity": 550,
+        "capacity_utilization_pct": 27.6,
+        "capacity_status": "AVAILABLE",
+        "bottleneck_resource": "sanitation",
+        "resource_capacities": {
+          "water_supported_people": 933,
+          "sanitation_supported_people": 760,
+          "food_supported_people": 866,
+          "bed_supported_people": 850,
+          "medical_supported_people": 1000
+        },
+        "water_supply_lpd": 14000,
+        "sanitation_toilets": 38,
+        "food_meals_daily": 2600,
+        "medical_isolation_beds": 20,
+        "power_backup": true,
+        "operating_status": "ACTIVE",
+        "accessibility_score": 0.85,
+        "is_open": true,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.632,
+          30.491
+        ]
+      },
+      "properties": {
+        "id": "SHELTER-08",
+        "name": "Tapovan High School Transit Center",
+        "type": "GOVERNMENT_SCHOOL",
+        "rated_capacity": 450,
+        "safe_occupancy": 350,
+        "current_occupancy": 80,
+        "effective_safe_capacity": 240,
+        "available_capacity": 160,
+        "capacity_utilization_pct": 33.3,
+        "capacity_status": "AVAILABLE",
+        "bottleneck_resource": "sanitation",
+        "resource_capacities": {
+          "water_supported_people": 266,
+          "sanitation_supported_people": 240,
+          "food_supported_people": 366,
+          "bed_supported_people": 350,
+          "medical_supported_people": 250
+        },
+        "water_supply_lpd": 4000,
+        "sanitation_toilets": 12,
+        "food_meals_daily": 1100,
+        "medical_isolation_beds": 5,
+        "power_backup": false,
+        "operating_status": "STANDBY",
+        "accessibility_score": 0.65,
+        "is_open": false,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    }
+  ]
+}

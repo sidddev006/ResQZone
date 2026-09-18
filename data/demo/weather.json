@@ -1,0 +1,23 @@
+{
+  "station_id": "IMD-AWS-42111-JOSHIMATH",
+  "station_name": "Joshimath High Altitude Meteorological Station",
+  "district": "Chamoli",
+  "state": "Uttarakhand",
+  "observation_time": "2026-09-18T18:46:07.975647+00:00",
+  "data_source": "India Meteorological Department (IMD) - Mesonet",
+  "freshness": "FRESH",
+  "rainfall_24h_mm": 118.4,
+  "rainfall_72h_mm": 246.8,
+  "rainfall_anomaly_pct": 142.5,
+  "normal_rainfall_mm": 48.8,
+  "cloudburst_risk_index": 0.82,
+  "soil_moisture_saturation_pct": 89.2,
+  "pore_water_pressure_kpa": 42.6,
+  "temperature_celsius": 14.2,
+  "humidity_pct": 94,
+  "wind_speed_kmh": 28.5,
+  "alert_level": "RED",
+  "valid_until": "2026-09-18T18:46:07.975647+00:00",
+  "is_synthetic": true,
+  "provenance_note": "Calibrated against historical Chamoli monsoonal cloudburst records."
+}

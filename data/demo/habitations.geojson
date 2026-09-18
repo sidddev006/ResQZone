@@ -1,0 +1,672 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "title": "ResQZone Vulnerable Habitations - Chamoli District",
+    "generated_at": "2026-09-18T18:46:07.975647+00:00",
+    "crs": "urn:ogc:def:crs:OGC:1.3:CRS84",
+    "source": "State Disaster Management Authority (SDMA) & Census 2021 Synth",
+    "is_synthetic": true
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.5681,
+          30.5574
+        ]
+      },
+      "properties": {
+        "id": "HAB-01",
+        "name": "Manohar Bagh Ward",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 1420,
+        "households": 285,
+        "vulnerable_population": 565,
+        "vulnerability_ratio": 0.398,
+        "elderly_count": 195,
+        "children_count": 280,
+        "disabled_count": 38,
+        "medical_needs_count": 52,
+        "housing_fragility_index": 0.92,
+        "slope_degrees": 38.5,
+        "elevation_meters": 1920,
+        "primary_hazard": "LANDSLIDE",
+        "hazard_score": 0.913,
+        "risk_category": "CRITICAL",
+        "immediate_relocation_needed": true,
+        "road_access_distance_m": 213,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.5634,
+          30.5621
+        ]
+      },
+      "properties": {
+        "id": "HAB-02",
+        "name": "Sunil Ward (Subsidence Zone)",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 1850,
+        "households": 360,
+        "vulnerable_population": 703,
+        "vulnerability_ratio": 0.38,
+        "elderly_count": 240,
+        "children_count": 350,
+        "disabled_count": 45,
+        "medical_needs_count": 68,
+        "housing_fragility_index": 0.95,
+        "slope_degrees": 42.1,
+        "elevation_meters": 2040,
+        "primary_hazard": "LANDSLIDE",
+        "hazard_score": 0.955,
+        "risk_category": "CRITICAL",
+        "immediate_relocation_needed": true,
+        "road_access_distance_m": 190,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.5695,
+          30.5532
+        ]
+      },
+      "properties": {
+        "id": "HAB-03",
+        "name": "Singhdhar Ward",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 1680,
+        "households": 330,
+        "vulnerable_population": 627,
+        "vulnerability_ratio": 0.373,
+        "elderly_count": 210,
+        "children_count": 315,
+        "disabled_count": 42,
+        "medical_needs_count": 60,
+        "housing_fragility_index": 0.88,
+        "slope_degrees": 36.4,
+        "elevation_meters": 1880,
+        "primary_hazard": "LANDSLIDE",
+        "hazard_score": 0.879,
+        "risk_category": "CRITICAL",
+        "immediate_relocation_needed": true,
+        "road_access_distance_m": 246,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.5742,
+          30.5489
+        ]
+      },
+      "properties": {
+        "id": "HAB-04",
+        "name": "Marwari (Alaknanda Banks)",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 960,
+        "households": 190,
+        "vulnerable_population": 343,
+        "vulnerability_ratio": 0.357,
+        "elderly_count": 110,
+        "children_count": 180,
+        "disabled_count": 22,
+        "medical_needs_count": 31,
+        "housing_fragility_index": 0.79,
+        "slope_degrees": 26.0,
+        "elevation_meters": 1520,
+        "primary_hazard": "FLOOD",
+        "hazard_score": 0.758,
+        "risk_category": "CRITICAL",
+        "immediate_relocation_needed": true,
+        "road_access_distance_m": 318,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.5776,
+          30.5598
+        ]
+      },
+      "properties": {
+        "id": "HAB-05",
+        "name": "Ravigram Village",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 2100,
+        "households": 410,
+        "vulnerable_population": 780,
+        "vulnerability_ratio": 0.371,
+        "elderly_count": 265,
+        "children_count": 390,
+        "disabled_count": 51,
+        "medical_needs_count": 74,
+        "housing_fragility_index": 0.84,
+        "slope_degrees": 34.2,
+        "elevation_meters": 1960,
+        "primary_hazard": "LANDSLIDE",
+        "hazard_score": 0.844,
+        "risk_category": "CRITICAL",
+        "immediate_relocation_needed": true,
+        "road_access_distance_m": 278,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.5648,
+          30.5547
+        ]
+      },
+      "properties": {
+        "id": "HAB-06",
+        "name": "Gandhi Nagar Ward",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 1340,
+        "households": 260,
+        "vulnerable_population": 505,
+        "vulnerability_ratio": 0.377,
+        "elderly_count": 170,
+        "children_count": 255,
+        "disabled_count": 32,
+        "medical_needs_count": 48,
+        "housing_fragility_index": 0.86,
+        "slope_degrees": 35.8,
+        "elevation_meters": 1895,
+        "primary_hazard": "LANDSLIDE",
+        "hazard_score": 0.865,
+        "risk_category": "CRITICAL",
+        "immediate_relocation_needed": true,
+        "road_access_distance_m": 262,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.5659,
+          30.5582
+        ]
+      },
+      "properties": {
+        "id": "HAB-07",
+        "name": "Upper Bazaar Sector",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 2450,
+        "households": 480,
+        "vulnerable_population": 876,
+        "vulnerability_ratio": 0.358,
+        "elderly_count": 290,
+        "children_count": 440,
+        "disabled_count": 58,
+        "medical_needs_count": 88,
+        "housing_fragility_index": 0.76,
+        "slope_degrees": 29.5,
+        "elevation_meters": 1940,
+        "primary_hazard": "EARTHQUAKE_EXPOSURE",
+        "hazard_score": 0.771,
+        "risk_category": "CRITICAL",
+        "immediate_relocation_needed": true,
+        "road_access_distance_m": 342,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.5592,
+          30.5675
+        ]
+      },
+      "properties": {
+        "id": "HAB-08",
+        "name": "Parsari Settlement",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 780,
+        "households": 150,
+        "vulnerable_population": 277,
+        "vulnerability_ratio": 0.355,
+        "elderly_count": 95,
+        "children_count": 140,
+        "disabled_count": 18,
+        "medical_needs_count": 24,
+        "housing_fragility_index": 0.81,
+        "slope_degrees": 39.0,
+        "elevation_meters": 2120,
+        "primary_hazard": "LANDSLIDE",
+        "hazard_score": 0.868,
+        "risk_category": "CRITICAL",
+        "immediate_relocation_needed": true,
+        "road_access_distance_m": 301,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.5192,
+          30.5186
+        ]
+      },
+      "properties": {
+        "id": "HAB-09",
+        "name": "Helang Valley Cluster",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 1250,
+        "households": 240,
+        "vulnerable_population": 448,
+        "vulnerability_ratio": 0.358,
+        "elderly_count": 150,
+        "children_count": 230,
+        "disabled_count": 28,
+        "medical_needs_count": 40,
+        "housing_fragility_index": 0.65,
+        "slope_degrees": 28.3,
+        "elevation_meters": 1460,
+        "primary_hazard": "FLOOD",
+        "hazard_score": 0.713,
+        "risk_category": "WARNING",
+        "immediate_relocation_needed": false,
+        "road_access_distance_m": 430,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.4891,
+          30.4982
+        ]
+      },
+      "properties": {
+        "id": "HAB-10",
+        "name": "Pakhi Village",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 890,
+        "households": 175,
+        "vulnerable_population": 319,
+        "vulnerability_ratio": 0.358,
+        "elderly_count": 105,
+        "children_count": 165,
+        "disabled_count": 20,
+        "medical_needs_count": 29,
+        "housing_fragility_index": 0.58,
+        "slope_degrees": 24.1,
+        "elevation_meters": 1380,
+        "primary_hazard": "LANDSLIDE",
+        "hazard_score": 0.648,
+        "risk_category": "WARNING",
+        "immediate_relocation_needed": false,
+        "road_access_distance_m": 486,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.4285,
+          30.432
+        ]
+      },
+      "properties": {
+        "id": "HAB-11",
+        "name": "Pipalkoti South",
+        "district": "Chamoli",
+        "sub_district": "Chamoli",
+        "population": 3100,
+        "households": 620,
+        "vulnerable_population": 1100,
+        "vulnerability_ratio": 0.355,
+        "elderly_count": 340,
+        "children_count": 580,
+        "disabled_count": 70,
+        "medical_needs_count": 110,
+        "housing_fragility_index": 0.45,
+        "slope_degrees": 18.2,
+        "elevation_meters": 1260,
+        "primary_hazard": "SAFE",
+        "hazard_score": 0.364,
+        "risk_category": "WATCH",
+        "immediate_relocation_needed": false,
+        "road_access_distance_m": 590,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.465,
+          30.4725
+        ]
+      },
+      "properties": {
+        "id": "HAB-12",
+        "name": "Gulabkoti Hamlet",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 640,
+        "households": 125,
+        "vulnerable_population": 229,
+        "vulnerability_ratio": 0.358,
+        "elderly_count": 78,
+        "children_count": 115,
+        "disabled_count": 15,
+        "medical_needs_count": 21,
+        "housing_fragility_index": 0.72,
+        "slope_degrees": 33.4,
+        "elevation_meters": 1410,
+        "primary_hazard": "LANDSLIDE",
+        "hazard_score": 0.784,
+        "risk_category": "CRITICAL",
+        "immediate_relocation_needed": true,
+        "road_access_distance_m": 374,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.6289,
+          30.4951
+        ]
+      },
+      "properties": {
+        "id": "HAB-13",
+        "name": "Tapovan Riverside",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 1580,
+        "households": 310,
+        "vulnerable_population": 560,
+        "vulnerability_ratio": 0.354,
+        "elderly_count": 180,
+        "children_count": 290,
+        "disabled_count": 36,
+        "medical_needs_count": 54,
+        "housing_fragility_index": 0.89,
+        "slope_degrees": 22.5,
+        "elevation_meters": 1820,
+        "primary_hazard": "FLOOD",
+        "hazard_score": 0.776,
+        "risk_category": "CRITICAL",
+        "immediate_relocation_needed": true,
+        "road_access_distance_m": 238,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.6974,
+          30.4856
+        ]
+      },
+      "properties": {
+        "id": "HAB-14",
+        "name": "Reni Disaster Zone",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 420,
+        "households": 80,
+        "vulnerable_population": 158,
+        "vulnerability_ratio": 0.376,
+        "elderly_count": 55,
+        "children_count": 75,
+        "disabled_count": 12,
+        "medical_needs_count": 16,
+        "housing_fragility_index": 0.94,
+        "slope_degrees": 44.0,
+        "elevation_meters": 2050,
+        "primary_hazard": "FLOOD",
+        "hazard_score": 0.965,
+        "risk_category": "CRITICAL",
+        "immediate_relocation_needed": true,
+        "road_access_distance_m": 198,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.7212,
+          30.4975
+        ]
+      },
+      "properties": {
+        "id": "HAB-15",
+        "name": "Lata Village Highbank",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 580,
+        "households": 110,
+        "vulnerable_population": 210,
+        "vulnerability_ratio": 0.362,
+        "elderly_count": 72,
+        "children_count": 105,
+        "disabled_count": 14,
+        "medical_needs_count": 19,
+        "housing_fragility_index": 0.62,
+        "slope_degrees": 31.0,
+        "elevation_meters": 2180,
+        "primary_hazard": "EARTHQUAKE_EXPOSURE",
+        "hazard_score": 0.72,
+        "risk_category": "WARNING",
+        "immediate_relocation_needed": false,
+        "road_access_distance_m": 454,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.593,
+          30.642
+        ]
+      },
+      "properties": {
+        "id": "HAB-16",
+        "name": "Pandukeshwar Lower",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 1120,
+        "households": 220,
+        "vulnerable_population": 409,
+        "vulnerability_ratio": 0.365,
+        "elderly_count": 135,
+        "children_count": 210,
+        "disabled_count": 26,
+        "medical_needs_count": 38,
+        "housing_fragility_index": 0.75,
+        "slope_degrees": 27.5,
+        "elevation_meters": 1860,
+        "primary_hazard": "FLOOD",
+        "hazard_score": 0.751,
+        "risk_category": "CRITICAL",
+        "immediate_relocation_needed": true,
+        "road_access_distance_m": 350,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.539,
+          30.534
+        ]
+      },
+      "properties": {
+        "id": "HAB-17",
+        "name": "Selang Terrace",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 760,
+        "households": 145,
+        "vulnerable_population": 266,
+        "vulnerability_ratio": 0.35,
+        "elderly_count": 90,
+        "children_count": 135,
+        "disabled_count": 17,
+        "medical_needs_count": 24,
+        "housing_fragility_index": 0.7,
+        "slope_degrees": 30.8,
+        "elevation_meters": 1620,
+        "primary_hazard": "LANDSLIDE",
+        "hazard_score": 0.755,
+        "risk_category": "CRITICAL",
+        "immediate_relocation_needed": true,
+        "road_access_distance_m": 390,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.605,
+          30.512
+        ]
+      },
+      "properties": {
+        "id": "HAB-18",
+        "name": "Dhak Village Slope",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 830,
+        "households": 160,
+        "vulnerable_population": 296,
+        "vulnerability_ratio": 0.357,
+        "elderly_count": 100,
+        "children_count": 150,
+        "disabled_count": 19,
+        "medical_needs_count": 27,
+        "housing_fragility_index": 0.74,
+        "slope_degrees": 35.0,
+        "elevation_meters": 1880,
+        "primary_hazard": "LANDSLIDE",
+        "hazard_score": 0.805,
+        "risk_category": "CRITICAL",
+        "immediate_relocation_needed": true,
+        "road_access_distance_m": 358,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.62,
+          30.505
+        ]
+      },
+      "properties": {
+        "id": "HAB-19",
+        "name": "Subhai Cluster",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 690,
+        "households": 130,
+        "vulnerable_population": 240,
+        "vulnerability_ratio": 0.348,
+        "elderly_count": 82,
+        "children_count": 120,
+        "disabled_count": 16,
+        "medical_needs_count": 22,
+        "housing_fragility_index": 0.68,
+        "slope_degrees": 32.2,
+        "elevation_meters": 1910,
+        "primary_hazard": "LANDSLIDE",
+        "hazard_score": 0.756,
+        "risk_category": "CRITICAL",
+        "immediate_relocation_needed": true,
+        "road_access_distance_m": 406,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.485,
+          30.575
+        ]
+      },
+      "properties": {
+        "id": "HAB-20",
+        "name": "Urgam Valley Fringe",
+        "district": "Chamoli",
+        "sub_district": "Joshimath",
+        "population": 920,
+        "households": 180,
+        "vulnerable_population": 326,
+        "vulnerability_ratio": 0.354,
+        "elderly_count": 110,
+        "children_count": 165,
+        "disabled_count": 21,
+        "medical_needs_count": 30,
+        "housing_fragility_index": 0.64,
+        "slope_degrees": 28.0,
+        "elevation_meters": 1750,
+        "primary_hazard": "LANDSLIDE",
+        "hazard_score": 0.706,
+        "risk_category": "WARNING",
+        "immediate_relocation_needed": false,
+        "road_access_distance_m": 438,
+        "updated_at": "2026-09-18T18:46:07.975647+00:00"
+      }
+    }
+  ]
+}
