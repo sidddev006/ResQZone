@@ -1,5 +1,5 @@
 services:
-  # Backend FastAPI Web Service
+  # Backend FastAPI Web Service on Render
   - type: web
     name: resqzone-backend
     env: python
@@ -18,14 +18,3 @@ services:
         value: .
       - key: DATA_MODE
         value: DEMO
-
-  # Frontend Vite SPA Service
-  - type: web
-    name: resqzone-frontend
-    env: static
-    buildCommand: "cd frontend && npm install && npm run build"
-    staticPublishPath: "./frontend/dist"
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
