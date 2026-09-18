@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Building2, Droplets, Utensils, Bed, Stethoscope, AlertCircle, ShieldCheck } from 'lucide-react';
+import { Building2, Droplets, Utensils, Bed, Stethoscope, AlertCircle, ShieldCheck, MapPin } from 'lucide-react';
 import { api } from '../../api/client';
 
 export default function CarryingCapacityView({ selectedRegion = 'ALL', currentRegionObj }) {
@@ -25,11 +25,11 @@ export default function CarryingCapacityView({ selectedRegion = 'ALL', currentRe
 
   const getStatusBadge = (status) => {
     switch (status) {
-      case 'OVER_CAPACITY': return 'bg-rose-500/20 text-rose-300 border-rose-500/40 shadow-glow-rose/30';
-      case 'HIGH_LOAD': return 'bg-amber-500/20 text-amber-300 border-amber-500/40';
-      case 'NORMAL': return 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40';
-      case 'INACCESSIBLE': return 'bg-slate-700/40 text-slate-400 border-slate-600';
-      default: return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40';
+      case 'OVER_CAPACITY': return 'bg-rose-500/15 text-rose-300 border-rose-500/30';
+      case 'HIGH_LOAD': return 'bg-amber-500/15 text-amber-300 border-amber-500/30';
+      case 'NORMAL': return 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30';
+      case 'INACCESSIBLE': return 'bg-slate-700/30 text-slate-400 border-slate-600';
+      default: return 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30';
     }
   };
 
@@ -38,114 +38,112 @@ export default function CarryingCapacityView({ selectedRegion = 'ALL', currentRe
   const totalAvailable = Math.max(0, totalEffective - totalOccupied);
 
   return (
-    <div className="space-y-5 pb-12 max-w-7xl mx-auto">
+    <div className="space-y-6 pb-12 max-w-7xl mx-auto font-sans">
       {/* Header */}
-      <div className="p-6 rounded-2xl bg-[#0B0F17]/90 backdrop-blur-xl border border-slate-800 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-6 sm:p-7 rounded-3xl eleken-card border border-white/[0.08] shadow-2xl flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div>
-          <div className="flex items-center space-x-2 mb-1 text-xs font-mono text-cyan-400">
-            <span>HUMANITARIAN STANDARDS SPHERE & WHO</span>
-            <span>•</span>
-            <span className="text-slate-400">{currentRegionObj?.name?.toUpperCase() || 'PAN-INDIA RELIEF GRID'}</span>
+          <div className="flex items-center space-x-2 mb-1 text-xs text-cyan-400 font-semibold tracking-wide">
+            <span>HUMANITARIAN STANDARDS (SPHERE & WHO)</span>
+            <span className="text-slate-600">•</span>
+            <span className="text-slate-400">{currentRegionObj?.name?.toUpperCase() || 'PAN-INDIA RELIEF BASES'}</span>
           </div>
-          <h2 className="text-xl font-bold text-white font-mono">Shelter Carrying Capacity & Resource Bottlenecks</h2>
-          <p className="text-xs text-slate-400 mt-0.5">
-            Strict Multi-Resource Bottleneck Evaluation: Safe Water (15L/person/day), Sanitation (1 latrine:20 persons), Food Rations & Bed Area
+          <h2 className="text-2xl font-bold text-white tracking-tight">Safe Shelter Carrying Capacity & Resource Bottlenecks</h2>
+          <p className="text-xs text-slate-400 mt-1 max-w-2xl">
+            Strict multi-resource bottleneck evaluation: Minimum Safe Water (15L/day), Sanitation (1:20), Food Rations (2100 kcal), and Clinical Bed Area.
           </p>
         </div>
 
-        {/* Global Summary */}
-        <div className="flex items-center space-x-4 bg-[#131A2B] px-5 py-2.5 rounded-xl border border-white/10 text-xs font-mono">
+        {/* Global Summary Metric Ribbon */}
+        <div className="flex items-center space-x-6 bg-[#131A2B]/80 px-6 py-3 rounded-2xl border border-white/[0.08] text-xs">
           <div>
-            <span className="text-slate-400 block text-[10px] uppercase tracking-wider">Safe Capacity</span>
-            <span className="font-bold text-white text-base">{totalEffective.toLocaleString()}</span>
+            <span className="text-slate-400 block text-[10px] uppercase font-semibold tracking-wider">Safe Capacity</span>
+            <span className="font-extrabold text-white text-lg">{totalEffective.toLocaleString()}</span>
           </div>
-          <div className="h-7 w-px bg-white/10"></div>
+          <div className="h-8 w-px bg-white/[0.08]"></div>
           <div>
-            <span className="text-slate-400 block text-[10px] uppercase tracking-wider">Occupied</span>
-            <span className="font-bold text-amber-400 text-base">{totalOccupied.toLocaleString()}</span>
+            <span className="text-slate-400 block text-[10px] uppercase font-semibold tracking-wider">Occupied</span>
+            <span className="font-extrabold text-amber-400 text-lg">{totalOccupied.toLocaleString()}</span>
           </div>
-          <div className="h-7 w-px bg-white/10"></div>
+          <div className="h-8 w-px bg-white/[0.08]"></div>
           <div>
-            <span className="text-slate-400 block text-[10px] uppercase tracking-wider">Available Headroom</span>
-            <span className="font-bold text-emerald-400 text-base">{totalAvailable.toLocaleString()}</span>
+            <span className="text-slate-400 block text-[10px] uppercase font-semibold tracking-wider">Available Headroom</span>
+            <span className="font-extrabold text-emerald-400 text-lg">{totalAvailable.toLocaleString()}</span>
           </div>
         </div>
       </div>
 
       {/* Grid of Shelters */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {shelters.map((s) => (
           <div
             key={s.shelter_id}
-            className="p-5 rounded-2xl bg-[#0B0F17]/90 border border-white/10 hover:border-cyan-500/40 transition-all space-y-4 shadow-2xl"
+            className="p-6 rounded-3xl eleken-card border border-white/[0.08] space-y-4 shadow-xl"
           >
             {/* Title & Status */}
-            <div className="flex items-start justify-between gap-2 border-b border-white/10 pb-3">
+            <div className="flex items-start justify-between gap-3 border-b border-white/[0.06] pb-3.5">
               <div>
-                <h3 className="font-bold text-white text-sm font-mono">{s.name}</h3>
-                <span className="text-[10px] font-mono text-cyan-400">{s.shelter_id} • {s.shelter_type}</span>
+                <h3 className="font-bold text-white text-base tracking-tight">{s.name}</h3>
+                <div className="flex items-center space-x-2 text-xs text-slate-400 mt-1">
+                  <span className="px-2 py-0.5 rounded-full bg-white/[0.04] text-slate-300 font-medium text-[11px]">
+                    {s.shelter_type}
+                  </span>
+                  <span>•</span>
+                  <span className="text-cyan-400 font-medium">{s.district || 'District Base'}</span>
+                </div>
               </div>
-              <span className={`px-2.5 py-0.5 rounded text-[10px] font-mono font-bold border ${getStatusBadge(s.capacity_status)}`}>
+              <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${getStatusBadge(s.capacity_status)}`}>
                 {s.capacity_status}
               </span>
             </div>
 
             {/* Utilization Bar */}
-            <div className="space-y-1.5">
-              <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-slate-400 text-[11px]">Safe Utilization</span>
-                <span className="font-bold text-white">{s.capacity_utilization_pct}%</span>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-slate-400">Safe Carrying Capacity Utilization</span>
+                <span className="font-bold text-white text-sm">{s.capacity_utilization_pct}%</span>
               </div>
-              <div className="h-2 rounded-full bg-[#131A2B] overflow-hidden border border-white/5">
+              <div className="h-2 rounded-full bg-slate-800 overflow-hidden">
                 <div
                   className={`h-full rounded-full transition-all duration-500 ${
                     s.capacity_utilization_pct > 90
-                      ? 'bg-rose-500 shadow-glow-rose'
+                      ? 'bg-rose-500'
                       : s.capacity_utilization_pct > 75
                       ? 'bg-amber-500'
-                      : 'bg-emerald-400 shadow-glow-emerald'
+                      : 'bg-emerald-400'
                   }`}
                   style={{ width: `${Math.min(100, s.capacity_utilization_pct)}%` }}
                 ></div>
               </div>
-              <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                <span>Occupants: <strong className="text-slate-200">{s.current_occupancy}</strong></span>
-                <span>Safe Max: <strong className="text-slate-200">{s.effective_safe_capacity}</strong></span>
+              <div className="flex items-center justify-between text-xs text-slate-400 pt-0.5">
+                <span>Occupants: <strong className="text-white">{s.current_occupancy}</strong></span>
+                <span>Safe Ceiling: <strong className="text-white">{s.effective_safe_capacity}</strong></span>
                 <span className="text-emerald-400 font-bold">Free: {s.available_safe_capacity}</span>
               </div>
             </div>
 
             {/* Resource Normalized Limits */}
-            <div className="pt-2 border-t border-white/10">
-              <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-2">
-                RESOURCE SPECIFIC CAPACITY (HEADCOUNT SUPPORTED)
+            <div className="pt-3 border-t border-white/[0.06]">
+              <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2.5">
+                Resource Normalized Constraints (People Supported)
               </div>
-              <div className="grid grid-cols-4 gap-2 text-xs font-mono">
-                <div className={`p-2 rounded-xl border ${s.bottleneck_resource === 'water' ? 'bg-amber-500/10 border-amber-500/40 text-amber-300' : 'bg-[#131A2B] border-white/5 text-slate-300'}`}>
-                  <span className="text-slate-500 text-[9px] block">WATER (15L)</span>
-                  <span className="font-bold text-white text-[13px]">{s.resource_limits?.water_supported_people?.toLocaleString() || '-'}</span>
+              <div className="grid grid-cols-4 gap-2 text-xs">
+                <div className={`p-2.5 rounded-2xl border ${s.bottleneck_resource === 'water' ? 'bg-amber-500/10 border-amber-500/40 text-amber-300' : 'bg-white/[0.03] border-white/[0.05] text-slate-300'}`}>
+                  <span className="text-slate-400 text-[10px] block font-medium">WATER (15L)</span>
+                  <span className="font-bold text-white text-sm">{s.resource_limits?.water_supported_people?.toLocaleString() || '-'}</span>
                 </div>
-                <div className={`p-2 rounded-xl border ${s.bottleneck_resource === 'sanitation' ? 'bg-amber-500/10 border-amber-500/40 text-amber-300' : 'bg-[#131A2B] border-white/5 text-slate-300'}`}>
-                  <span className="text-slate-500 text-[9px] block">TOILETS (1:20)</span>
-                  <span className="font-bold text-white text-[13px]">{s.resource_limits?.sanitation_supported_people?.toLocaleString() || '-'}</span>
+                <div className={`p-2.5 rounded-2xl border ${s.bottleneck_resource === 'sanitation' ? 'bg-amber-500/10 border-amber-500/40 text-amber-300' : 'bg-white/[0.03] border-white/[0.05] text-slate-300'}`}>
+                  <span className="text-slate-400 text-[10px] block font-medium">TOILETS (1:20)</span>
+                  <span className="font-bold text-white text-sm">{s.resource_limits?.sanitation_supported_people?.toLocaleString() || '-'}</span>
                 </div>
-                <div className={`p-2 rounded-xl border ${s.bottleneck_resource === 'food' ? 'bg-amber-500/10 border-amber-500/40 text-amber-300' : 'bg-[#131A2B] border-white/5 text-slate-300'}`}>
-                  <span className="text-slate-500 text-[9px] block">FOOD (2100kcal)</span>
-                  <span className="font-bold text-white text-[13px]">{s.resource_limits?.food_supported_people?.toLocaleString() || '-'}</span>
+                <div className={`p-2.5 rounded-2xl border ${s.bottleneck_resource === 'food' ? 'bg-amber-500/10 border-amber-500/40 text-amber-300' : 'bg-white/[0.03] border-white/[0.05] text-slate-300'}`}>
+                  <span className="text-slate-400 text-[10px] block font-medium">FOOD (2100k)</span>
+                  <span className="font-bold text-white text-sm">{s.resource_limits?.food_supported_people?.toLocaleString() || '-'}</span>
                 </div>
-                <div className={`p-2 rounded-xl border ${s.bottleneck_resource === 'beds' ? 'bg-amber-500/10 border-amber-500/40 text-amber-300' : 'bg-[#131A2B] border-white/5 text-slate-300'}`}>
-                  <span className="text-slate-500 text-[9px] block">BED SPACES</span>
-                  <span className="font-bold text-white text-[13px]">{s.resource_limits?.bed_supported_people?.toLocaleString() || '-'}</span>
+                <div className={`p-2.5 rounded-2xl border ${s.bottleneck_resource === 'beds' ? 'bg-amber-500/10 border-amber-500/40 text-amber-300' : 'bg-white/[0.03] border-white/[0.05] text-slate-300'}`}>
+                  <span className="text-slate-400 text-[10px] block font-medium">BED SPACES</span>
+                  <span className="font-bold text-white text-sm">{s.resource_limits?.bed_supported_people?.toLocaleString() || '-'}</span>
                 </div>
               </div>
-            </div>
-
-            {/* Limiting Bottleneck Pill */}
-            <div className="p-3 rounded-xl bg-[#131A2B] border border-white/10 text-xs font-mono">
-              <span className="font-bold text-amber-400 capitalize block">
-                Limiting Constraint: {s.bottleneck_resource?.toUpperCase()}
-              </span>
-              <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">{s.bottleneck_explanation}</p>
             </div>
           </div>
         ))}
