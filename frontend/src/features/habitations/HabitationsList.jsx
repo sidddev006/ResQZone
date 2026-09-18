@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Home, Search, ShieldAlert, Filter, ChevronRight } from 'lucide-react';
+import { Home, Search, ShieldAlert, Filter, ChevronRight, MapPin, Sparkles } from 'lucide-react';
 import { api } from '../../api/client';
 
 export default function HabitationsList({ onInspectHabitation, onLaunchSimulation }) {
@@ -32,111 +32,120 @@ export default function HabitationsList({ onInspectHabitation, onLaunchSimulatio
 
   const getBadgeClass = (cat) => {
     switch (cat) {
-      case 'CRITICAL': return 'bg-rose-50 text-rose-700 border-rose-200';
-      case 'WARNING': return 'bg-amber-50 text-amber-700 border-amber-200';
-      case 'WATCH': return 'bg-yellow-50 text-yellow-800 border-yellow-200';
-      default: return 'bg-emerald-50 text-emerald-700 border-emerald-200';
+      case 'CRITICAL': return 'bg-rose-500/20 text-rose-300 border-rose-500/40 shadow-glow-rose/30';
+      case 'WARNING': return 'bg-amber-500/20 text-amber-300 border-amber-500/40';
+      case 'WATCH': return 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40';
+      default: return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40';
     }
   };
 
   return (
     <div className="space-y-5 pb-12 max-w-7xl mx-auto">
-      {/* Header */}
-      <div className="p-6 rounded-xl bg-white border border-stone-200/80 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+      {/* Header Banner */}
+      <div className="p-6 rounded-2xl bg-[#0B0F17]/90 backdrop-blur-xl border border-white/10 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-base font-semibold text-stone-900">Habitations & Vulnerability Register</h2>
-          <p className="text-xs text-stone-500 mt-0.5">20 Surveyed Wards & Villages in Chamoli-Joshimath District</p>
+          <div className="flex items-center space-x-2 mb-1 text-xs font-mono text-cyan-400">
+            <span>SETTLEMENT REGISTRY</span>
+            <span>•</span>
+            <span className="text-slate-400">CHAMOLI OPERATIONAL SECTORS</span>
+          </div>
+          <h2 className="text-xl font-bold text-white font-mono">Habitations & Vulnerability Ledger</h2>
+          <p className="text-xs text-slate-400 mt-0.5">20 Surveyed Wards & Mountain Villages with Monitored Displacement Factors</p>
         </div>
 
         {/* Search & Filter */}
         <div className="flex flex-wrap items-center gap-2.5">
           <div className="relative">
-            <Search className="w-3.5 h-3.5 text-stone-400 absolute left-3 top-2.5" />
+            <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
             <input
               type="text"
-              placeholder="Search habitation..."
+              placeholder="Search settlement..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="bg-white border border-stone-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-stone-900 placeholder-stone-400 focus:outline-none focus:border-stone-400 w-48 shadow-xs"
+              className="bg-[#131A2B] border border-white/10 rounded-xl pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 w-52 font-mono"
             />
           </div>
 
           <select
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
-            className="bg-white border border-stone-200 rounded-lg px-2.5 py-1.5 text-xs text-stone-700 focus:outline-none shadow-xs"
+            className="bg-[#131A2B] border border-white/10 rounded-xl px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-cyan-400 font-mono"
           >
-            <option value="ALL">All Categories</option>
-            <option value="CRITICAL">Critical (Immediate)</option>
-            <option value="WARNING">Warning</option>
-            <option value="WATCH">Watch</option>
-            <option value="SAFE">Safe</option>
+            <option value="ALL">All Risk Tiers</option>
+            <option value="CRITICAL">P1 Critical (Evacuate)</option>
+            <option value="WARNING">P2 Warning</option>
+            <option value="WATCH">P3 Watch</option>
+            <option value="SAFE">P4 Stable</option>
           </select>
         </div>
       </div>
 
       {/* Table */}
-      <div className="bg-white border border-stone-200/80 rounded-xl overflow-hidden shadow-card">
+      <div className="bg-[#0B0F17]/90 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs">
-            <thead className="bg-stone-50/80 border-b border-stone-200 text-stone-500 font-medium text-[11px]">
+          <table className="w-full text-left text-xs font-mono">
+            <thead className="bg-[#131A2B]/80 border-b border-white/10 text-slate-400 font-medium text-[11px]">
               <tr>
-                <th className="py-3 px-4">Habitation</th>
-                <th className="py-3 px-4">Hazard Type</th>
-                <th className="py-3 px-4">Population</th>
-                <th className="py-3 px-4">Vulnerable Cohort</th>
-                <th className="py-3 px-4">Slope / Elev</th>
-                <th className="py-3 px-4">Hazard Score</th>
-                <th className="py-3 px-4">Category</th>
-                <th className="py-3 px-4 text-right">Actions</th>
+                <th className="py-3.5 px-4">HABITATION</th>
+                <th className="py-3.5 px-4">HAZARD VECTOR</th>
+                <th className="py-3.5 px-4">CENSUS POP</th>
+                <th className="py-3.5 px-4">HIGH-NEED COHORT</th>
+                <th className="py-3.5 px-4">SLOPE / ELEV</th>
+                <th className="py-3.5 px-4">RISK INDEX</th>
+                <th className="py-3.5 px-4">PRIORITY TIER</th>
+                <th className="py-3.5 px-4 text-right">AUDIT</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-stone-100 text-stone-700">
+            <tbody className="divide-y divide-white/5 text-slate-300">
               {loading ? (
                 <tr>
-                  <td colSpan="8" className="py-8 text-center text-stone-400">Loading habitations...</td>
+                  <td colSpan="8" className="py-12 text-center text-slate-500 font-mono">
+                    SYNCHRONIZING HABITATIONS REGISTRY...
+                  </td>
                 </tr>
               ) : filtered.length === 0 ? (
                 <tr>
-                  <td colSpan="8" className="py-8 text-center text-stone-400">No habitations matching criteria.</td>
+                  <td colSpan="8" className="py-12 text-center text-slate-500 font-mono">
+                    No habitations matching selected filter.
+                  </td>
                 </tr>
               ) : (
                 filtered.map((h) => (
-                  <tr key={h.id} className="hover:bg-stone-50/60 transition-colors">
+                  <tr key={h.id} className="hover:bg-[#131A2B]/70 transition-colors">
                     <td className="py-3 px-4">
-                      <div className="font-semibold text-stone-900">{h.name}</div>
-                      <div className="text-[11px] font-mono text-stone-400">{h.id} • {h.sub_district}</div>
+                      <div className="font-bold text-white text-[13px]">{h.name}</div>
+                      <div className="text-[10px] text-cyan-400/80">{h.id} • {h.sub_district}</div>
                     </td>
                     <td className="py-3 px-4">
-                      <span className="font-medium text-stone-700">{h.primary_hazard_type}</span>
+                      <span className="text-slate-300 font-medium">{h.primary_hazard_type}</span>
                     </td>
-                    <td className="py-3 px-4 font-mono font-medium text-stone-900">
+                    <td className="py-3 px-4 font-bold text-white">
                       {h.total_population.toLocaleString()}
                     </td>
                     <td className="py-3 px-4">
-                      <span className="font-mono text-amber-800 font-medium">{h.vulnerable_population}</span>
-                      <span className="text-[10px] text-stone-400 block">
+                      <span className="text-amber-400 font-bold">{h.vulnerable_population}</span>
+                      <span className="text-[10px] text-slate-500 block">
                         ({Math.round((h.vulnerable_population / h.total_population) * 100)}% dependent)
                       </span>
                     </td>
-                    <td className="py-3 px-4 font-mono text-stone-600">
+                    <td className="py-3 px-4 text-slate-400">
                       {h.slope_degrees}° / {h.elevation_meters}m
                     </td>
-                    <td className="py-3 px-4 font-mono font-bold text-stone-900">
-                      {h.hazard_score.toFixed(2)}
+                    <td className="py-3 px-4">
+                      <span className="text-white font-extrabold text-[13px]">{h.hazard_score.toFixed(2)}</span>
                     </td>
                     <td className="py-3 px-4">
-                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium border ${getBadgeClass(h.risk_category)}`}>
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold border ${getBadgeClass(h.risk_category)}`}>
                         {h.risk_category}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-right space-x-2">
+                    <td className="py-3 px-4 text-right">
                       <button
                         onClick={() => onInspectHabitation(h)}
-                        className="px-2.5 py-1 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-800 text-[11px] font-medium transition-colors border border-stone-200 inline-flex items-center space-x-1"
+                        className="px-2.5 py-1 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 text-[11px] font-medium transition-all border border-cyan-500/30 inline-flex items-center space-x-1 shadow-glow-cyan/20"
                       >
-                        <ShieldAlert className="w-3 h-3 text-stone-500" />
-                        <span>Evidence</span>
+                        <ShieldAlert className="w-3 h-3 text-cyan-400" />
+                        <span>Inspect Evidence</span>
                       </button>
                     </td>
                   </tr>

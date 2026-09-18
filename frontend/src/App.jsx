@@ -47,7 +47,7 @@ export default function App() {
           onSelectTab={setActiveTab}
         />
 
-        <main className="flex-1 overflow-y-auto p-6 scroll-smooth">
+        <main className={`flex-1 min-w-0 overflow-y-auto ${activeTab === 'map' ? 'p-3 overflow-hidden' : 'p-6'} scroll-smooth bg-[#07090E] bg-tactical-grid`}>
           {activeTab === 'dashboard' && (
             <DashboardOverview
               onNavigate={setActiveTab}

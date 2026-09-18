@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, Download, Printer, RefreshCw } from 'lucide-react';
+import { FileText, Download, Printer, RefreshCw, FileCheck, ShieldAlert, Cpu } from 'lucide-react';
 import { api } from '../../api/client';
 
 export default function ReportViewer() {
@@ -38,113 +38,118 @@ export default function ReportViewer() {
   };
 
   return (
-    <div className="space-y-5 pb-12 max-w-7xl mx-auto">
+    <div className="space-y-5 pb-12 max-w-7xl mx-auto font-mono">
       {/* Action Header */}
-      <div className="p-6 rounded-xl bg-white border border-stone-200/80 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-6 rounded-2xl bg-[#0B0F17]/90 backdrop-blur-xl border border-white/10 shadow-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-base font-semibold text-stone-900">Incident & Vulnerability Assessment Report</h2>
-          <p className="text-xs text-stone-500 mt-0.5">Formal DEOC Incident Brief for District Magistrate & State SDMA Review</p>
+          <div className="flex items-center space-x-2 mb-1 text-xs text-cyan-400">
+            <span>OFFICIAL BRIEFING</span>
+            <span>•</span>
+            <span className="text-slate-400">DEOC SITREP COMPILER</span>
+          </div>
+          <h2 className="text-xl font-bold text-white">Incident & Vulnerability Assessment Report</h2>
+          <p className="text-xs text-slate-400 mt-0.5">Formal Briefing Manifest for District Magistrate & State SDMA Review</p>
         </div>
 
         <div className="flex items-center space-x-2">
           <button
             onClick={generateReport}
-            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-stone-50 text-stone-700 text-xs font-medium border border-stone-200 transition-colors shadow-xs"
+            className="flex items-center space-x-1.5 px-3 py-2 rounded-xl bg-[#131A2B] hover:bg-[#1A233A] text-slate-300 hover:text-white text-xs border border-white/10 transition-colors"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
-            <span>Regenerate</span>
+            <span>REGENERATE</span>
           </button>
           <button
             onClick={handleDownloadJSON}
-            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-stone-50 text-stone-700 text-xs font-medium border border-stone-200 transition-colors shadow-xs"
+            className="flex items-center space-x-1.5 px-3 py-2 rounded-xl bg-[#131A2B] hover:bg-[#1A233A] text-slate-300 hover:text-white text-xs border border-white/10 transition-colors"
           >
             <Download className="w-3.5 h-3.5" />
-            <span>Export JSON</span>
+            <span>EXPORT JSON</span>
           </button>
           <button
             onClick={handlePrint}
-            className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-50 font-medium text-xs shadow-xs transition-colors"
+            className="flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-xs shadow-glow-cyan transition-all"
           >
             <Printer className="w-3.5 h-3.5" />
-            <span>Print Report</span>
+            <span>PRINT SITREP</span>
           </button>
         </div>
       </div>
 
       {/* Printable Report Document Card */}
       {report && (
-        <div className="p-8 rounded-xl bg-white border border-stone-200/80 shadow-card space-y-6 text-stone-800 print:p-0 print:border-none print:shadow-none">
+        <div className="p-8 rounded-2xl bg-[#0B0F17]/90 border border-white/10 shadow-2xl space-y-6 text-slate-200 print:p-0 print:border-none print:shadow-none print:bg-white print:text-black">
           {/* Doc Header */}
-          <div className="border-b border-stone-200 pb-4 flex justify-between items-start">
+          <div className="border-b border-white/10 pb-4 flex justify-between items-start">
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-stone-400 font-semibold block">
-                Official Incident Operational Brief
+              <span className="text-[10px] uppercase tracking-widest text-cyan-400 font-bold block">
+                OFFICIAL INCIDENT OPERATIONAL BRIEFING • DEOC CHAMOLI
               </span>
-              <h1 className="text-lg font-bold text-stone-900 mt-1">{report.title}</h1>
-              <p className="text-xs text-stone-500 mt-0.5">
-                District: <strong className="text-stone-800">{report.district}</strong> • State: <strong className="text-stone-800">{report.state}</strong>
+              <h1 className="text-xl font-bold text-white mt-1">{report.title}</h1>
+              <p className="text-xs text-slate-400 mt-0.5">
+                District: <strong className="text-slate-200">{report.district}</strong> • State: <strong className="text-slate-200">{report.state}</strong>
               </p>
             </div>
             <div className="text-right text-xs">
-              <span className="font-mono font-medium text-stone-700 block">{report.report_id}</span>
-              <span className="text-stone-400 text-[11px]">{new Date(report.generated_at).toLocaleString()}</span>
-              <span className="text-[10px] text-amber-700 block mt-0.5 font-medium">{report.disclaimer}</span>
+              <span className="font-bold text-cyan-300 block">{report.report_id}</span>
+              <span className="text-slate-500 text-[10px]">{new Date(report.generated_at).toLocaleString()}</span>
+              <span className="text-[10px] text-amber-400 block mt-0.5 font-bold">{report.disclaimer}</span>
             </div>
           </div>
 
           {/* Executive Summary */}
-          <div className="p-4 rounded-lg bg-stone-50 border border-stone-200/80 text-xs leading-relaxed space-y-1">
-            <h3 className="font-semibold text-stone-900 text-xs uppercase tracking-wider">Executive Summary</h3>
-            <p className="text-stone-700">{report.executive_summary}</p>
+          <div className="p-4 rounded-xl bg-[#131A2B] border border-white/10 text-xs leading-relaxed space-y-1">
+            <h3 className="font-bold text-white text-xs uppercase tracking-wider">Executive Operational Summary</h3>
+            <p className="text-slate-300 font-sans">{report.executive_summary}</p>
           </div>
 
           {/* District KPIs */}
           <div>
-            <h3 className="text-xs font-semibold text-stone-900 uppercase tracking-wider mb-2">Metrics Snapshot</h3>
+            <h3 className="text-xs font-bold text-white uppercase tracking-wider mb-2">Metrics Snapshot</h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-              <div className="p-3 rounded-lg bg-stone-50 border border-stone-100">
-                <span className="text-stone-500 text-[10px] block">Critical Red Zones</span>
-                <span className="text-base font-bold text-rose-600 font-mono">{report.kpis?.critical_red_zones}</span>
+              <div className="p-3 rounded-xl bg-[#131A2B] border border-white/10">
+                <span className="text-slate-400 text-[10px] uppercase block">Critical Red Zones</span>
+                <span className="text-2xl font-extrabold text-rose-400">{report.kpis?.critical_red_zones}</span>
               </div>
-              <div className="p-3 rounded-lg bg-stone-50 border border-stone-100">
-                <span className="text-stone-500 text-[10px] block">High-Need Vulnerable</span>
-                <span className="text-base font-bold text-stone-900 font-mono">{report.kpis?.critical_vulnerable_population?.toLocaleString()}</span>
+              <div className="p-3 rounded-xl bg-[#131A2B] border border-white/10">
+                <span className="text-slate-400 text-[10px] uppercase block">High-Need Vulnerable</span>
+                <span className="text-2xl font-extrabold text-white">{report.kpis?.critical_vulnerable_population?.toLocaleString()}</span>
               </div>
-              <div className="p-3 rounded-lg bg-stone-50 border border-stone-100">
-                <span className="text-stone-500 text-[10px] block">Available Safe Spots</span>
-                <span className="text-base font-bold text-emerald-700 font-mono">{report.kpis?.available_safe_capacity?.toLocaleString()}</span>
+              <div className="p-3 rounded-xl bg-[#131A2B] border border-white/10">
+                <span className="text-slate-400 text-[10px] uppercase block">Available Safe Spots</span>
+                <span className="text-2xl font-extrabold text-emerald-400">{report.kpis?.available_safe_capacity?.toLocaleString()}</span>
               </div>
-              <div className="p-3 rounded-lg bg-stone-50 border border-stone-100">
-                <span className="text-stone-500 text-[10px] block">Capacity Utilization</span>
-                <span className="text-base font-bold text-stone-900 font-mono">{report.kpis?.capacity_utilization_pct}%</span>
+              <div className="p-3 rounded-xl bg-[#131A2B] border border-white/10">
+                <span className="text-slate-400 text-[10px] uppercase block">Capacity Utilization</span>
+                <span className="text-2xl font-extrabold text-white">{report.kpis?.capacity_utilization_pct}%</span>
               </div>
             </div>
           </div>
 
           {/* Priority Critical Habitations */}
           <div>
-            <h3 className="text-xs font-semibold text-stone-900 uppercase tracking-wider mb-2">
+            <h3 className="text-xs font-bold text-white uppercase tracking-wider mb-2">
               Habitations Requiring Priority Evacuation
             </h3>
-            <div className="overflow-x-auto border border-stone-200 rounded-lg">
+            <div className="overflow-x-auto border border-white/10 rounded-xl">
               <table className="w-full text-left text-xs">
-                <thead className="bg-stone-50 text-stone-500 font-medium text-[10px]">
+                <thead className="bg-[#131A2B] text-slate-400 font-medium text-[10px]">
                   <tr>
-                    <th className="py-2.5 px-3">Habitation</th>
-                    <th className="py-2.5 px-3">Primary Hazard</th>
-                    <th className="py-2.5 px-3">Risk Score</th>
-                    <th className="py-2.5 px-3">Slope</th>
-                    <th className="py-2.5 px-3">Vulnerable Population</th>
+                    <th className="py-2.5 px-3">HABITATION</th>
+                    <th className="py-2.5 px-3">PRIMARY HAZARD</th>
+                    <th className="py-2.5 px-3">RISK SCORE</th>
+                    <th className="py-2.5 px-3">SLOPE</th>
+                    <th className="py-2.5 px-3">VULNERABLE POPULATION</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-stone-100 text-stone-700">
+                <tbody className="divide-y divide-white/5 text-slate-300">
                   {report.priority_critical_habitations?.map((h) => (
-                    <tr key={h.id}>
-                      <td className="py-2 px-3 font-medium text-stone-900">{h.name}</td>
+                    <tr key={h.id} className="hover:bg-[#131A2B]/60">
+                      <td className="py-2 px-3 font-bold text-white">{h.name}</td>
                       <td className="py-2 px-3">{h.primary_hazard}</td>
-                      <td className="py-2 px-3 font-mono text-rose-600 font-medium">{h.risk_score}</td>
-                      <td className="py-2 px-3 font-mono">{h.slope_degrees}°</td>
-                      <td className="py-2 px-3 font-mono text-amber-800">{h.vulnerable_population}</td>
+                      <td className="py-2 px-3 text-rose-400 font-bold">{h.risk_score}</td>
+                      <td className="py-2 px-3">{h.slope_degrees}°</td>
+                      <td className="py-2 px-3 text-amber-400 font-bold">{h.vulnerable_population}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -154,28 +159,28 @@ export default function ReportViewer() {
 
           {/* Shelter Capacity & Bottleneck Table */}
           <div>
-            <h3 className="text-xs font-semibold text-stone-900 uppercase tracking-wider mb-2">
+            <h3 className="text-xs font-bold text-white uppercase tracking-wider mb-2">
               Relief Shelter Capacities & Limiting Bottlenecks
             </h3>
-            <div className="overflow-x-auto border border-stone-200 rounded-lg">
+            <div className="overflow-x-auto border border-white/10 rounded-xl">
               <table className="w-full text-left text-xs">
-                <thead className="bg-stone-50 text-stone-500 font-medium text-[10px]">
+                <thead className="bg-[#131A2B] text-slate-400 font-medium text-[10px]">
                   <tr>
-                    <th className="py-2.5 px-3">Shelter Name</th>
-                    <th className="py-2.5 px-3">Effective Safe Cap</th>
-                    <th className="py-2.5 px-3">Occupancy</th>
-                    <th className="py-2.5 px-3">Available Spots</th>
-                    <th className="py-2.5 px-3">Bottleneck</th>
+                    <th className="py-2.5 px-3">SHELTER NAME</th>
+                    <th className="py-2.5 px-3">EFFECTIVE SAFE CAP</th>
+                    <th className="py-2.5 px-3">OCCUPANCY</th>
+                    <th className="py-2.5 px-3">AVAILABLE SPOTS</th>
+                    <th className="py-2.5 px-3">LIMITING RESOURCE</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-stone-100 text-stone-700">
+                <tbody className="divide-y divide-white/5 text-slate-300">
                   {report.shelter_carrying_capacities?.map((s) => (
-                    <tr key={s.id}>
-                      <td className="py-2 px-3 font-medium text-stone-900">{s.name}</td>
-                      <td className="py-2 px-3 font-mono">{s.effective_safe_capacity}</td>
-                      <td className="py-2 px-3 font-mono">{s.current_occupancy}</td>
-                      <td className="py-2 px-3 font-mono text-emerald-700 font-medium">{s.available_capacity}</td>
-                      <td className="py-2 px-3 capitalize text-stone-800 font-medium">{s.bottleneck_resource}</td>
+                    <tr key={s.id} className="hover:bg-[#131A2B]/60">
+                      <td className="py-2 px-3 font-bold text-white">{s.name}</td>
+                      <td className="py-2 px-3">{s.effective_safe_capacity}</td>
+                      <td className="py-2 px-3">{s.current_occupancy}</td>
+                      <td className="py-2 px-3 text-emerald-400 font-bold">{s.available_capacity}</td>
+                      <td className="py-2 px-3 capitalize text-cyan-300 font-bold">{s.bottleneck_resource}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -184,9 +189,9 @@ export default function ReportViewer() {
           </div>
 
           {/* Sign-off */}
-          <div className="pt-4 border-t border-stone-200 flex justify-between items-center text-xs text-stone-500">
-            <div>Reporting Officer: <strong className="text-stone-800">{report.author}</strong></div>
-            <div>Digital Validation: <span className="font-mono text-[10px] text-stone-500">RESQZONE-DEOC-CHAMOLI</span></div>
+          <div className="pt-4 border-t border-white/10 flex justify-between items-center text-xs text-slate-400">
+            <div>Incident Commander: <strong className="text-white">{report.author}</strong></div>
+            <div>Cryptographic Token: <span className="text-cyan-400 font-mono text-[10px]">RESQZONE-DEOC-CHAMOLI-SECURE</span></div>
           </div>
         </div>
       )}
