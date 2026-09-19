@@ -71,7 +71,7 @@ class Settings(BaseSettings):
     # External API Keys & Endpoints (Stored securely on backend)
     ADMIN_SECRET: str = "resqzone-admin-sec-2026"
     GEMINI_API_KEY: str = ""
-    CARTO_API_KEY: str = "cb1_3qdu_1_b6e83ebd02b8fc33637fe5ff"
+    CARTO_API_KEY: str = ""
     MAPBOX_TOKEN: str = ""
     IMD_API_KEY: str = ""
     BHUVAN_API_KEY: str = ""

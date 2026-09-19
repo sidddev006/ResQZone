@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Activity, Database, CheckCircle2, AlertTriangle, Shield, History, 
-  Clock, Radio, Server, Lock, Key, ShieldCheck, X, Check, Eye, EyeOff 
+  Clock, Radio, Server, ShieldCheck 
 } from 'lucide-react';
 import { api } from '../../api/client';
 
@@ -10,16 +10,6 @@ export default function SystemHealthView({ selectedRegion = 'ALL', theme = 'ligh
   const [logs, setLogs] = useState([]);
   const [keysStatus, setKeysStatus] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  // Admin Key Update Modal State
-  const [showAdminModal, setShowAdminModal] = useState(false);
-  const [adminSecret, setAdminSecret] = useState('resqzone-admin-sec-2026');
-  const [geminiKeyInput, setGeminiKeyInput] = useState('');
-  const [cartoKeyInput, setCartoKeyInput] = useState('cb1_3qdu_1_b6e83ebd02b8fc33637fe5ff');
-  const [mapboxTokenInput, setMapboxTokenInput] = useState('');
-  const [imdKeyInput, setImdKeyInput] = useState('');
-  const [updating, setUpdating] = useState(false);
-  const [feedback, setFeedback] = useState(null);
 
   const isDark = theme === 'dark';
 
@@ -42,45 +32,6 @@ export default function SystemHealthView({ selectedRegion = 'ALL', theme = 'ligh
       console.error(err);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleUpdateKeys = async (e) => {
-    e.preventDefault();
-    if (!adminSecret.trim()) {
-      setFeedback({ type: 'error', message: 'Admin Secret is required.' });
-      return;
-    }
-
-    try {
-      setUpdating(true);
-      setFeedback(null);
-      const payload = { admin_secret: adminSecret.trim() };
-      if (geminiKeyInput.trim()) payload.gemini_api_key = geminiKeyInput.trim();
-      if (cartoKeyInput.trim()) payload.carto_api_key = cartoKeyInput.trim();
-      if (mapboxTokenInput.trim()) payload.mapbox_token = mapboxTokenInput.trim();
-      if (imdKeyInput.trim()) payload.imd_api_key = imdKeyInput.trim();
-
-      const res = await api.updateSystemKeys(payload);
-      setFeedback({ type: 'success', message: res.message || 'API keys updated successfully on backend!' });
-      
-      // Refresh status & audit trail
-      await loadData();
-      setTimeout(() => {
-        setShowAdminModal(false);
-        setFeedback(null);
-        setAdminSecret('resqzone-admin-sec-2026');
-        setGeminiKeyInput('');
-        setMapboxTokenInput('');
-        setImdKeyInput('');
-      }, 1500);
-    } catch (err) {
-      const errMsg = err.message?.includes('404')
-        ? 'Backend endpoint returned 404. Render may still be deploying the latest update. Please wait 1-2 minutes and retry.'
-        : (err.message || 'Failed to update keys. Verify Admin Secret.');
-      setFeedback({ type: 'error', message: errMsg });
-    } finally {
-      setUpdating(false);
     }
   };
 
@@ -181,14 +132,6 @@ export default function SystemHealthView({ selectedRegion = 'ALL', theme = 'ligh
               External API secrets are isolated in server environment memory. Zero keys are exposed to client browsers or localStorage.
             </p>
           </div>
-
-          <button
-            onClick={() => setShowAdminModal(true)}
-            className="self-start sm:self-auto px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-emerald-600/20 transition-all"
-          >
-            <Lock className="w-3.5 h-3.5" />
-            <span>Update Vault (Admin)</span>
-          </button>
         </div>
 
         {/* Key Status Grid */}
@@ -294,163 +237,6 @@ export default function SystemHealthView({ selectedRegion = 'ALL', theme = 'ligh
           </table>
         </div>
       </div>
-
-      {/* Admin API Key Vault Modal */}
-      {showAdminModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div className={`w-full max-w-lg rounded-3xl p-6 sm:p-7 border shadow-2xl space-y-5 ${
-            isDark ? 'bg-[#0F172A] border-white/[0.1] text-white' : 'bg-white border-slate-200 text-slate-900'
-          }`}>
-            <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
-              <div className="flex items-center space-x-2.5">
-                <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
-                  <ShieldCheck className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-extrabold text-sm">Server-Side API Key Vault</h4>
-                  <p className={`text-[11px] ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                    Update keys securely in backend memory
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={() => { setShowAdminModal(false); setFeedback(null); }}
-                className="p-1.5 rounded-xl text-slate-400 hover:text-white"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            {feedback && (
-              <div className={`p-3 rounded-xl text-xs font-semibold flex items-center gap-2 border ${
-                feedback.type === 'success'
-                  ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30'
-                  : 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30'
-              }`}>
-                {feedback.type === 'success' ? <CheckCircle2 className="w-4 h-4 shrink-0" /> : <AlertTriangle className="w-4 h-4 shrink-0" />}
-                <span>{feedback.message}</span>
-              </div>
-            )}
-
-            <form onSubmit={handleUpdateKeys} className="space-y-3.5 text-xs">
-              <div>
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-bold text-[11px]">Backend Admin Secret <span className="text-rose-500">*</span></span>
-                  <button
-                    type="button"
-                    onClick={() => setAdminSecret('resqzone-admin-sec-2026')}
-                    className="text-[10px] text-emerald-500 hover:text-emerald-400 hover:underline font-semibold"
-                  >
-                    Reset to Default Secret
-                  </button>
-                </div>
-                <input
-                  type="password"
-                  required
-                  value={adminSecret}
-                  onChange={(e) => setAdminSecret(e.target.value)}
-                  placeholder="Enter ADMIN_SECRET (default: resqzone-admin-sec-2026)"
-                  className={`w-full px-3.5 py-2 rounded-xl border text-xs font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
-                    isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'
-                  }`}
-                />
-                <p className="text-[10px] text-slate-400 mt-1">
-                  Default server secret: <code className="text-emerald-500 dark:text-emerald-400 font-mono">resqzone-admin-sec-2026</code>
-                </p>
-              </div>
-
-              <div>
-                <label className="block font-bold text-[11px] mb-1">
-                  Google Gemini API Key (Optional)
-                </label>
-                <input
-                  type="password"
-                  value={geminiKeyInput}
-                  onChange={(e) => setGeminiKeyInput(e.target.value)}
-                  placeholder="AIzaSy... (leave empty to keep current)"
-                  className={`w-full px-3.5 py-2 rounded-xl border text-xs font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
-                    isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'
-                  }`}
-                />
-              </div>
-
-              <div>
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-bold text-[11px]">CARTO Basemaps API Key (Optional)</span>
-                  <a
-                    href="https://carto.com/basemaps/apikey/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="text-[10px] text-sky-500 hover:text-sky-400 hover:underline font-semibold inline-flex items-center gap-1 cursor-pointer"
-                  >
-                    Get Free Key &rarr;
-                  </a>
-                </div>
-                <input
-                  type="text"
-                  value={cartoKeyInput}
-                  onChange={(e) => setCartoKeyInput(e.target.value)}
-                  placeholder="Paste CARTO basemap key (carto.com/basemaps/apikey)"
-                  className={`w-full px-3.5 py-2 rounded-xl border text-xs font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
-                    isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'
-                  }`}
-                />
-                <p className="text-[10px] text-slate-400 mt-1">
-                  Removes CARTO watermarks from Positron, Tactical Dark, and Voyager tiles.
-                </p>
-              </div>
-
-              <div>
-                <label className="block font-bold text-[11px] mb-1">
-                  Mapbox Access Token (Optional)
-                </label>
-                <input
-                  type="password"
-                  value={mapboxTokenInput}
-                  onChange={(e) => setMapboxTokenInput(e.target.value)}
-                  placeholder="pk.eyJ1... (leave empty to keep current)"
-                  className={`w-full px-3.5 py-2 rounded-xl border text-xs font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
-                    isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'
-                  }`}
-                />
-              </div>
-
-              <div>
-                <label className="block font-bold text-[11px] mb-1">
-                  IMD Weather API Key (Optional)
-                </label>
-                <input
-                  type="password"
-                  value={imdKeyInput}
-                  onChange={(e) => setImdKeyInput(e.target.value)}
-                  placeholder="IMD key... (leave empty to keep current)"
-                  className={`w-full px-3.5 py-2 rounded-xl border text-xs font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
-                    isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'
-                  }`}
-                />
-              </div>
-
-              <div className="pt-2 flex justify-end gap-2">
-                <button
-                  type="button"
-                  onClick={() => setShowAdminModal(false)}
-                  className="px-4 py-2 rounded-xl text-slate-400 hover:text-white text-xs font-semibold"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={updating}
-                  className="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-emerald-600/20 disabled:opacity-50"
-                >
-                  {updating ? 'Securing...' : 'Commit to Backend Vault'}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

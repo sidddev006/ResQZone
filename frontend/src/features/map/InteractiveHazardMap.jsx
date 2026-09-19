@@ -83,7 +83,7 @@ export default function InteractiveHazardMap({
   // UNITED24 View Mode: 'map' (GIS Map View) or 'grid' (Ledger Grid View)
   const [viewMode, setViewMode] = useState('map');
 
-  const [cartoKey, setCartoKey] = useState(() => import.meta.env.VITE_CARTO_API_KEY || 'cb1_3qdu_1_b6e83ebd02b8fc33637fe5ff');
+  const [cartoKey, setCartoKey] = useState(() => import.meta.env.VITE_CARTO_API_KEY || '');
 
   useEffect(() => {
     api.getSystemKeysStatus().then((status) => {
@@ -457,8 +457,8 @@ export default function InteractiveHazardMap({
               {/* Basemap Tile Layer */}
               <TileLayer
                 key={currentBasemap}
-                url={(activeBaseMaps[currentBasemap] || BASEMAPS.positron || BASEMAPS.tactical_dark).url}
-                attribution={(activeBaseMaps[currentBasemap] || BASEMAPS.positron || BASEMAPS.tactical_dark).attribution}
+                url={(activeBaseMaps[currentBasemap] || activeBaseMaps.positron || activeBaseMaps.tactical_dark).url}
+                attribution={(activeBaseMaps[currentBasemap] || activeBaseMaps.positron || activeBaseMaps.tactical_dark).attribution}
                 maxZoom={18}
               />
 

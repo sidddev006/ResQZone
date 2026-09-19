@@ -22,8 +22,13 @@ build/
 .npm
 npm-debug.log*
 
-# Environment & IDE
+# Environment & Secrets
 .env
+.env.*
+.env.local
+*.env
+!.env.example
+secrets/
 .vscode/
 .idea/
 
