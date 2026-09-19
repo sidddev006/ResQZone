@@ -18,3 +18,8 @@ services:
         value: .
       - key: DATA_MODE
         value: DEMO
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: MAPBOX_TOKEN
+        sync: false
+
