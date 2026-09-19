@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Sparkles, Bell, Clock, Activity, MapPin, ChevronDown, 
-  Sun, Moon, Shield, Radio, Layers, Menu
+  Sun, Moon, Shield, Radio, Layers, Menu, ShieldCheck
 } from 'lucide-react';
 
 export default function Navbar({
@@ -193,6 +193,20 @@ export default function Navbar({
           <kbd className="hidden lg:inline-block px-1.5 py-0.5 rounded bg-white/20 text-[10px] font-semibold text-white">
             ⌘K
           </kbd>
+        </button>
+
+        {/* Backend API Key Vault Quick Access */}
+        <button
+          onClick={() => onSelectTab('system')}
+          className={`flex items-center space-x-1.5 p-2 sm:px-3 sm:py-1.5 rounded-xl border transition-all ${
+            isDark 
+              ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20' 
+              : 'bg-emerald-50 border-emerald-200 text-emerald-700 hover:bg-emerald-100 shadow-sm'
+          }`}
+          title="System Health & Backend API Key Vault"
+        >
+          <ShieldCheck className="w-4 h-4 text-emerald-500" />
+          <span className="hidden lg:inline text-xs font-bold">API Vault</span>
         </button>
 
         {/* Alerts Bell */}

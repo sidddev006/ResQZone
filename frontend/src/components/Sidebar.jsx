@@ -45,7 +45,7 @@ export default function Sidebar({
       title: 'Governance & Audits',
       items: [
         { id: 'reports', label: 'NDRF SITREP Reports', icon: FileText },
-        { id: 'system', label: 'Sensor Mesh & Health', icon: Activity },
+        { id: 'system', label: 'System Health & Security Vault', icon: ShieldCheck, badge: 'Key Vault', badgeColor: isDark ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30' : 'bg-emerald-50 text-emerald-700 border-emerald-200' },
       ]
     }
   ];
