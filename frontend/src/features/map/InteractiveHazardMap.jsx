@@ -83,7 +83,7 @@ export default function InteractiveHazardMap({
   // UNITED24 View Mode: 'map' (GIS Map View) or 'grid' (Ledger Grid View)
   const [viewMode, setViewMode] = useState('map');
 
-  const [cartoKey, setCartoKey] = useState(() => import.meta.env.VITE_CARTO_API_KEY || '');
+  const [cartoKey, setCartoKey] = useState(() => import.meta.env.VITE_CARTO_API_KEY || 'cb1_3qdu_1_b6e83ebd02b8fc33637fe5ff');
 
   useEffect(() => {
     api.getSystemKeysStatus().then((status) => {

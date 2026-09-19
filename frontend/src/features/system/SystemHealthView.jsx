@@ -13,9 +13,9 @@ export default function SystemHealthView({ selectedRegion = 'ALL', theme = 'ligh
 
   // Admin Key Update Modal State
   const [showAdminModal, setShowAdminModal] = useState(false);
-  const [adminSecret, setAdminSecret] = useState('');
+  const [adminSecret, setAdminSecret] = useState('resqzone-admin-sec-2026');
   const [geminiKeyInput, setGeminiKeyInput] = useState('');
-  const [cartoKeyInput, setCartoKeyInput] = useState('');
+  const [cartoKeyInput, setCartoKeyInput] = useState('cb1_3qdu_1_b6e83ebd02b8fc33637fe5ff');
   const [mapboxTokenInput, setMapboxTokenInput] = useState('');
   const [imdKeyInput, setImdKeyInput] = useState('');
   const [updating, setUpdating] = useState(false);
@@ -69,14 +69,16 @@ export default function SystemHealthView({ selectedRegion = 'ALL', theme = 'ligh
       setTimeout(() => {
         setShowAdminModal(false);
         setFeedback(null);
-        setAdminSecret('');
+        setAdminSecret('resqzone-admin-sec-2026');
         setGeminiKeyInput('');
-        setCartoKeyInput('');
         setMapboxTokenInput('');
         setImdKeyInput('');
       }, 1500);
     } catch (err) {
-      setFeedback({ type: 'error', message: err.message || 'Failed to update keys. Verify Admin Secret.' });
+      const errMsg = err.message?.includes('404')
+        ? 'Backend endpoint returned 404. Render may still be deploying the latest update. Please wait 1-2 minutes and retry.'
+        : (err.message || 'Failed to update keys. Verify Admin Secret.');
+      setFeedback({ type: 'error', message: errMsg });
     } finally {
       setUpdating(false);
     }
@@ -332,19 +334,29 @@ export default function SystemHealthView({ selectedRegion = 'ALL', theme = 'ligh
 
             <form onSubmit={handleUpdateKeys} className="space-y-3.5 text-xs">
               <div>
-                <label className="block font-bold text-[11px] mb-1">
-                  Backend Admin Secret <span className="text-rose-500">*</span>
-                </label>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-bold text-[11px]">Backend Admin Secret <span className="text-rose-500">*</span></span>
+                  <button
+                    type="button"
+                    onClick={() => setAdminSecret('resqzone-admin-sec-2026')}
+                    className="text-[10px] text-emerald-500 hover:text-emerald-400 hover:underline font-semibold"
+                  >
+                    Reset to Default Secret
+                  </button>
+                </div>
                 <input
                   type="password"
                   required
                   value={adminSecret}
                   onChange={(e) => setAdminSecret(e.target.value)}
-                  placeholder="Enter ADMIN_SECRET to authorize changes"
-                  className={`w-full px-3.5 py-2 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
+                  placeholder="Enter ADMIN_SECRET (default: resqzone-admin-sec-2026)"
+                  className={`w-full px-3.5 py-2 rounded-xl border text-xs font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
                     isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'
                   }`}
                 />
+                <p className="text-[10px] text-slate-400 mt-1">
+                  Default server secret: <code className="text-emerald-500 dark:text-emerald-400 font-mono">resqzone-admin-sec-2026</code>
+                </p>
               </div>
 
               <div>
@@ -363,14 +375,20 @@ export default function SystemHealthView({ selectedRegion = 'ALL', theme = 'ligh
               </div>
 
               <div>
-                <label className="block font-bold text-[11px] mb-1 flex items-center justify-between">
-                  <span>CARTO Basemaps API Key (Optional)</span>
-                  <a href="https://carto.com/basemaps/apikey/" target="_blank" rel="noopener noreferrer" className="text-[10px] text-sky-500 hover:underline">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-bold text-[11px]">CARTO Basemaps API Key (Optional)</span>
+                  <a
+                    href="https://carto.com/basemaps/apikey/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="text-[10px] text-sky-500 hover:text-sky-400 hover:underline font-semibold inline-flex items-center gap-1 cursor-pointer"
+                  >
                     Get Free Key &rarr;
                   </a>
-                </label>
+                </div>
                 <input
-                  type="password"
+                  type="text"
                   value={cartoKeyInput}
                   onChange={(e) => setCartoKeyInput(e.target.value)}
                   placeholder="Paste CARTO basemap key (carto.com/basemaps/apikey)"
@@ -378,6 +396,9 @@ export default function SystemHealthView({ selectedRegion = 'ALL', theme = 'ligh
                     isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'
                   }`}
                 />
+                <p className="text-[10px] text-slate-400 mt-1">
+                  Removes CARTO watermarks from Positron, Tactical Dark, and Voyager tiles.
+                </p>
               </div>
 
               <div>
