@@ -697,6 +697,7 @@ def get_system_keys_status():
         or os.environ.get("GEMINI_API_KEY", "").strip()
         or os.environ.get("GOOGLE_API_KEY", "").strip()
     )
+    carto_key = settings.CARTO_API_KEY.strip() or os.environ.get("CARTO_API_KEY", "").strip()
     mapbox_tok = settings.MAPBOX_TOKEN.strip() or os.environ.get("MAPBOX_TOKEN", "").strip()
     imd_key = settings.IMD_API_KEY.strip() or os.environ.get("IMD_API_KEY", "").strip()
     bhuvan_key = settings.BHUVAN_API_KEY.strip() or os.environ.get("BHUVAN_API_KEY", "").strip()
@@ -706,6 +707,12 @@ def get_system_keys_status():
             "configured": bool(gemini_key),
             "preview": _mask_key(gemini_key) if gemini_key else "Not Configured (Semantic RAG Active)",
             "provider": "Google Gemini 1.5 Pro / Flash"
+        },
+        "carto": {
+            "configured": bool(carto_key),
+            "preview": _mask_key(carto_key) if carto_key else "Not Set (Watermark Protection Active)",
+            "provider": "CARTO Basemaps API (carto.com/basemaps/apikey)",
+            "public_key": carto_key or None
         },
         "mapbox": {
             "configured": bool(mapbox_tok),
@@ -744,6 +751,12 @@ def update_system_keys(req: APIKeyUpdateRequest, db: Session = Depends(get_db)):
         settings.GEMINI_API_KEY = val
         os.environ["GEMINI_API_KEY"] = val
         updated_fields.append("GEMINI_API_KEY")
+
+    if req.carto_api_key is not None:
+        val = req.carto_api_key.strip()
+        settings.CARTO_API_KEY = val
+        os.environ["CARTO_API_KEY"] = val
+        updated_fields.append("CARTO_API_KEY")
 
     if req.mapbox_token is not None:
         val = req.mapbox_token.strip()

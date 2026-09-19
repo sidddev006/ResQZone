@@ -9,35 +9,6 @@ import {
 } from 'lucide-react';
 import { api } from '../../api/client';
 
-// Basemap Tile Providers
-const BASEMAPS = {
-  positron: {
-    name: 'Carto Light (Apple)',
-    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    attribution: '&copy; <a href="https://carto.com/">CARTO</a>'
-  },
-  tactical_dark: {
-    name: 'Tactical Dark',
-    url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-    attribution: '&copy; <a href="https://carto.com/">CARTO</a>'
-  },
-  satellite: {
-    name: 'Satellite (Esri)',
-    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-    attribution: 'Tiles &copy; Esri &mdash; Earthstar Geographics'
-  },
-  topo: {
-    name: 'Topographic Terrain',
-    url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-    attribution: 'Map data &copy; OpenTopoMap (CC-BY-SA)'
-  },
-  voyager: {
-    name: 'Voyager Natural',
-    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-    attribution: '&copy; CARTO'
-  }
-};
-
 // Dynamic Tactical Map Controller supporting auto-resize, cursor HUD, and programmatic flyTo by Region or Target
 function TacticalMapController({ selectedTarget, regionBounds, regionCenter, regionZoom, fitSignal, onCursorMove }) {
   const map = useMap();
@@ -112,7 +83,51 @@ export default function InteractiveHazardMap({
   // UNITED24 View Mode: 'map' (GIS Map View) or 'grid' (Ledger Grid View)
   const [viewMode, setViewMode] = useState('map');
 
-  const activeBaseMaps = BASEMAPS;
+  const [cartoKey, setCartoKey] = useState(() => import.meta.env.VITE_CARTO_API_KEY || '');
+
+  useEffect(() => {
+    api.getSystemKeysStatus().then((status) => {
+      if (status?.carto?.public_key) {
+        setCartoKey(status.carto.public_key);
+      }
+    }).catch(() => {});
+  }, []);
+
+  const activeBaseMaps = useMemo(() => {
+    const keyParam = cartoKey ? `?api_key=${cartoKey}` : '';
+    return {
+      positron: {
+        name: 'Carto Light (Apple)',
+        url: `https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png${keyParam}`,
+        attribution: '&copy; <a href="https://carto.com/">CARTO</a>'
+      },
+      tactical_dark: {
+        name: 'Tactical Dark',
+        url: `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png${keyParam}`,
+        attribution: '&copy; <a href="https://carto.com/">CARTO</a>'
+      },
+      voyager: {
+        name: 'Voyager Natural',
+        url: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png${keyParam}`,
+        attribution: '&copy; <a href="https://carto.com/">CARTO</a>'
+      },
+      satellite: {
+        name: 'Satellite (Esri HD)',
+        url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        attribution: 'Tiles &copy; Esri &mdash; Earthstar Geographics'
+      },
+      osm: {
+        name: 'OpenStreetMap (No Key)',
+        url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        attribution: '&copy; OpenStreetMap contributors'
+      },
+      topo: {
+        name: 'Topographic Terrain',
+        url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+        attribution: 'Map data &copy; OpenTopoMap (CC-BY-SA)'
+      }
+    };
+  }, [cartoKey]);
 
   // Basemap & Layers (defaults to light clean positron in light mode, dark in dark mode)
   const [currentBasemap, setCurrentBasemap] = useState(() => {

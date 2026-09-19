@@ -127,6 +127,7 @@ class AlertCreateRequest(BaseModel):
 class APIKeyUpdateRequest(BaseModel):
     admin_secret: str
     gemini_api_key: Optional[str] = None
+    carto_api_key: Optional[str] = None
     mapbox_token: Optional[str] = None
     imd_api_key: Optional[str] = None
     bhuvan_api_key: Optional[str] = None
@@ -136,10 +137,12 @@ class KeyStatusItem(BaseModel):
     configured: bool
     preview: Optional[str] = None
     provider: str
+    public_key: Optional[str] = None
 
 
 class SystemKeysStatusResponse(BaseModel):
     gemini: KeyStatusItem
+    carto: KeyStatusItem
     mapbox: KeyStatusItem
     imd: KeyStatusItem
     bhuvan: KeyStatusItem

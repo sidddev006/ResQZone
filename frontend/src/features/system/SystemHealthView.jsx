@@ -15,6 +15,7 @@ export default function SystemHealthView({ selectedRegion = 'ALL', theme = 'ligh
   const [showAdminModal, setShowAdminModal] = useState(false);
   const [adminSecret, setAdminSecret] = useState('');
   const [geminiKeyInput, setGeminiKeyInput] = useState('');
+  const [cartoKeyInput, setCartoKeyInput] = useState('');
   const [mapboxTokenInput, setMapboxTokenInput] = useState('');
   const [imdKeyInput, setImdKeyInput] = useState('');
   const [updating, setUpdating] = useState(false);
@@ -56,6 +57,7 @@ export default function SystemHealthView({ selectedRegion = 'ALL', theme = 'ligh
       setFeedback(null);
       const payload = { admin_secret: adminSecret.trim() };
       if (geminiKeyInput.trim()) payload.gemini_api_key = geminiKeyInput.trim();
+      if (cartoKeyInput.trim()) payload.carto_api_key = cartoKeyInput.trim();
       if (mapboxTokenInput.trim()) payload.mapbox_token = mapboxTokenInput.trim();
       if (imdKeyInput.trim()) payload.imd_api_key = imdKeyInput.trim();
 
@@ -69,6 +71,7 @@ export default function SystemHealthView({ selectedRegion = 'ALL', theme = 'ligh
         setFeedback(null);
         setAdminSecret('');
         setGeminiKeyInput('');
+        setCartoKeyInput('');
         setMapboxTokenInput('');
         setImdKeyInput('');
       }, 1500);
@@ -187,13 +190,19 @@ export default function SystemHealthView({ selectedRegion = 'ALL', theme = 'ligh
         </div>
 
         {/* Key Status Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           {[
             {
               id: 'gemini',
               title: 'Google Gemini 1.5 LLM',
               desc: 'Disaster reasoning copilot engine',
               status: keysStatus?.gemini
+            },
+            {
+              id: 'carto',
+              title: 'CARTO Basemaps API',
+              desc: 'HD Vector & Raster GIS tiles',
+              status: keysStatus?.carto
             },
             {
               id: 'mapbox',
@@ -347,6 +356,24 @@ export default function SystemHealthView({ selectedRegion = 'ALL', theme = 'ligh
                   value={geminiKeyInput}
                   onChange={(e) => setGeminiKeyInput(e.target.value)}
                   placeholder="AIzaSy... (leave empty to keep current)"
+                  className={`w-full px-3.5 py-2 rounded-xl border text-xs font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
+                    isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'
+                  }`}
+                />
+              </div>
+
+              <div>
+                <label className="block font-bold text-[11px] mb-1 flex items-center justify-between">
+                  <span>CARTO Basemaps API Key (Optional)</span>
+                  <a href="https://carto.com/basemaps/apikey/" target="_blank" rel="noopener noreferrer" className="text-[10px] text-sky-500 hover:underline">
+                    Get Free Key &rarr;
+                  </a>
+                </label>
+                <input
+                  type="password"
+                  value={cartoKeyInput}
+                  onChange={(e) => setCartoKeyInput(e.target.value)}
+                  placeholder="Paste CARTO basemap key (carto.com/basemaps/apikey)"
                   className={`w-full px-3.5 py-2 rounded-xl border text-xs font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
                     isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-900'
                   }`}

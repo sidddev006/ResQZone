@@ -20,6 +20,8 @@ services:
         value: DEMO
       - key: GEMINI_API_KEY
         sync: false
+      - key: CARTO_API_KEY
+        sync: false
       - key: MAPBOX_TOKEN
         sync: false
 
