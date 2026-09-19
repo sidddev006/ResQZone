@@ -68,7 +68,10 @@ class Settings(BaseSettings):
     OPTIMIZER_WEIGHT_CAPACITY_PRESSURE: float = 0.15
     OPTIMIZER_WEIGHT_VULNERABILITY_URGENCY: float = 0.10
     
-    # External API Keys & Endpoints (with graceful fallback)
+    # External API Keys & Endpoints (Stored securely on backend)
+    ADMIN_SECRET: str = "resqzone-admin-sec-2026"
+    GEMINI_API_KEY: str = ""
+    MAPBOX_TOKEN: str = ""
     IMD_API_KEY: str = ""
     BHUVAN_API_KEY: str = ""
     COPERNICUS_CLIENT_ID: str = ""

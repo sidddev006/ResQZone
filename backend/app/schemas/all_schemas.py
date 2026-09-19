@@ -121,3 +121,26 @@ class AlertCreateRequest(BaseModel):
     affected_population: int
     message: str
     recommended_action: str
+
+
+# System Backend API Key Vault Schemas
+class APIKeyUpdateRequest(BaseModel):
+    admin_secret: str
+    gemini_api_key: Optional[str] = None
+    mapbox_token: Optional[str] = None
+    imd_api_key: Optional[str] = None
+    bhuvan_api_key: Optional[str] = None
+
+
+class KeyStatusItem(BaseModel):
+    configured: bool
+    preview: Optional[str] = None
+    provider: str
+
+
+class SystemKeysStatusResponse(BaseModel):
+    gemini: KeyStatusItem
+    mapbox: KeyStatusItem
+    imd: KeyStatusItem
+    bhuvan: KeyStatusItem
+

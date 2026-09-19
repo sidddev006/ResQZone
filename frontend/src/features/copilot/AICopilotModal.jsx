@@ -45,9 +45,6 @@ export default function AICopilotModal({
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [showKeyModal, setShowKeyModal] = useState(false);
-  const [apiKeyInput, setApiKeyInput] = useState(() => localStorage.getItem('resqzone_gemini_key') || '');
-  const [keySaved, setKeySaved] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -56,20 +53,6 @@ export default function AICopilotModal({
   }, [messages, isOpen]);
 
   if (!isOpen) return null;
-
-  const handleSaveKey = (e) => {
-    e.preventDefault();
-    if (apiKeyInput.trim()) {
-      localStorage.setItem('resqzone_gemini_key', apiKeyInput.trim());
-    } else {
-      localStorage.removeItem('resqzone_gemini_key');
-    }
-    setKeySaved(true);
-    setTimeout(() => {
-      setKeySaved(false);
-      setShowKeyModal(false);
-    }, 1200);
-  };
 
   const handleSend = async (queryText) => {
     const textToSend = (queryText || input).trim();
@@ -81,8 +64,7 @@ export default function AICopilotModal({
     setLoading(true);
 
     try {
-      const storedKey = localStorage.getItem('resqzone_gemini_key') || null;
-      const res = await api.askCopilot(textToSend, storedKey);
+      const res = await api.askCopilot(textToSend);
       setMessages([
         ...newMsgList,
         {
@@ -138,20 +120,14 @@ export default function AICopilotModal({
             </div>
           </div>
 
-          <div className="flex items-center space-x-1.5">
-            {/* Optional Gemini Key Button */}
-            <button
-              onClick={() => setShowKeyModal(!showKeyModal)}
-              className={`p-2 rounded-xl text-xs font-semibold flex items-center space-x-1 border transition-all ${
-                apiKeyInput 
-                  ? (isDark ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : 'bg-emerald-50 text-emerald-700 border-emerald-200')
-                  : (isDark ? 'text-slate-400 hover:text-white border-slate-800 hover:bg-slate-800' : 'text-slate-500 hover:text-slate-800 border-slate-200 hover:bg-slate-100')
-              }`}
-              title="Configure Optional Google Gemini API Key"
-            >
-              <Key className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline text-[11px]">{apiKeyInput ? 'LLM Live' : 'Add Key'}</span>
-            </button>
+          <div className="flex items-center space-x-2">
+            {/* Secure Server Badge */}
+            <span className={`px-2.5 py-1 rounded-xl text-[11px] font-semibold flex items-center gap-1.5 border ${
+              isDark ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+            }`}>
+              <Shield className="w-3.5 h-3.5 text-emerald-500" />
+              <span className="hidden sm:inline">Secure Server Vault</span>
+            </span>
 
             {/* Close Button */}
             <button
@@ -162,38 +138,6 @@ export default function AICopilotModal({
             </button>
           </div>
         </div>
-
-        {/* Optional API Key Input Drawer */}
-        {showKeyModal && (
-          <div className={`p-4 border-b text-xs animate-fade-in ${
-            isDark ? 'bg-slate-900/95 border-slate-800 text-slate-200' : 'bg-slate-50 border-slate-200 text-slate-800'
-          }`}>
-            <div className="flex items-center justify-between mb-2">
-              <span className="font-bold flex items-center gap-1.5 text-xs">
-                <Key className="w-3.5 h-3.5 text-sky-500" />
-                Optional Google Gemini API Key
-              </span>
-              <span className="text-[10px] text-slate-400">Zero keys required for built-in GIS graph</span>
-            </div>
-            <form onSubmit={handleSaveKey} className="flex gap-2">
-              <input
-                type="password"
-                placeholder="AIzaSy... (leave empty to use local graph engine)"
-                value={apiKeyInput}
-                onChange={(e) => setApiKeyInput(e.target.value)}
-                className={`flex-1 px-3 py-1.5 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-sky-500 ${
-                  isDark ? 'bg-slate-950 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'
-                }`}
-              />
-              <button
-                type="submit"
-                className="px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs flex items-center gap-1 transition-all"
-              >
-                {keySaved ? <Check className="w-3.5 h-3.5" /> : 'Save'}
-              </button>
-            </form>
-          </div>
-        )}
 
         {/* Message Thread */}
         <div className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-4 text-xs">

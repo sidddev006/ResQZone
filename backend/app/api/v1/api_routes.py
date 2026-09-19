@@ -5,6 +5,7 @@ Carrying Capacity, Relocation Optimization, ResQ Twin Simulation, Alerts, Copilo
 """
 from typing import List, Dict, Any, Optional
 import json
+import os
 from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
@@ -22,7 +23,8 @@ from backend.app.models.entities import (
 from backend.app.schemas.all_schemas import (
     LoginRequest, TokenResponse, RelocationOptimizeRequest,
     ResQTwinSimulateRequest, RouteQueryRequest, CopilotQueryRequest,
-    CopilotQueryResponse, AlertCreateRequest
+    CopilotQueryResponse, AlertCreateRequest, APIKeyUpdateRequest,
+    SystemKeysStatusResponse
 )
 from backend.app.services.hazard.hazard_engine import hazard_engine
 from backend.app.services.vulnerability.vulnerability_engine import vulnerability_engine
@@ -673,3 +675,108 @@ def get_audit_logs(limit: int = 50, db: Session = Depends(get_db)):
         }
         for l in logs
     ]
+
+
+# ==========================================
+# 14. SYSTEM SECURITY & API KEY VAULT
+# ==========================================
+def _mask_key(key: Optional[str]) -> Optional[str]:
+    if not key or len(key.strip()) < 8:
+        return None
+    k = key.strip()
+    return f"{k[:4]}...{k[-4:]}"
+
+
+@api_router.get("/system/api-keys/status", response_model=SystemKeysStatusResponse, tags=["System Security"])
+def get_system_keys_status():
+    """
+    Returns the active status of external API keys without ever exposing the secret values.
+    """
+    gemini_key = (
+        settings.GEMINI_API_KEY.strip()
+        or os.environ.get("GEMINI_API_KEY", "").strip()
+        or os.environ.get("GOOGLE_API_KEY", "").strip()
+    )
+    mapbox_tok = settings.MAPBOX_TOKEN.strip() or os.environ.get("MAPBOX_TOKEN", "").strip()
+    imd_key = settings.IMD_API_KEY.strip() or os.environ.get("IMD_API_KEY", "").strip()
+    bhuvan_key = settings.BHUVAN_API_KEY.strip() or os.environ.get("BHUVAN_API_KEY", "").strip()
+
+    return {
+        "gemini": {
+            "configured": bool(gemini_key),
+            "preview": _mask_key(gemini_key) if gemini_key else "Not Configured (Semantic RAG Active)",
+            "provider": "Google Gemini 1.5 Pro / Flash"
+        },
+        "mapbox": {
+            "configured": bool(mapbox_tok),
+            "preview": _mask_key(mapbox_tok) if mapbox_tok else "Not Set (Esri / Carto HD Active)",
+            "provider": "Mapbox GIS Basemaps"
+        },
+        "imd": {
+            "configured": bool(imd_key),
+            "preview": _mask_key(imd_key) if imd_key else "Not Set (IMD Radar Simulation Active)",
+            "provider": "India Meteorological Dept"
+        },
+        "bhuvan": {
+            "configured": bool(bhuvan_key),
+            "preview": _mask_key(bhuvan_key) if bhuvan_key else "Not Set (ISRO Geo-Portal Simulation Active)",
+            "provider": "ISRO Bhuvan Geo-Portal"
+        }
+    }
+
+
+@api_router.post("/system/api-keys", tags=["System Security"])
+def update_system_keys(req: APIKeyUpdateRequest, db: Session = Depends(get_db)):
+    """
+    Allows authorized administrators to update server-side API keys securely at runtime.
+    Requires the backend ADMIN_SECRET or SECRET_KEY.
+    """
+    expected_secret = settings.ADMIN_SECRET.strip() or settings.SECRET_KEY.strip()
+    if req.admin_secret.strip() != expected_secret:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid Admin Secret. Only authorized backend administrators can update server API keys."
+        )
+
+    updated_fields = []
+    if req.gemini_api_key is not None:
+        val = req.gemini_api_key.strip()
+        settings.GEMINI_API_KEY = val
+        os.environ["GEMINI_API_KEY"] = val
+        updated_fields.append("GEMINI_API_KEY")
+
+    if req.mapbox_token is not None:
+        val = req.mapbox_token.strip()
+        settings.MAPBOX_TOKEN = val
+        os.environ["MAPBOX_TOKEN"] = val
+        updated_fields.append("MAPBOX_TOKEN")
+
+    if req.imd_api_key is not None:
+        val = req.imd_api_key.strip()
+        settings.IMD_API_KEY = val
+        os.environ["IMD_API_KEY"] = val
+        updated_fields.append("IMD_API_KEY")
+
+    if req.bhuvan_api_key is not None:
+        val = req.bhuvan_api_key.strip()
+        settings.BHUVAN_API_KEY = val
+        os.environ["BHUVAN_API_KEY"] = val
+        updated_fields.append("BHUVAN_API_KEY")
+
+    # Tamper-resistant Audit Log record
+    log = AuditLog(
+        action="UPDATE_BACKEND_API_KEYS",
+        resource_type="system_security",
+        resource_id="api_keys",
+        details=json.dumps({"updated_keys": updated_fields}),
+        ip_address="internal"
+    )
+    db.add(log)
+    db.commit()
+
+    return {
+        "status": "success",
+        "message": f"Successfully updated {len(updated_fields)} server key(s) in backend memory.",
+        "updated_keys": updated_fields
+    }
+

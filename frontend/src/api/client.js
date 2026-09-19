@@ -108,11 +108,11 @@ export const api = {
       method: 'PATCH',
     }),
 
-  // Copilot
-  askCopilot: (query, apiKey = null) =>
+  // Copilot (Secure backend resolution, no client keys)
+  askCopilot: (query) =>
     fetchJSON('/copilot/query', {
       method: 'POST',
-      body: JSON.stringify({ query, api_key: apiKey }),
+      body: JSON.stringify({ query }),
     }),
 
   // Reports
@@ -122,4 +122,12 @@ export const api = {
   // Data Sources & Audits
   getDataSources: () => fetchJSON('/data-sources'),
   getAuditLogs: () => fetchJSON('/audit-logs'),
+
+  // Backend Security & API Key Vault
+  getSystemKeysStatus: () => fetchJSON('/system/api-keys/status'),
+  updateSystemKeys: (data) =>
+    fetchJSON('/system/api-keys', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
 };

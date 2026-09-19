@@ -17,6 +17,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func
 
 from backend.app.models.entities import Habitation, Shelter, RoadSegment, Alert, HazardZone
+from backend.app.core.config import settings
 
 
 class AICopilotEngine:
@@ -29,8 +30,13 @@ class AICopilotEngine:
         cleaned_query = query.strip()
         q_lower = cleaned_query.lower()
 
-        # 1. Check if Gemini / Google API Key is available for real-time LLM reasoning
-        gemini_key = api_key or os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+        # 1. Check if Gemini / Google API Key is available on backend for real-time LLM reasoning
+        gemini_key = (
+            settings.GEMINI_API_KEY.strip()
+            or os.environ.get("GEMINI_API_KEY", "").strip()
+            or os.environ.get("GOOGLE_API_KEY", "").strip()
+            or (api_key.strip() if api_key else "")
+        )
         if gemini_key:
             try:
                 llm_response = cls._query_gemini_llm(cleaned_query, db, gemini_key)

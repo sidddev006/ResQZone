@@ -112,35 +112,7 @@ export default function InteractiveHazardMap({
   // UNITED24 View Mode: 'map' (GIS Map View) or 'grid' (Ledger Grid View)
   const [viewMode, setViewMode] = useState('map');
 
-  // Mapbox Token & Dynamic API Key modal state
-  const [mapboxToken, setMapboxToken] = useState(() => {
-    return localStorage.getItem('resqzone_mapbox_token') || '';
-  });
-  const [tempToken, setTempToken] = useState(mapboxToken);
-  const [showApiKeyModal, setShowApiKeyModal] = useState(false);
-
-  // Dynamic Basemaps incorporating Mapbox if token provided
-  const activeBaseMaps = useMemo(() => {
-    const maps = { ...BASEMAPS };
-    if (mapboxToken) {
-      maps.mapbox_satellite = {
-        name: 'Mapbox Satellite HD',
-        url: `https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=${mapboxToken}`,
-        attribution: '&copy; <a href="https://www.mapbox.com/">Mapbox</a>'
-      };
-      maps.mapbox_streets = {
-        name: 'Mapbox Streets HD',
-        url: `https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token=${mapboxToken}`,
-        attribution: '&copy; <a href="https://www.mapbox.com/">Mapbox</a>'
-      };
-      maps.mapbox_dark = {
-        name: 'Mapbox Dark HD',
-        url: `https://api.mapbox.com/styles/v1/mapbox/navigation-night-v1/tiles/{z}/{x}/{y}?access_token=${mapboxToken}`,
-        attribution: '&copy; <a href="https://www.mapbox.com/">Mapbox</a>'
-      };
-    }
-    return maps;
-  }, [mapboxToken]);
+  const activeBaseMaps = BASEMAPS;
 
   // Basemap & Layers (defaults to light clean positron in light mode, dark in dark mode)
   const [currentBasemap, setCurrentBasemap] = useState(() => {
@@ -351,20 +323,6 @@ export default function InteractiveHazardMap({
                 </button>
               ))}
             </div>
-
-            {/* GIS Map API Key & Layers Modal Button */}
-            <button
-              onClick={() => setShowApiKeyModal(true)}
-              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border font-bold text-xs transition-all ${
-                isDark 
-                  ? 'bg-amber-500/15 border-amber-500/30 text-amber-300 hover:bg-amber-500/25' 
-                  : 'bg-amber-50 border-amber-300 text-amber-800 hover:bg-amber-100 shadow-sm'
-              }`}
-              title="Configure Map API Keys (Mapbox, Google, etc.)"
-            >
-              <Key className="w-3.5 h-3.5 text-amber-500" />
-              <span>Map API Key & Layers</span>
-            </button>
 
             {/* Layer Toggles */}
             <div className={`flex items-center space-x-1 p-0.5 rounded-xl border text-[11px] font-semibold ${
@@ -1072,117 +1030,6 @@ export default function InteractiveHazardMap({
             )}
           </div>
         )}
-
-      {/* GIS MAP API KEY & LAYERS SETTINGS MODAL */}
-      {showApiKeyModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div className={`w-full max-w-2xl rounded-3xl p-6 sm:p-8 border shadow-2xl space-y-6 ${
-            isDark ? 'bg-[#0F172A] border-white/[0.1] text-white' : 'bg-white border-slate-200 text-slate-900'
-          }`}>
-            {/* Modal Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
-              <div className="flex items-center space-x-3">
-                <div className="p-2.5 rounded-2xl bg-amber-500/10 text-amber-500 border border-amber-500/20">
-                  <Key className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold">GIS Map Layers & API Key Settings</h3>
-                  <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                    Configure Mapbox tokens, live GIS tile endpoints, and basemap layers
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={() => setShowApiKeyModal(false)}
-                className="p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Zero-Key Built-in Layers Reassurance */}
-            <div className={`p-4 rounded-2xl border text-xs space-y-2 ${
-              isDark ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-300' : 'bg-emerald-50/80 border-emerald-200 text-emerald-800'
-            }`}>
-              <div className="flex items-center space-x-2 font-bold text-sm">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                <span>Active Built-In Map Providers (Zero API Key Needed)</span>
-              </div>
-              <p className="leading-relaxed">
-                ResQZone is pre-configured with 4 high-performance, open tile networks that work 100% out of the box with zero keys:
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 pt-1 text-[11px] font-medium">
-                <div>• <strong>Carto Light (Apple):</strong> Clean luminous vector map</div>
-                <div>• <strong>Tactical Dark:</strong> High-contrast night mission map</div>
-                <div>• <strong>Esri World Imagery:</strong> Sub-meter aerial photography</div>
-                <div>• <strong>Topographic Terrain:</strong> Contour elevation relief</div>
-              </div>
-            </div>
-
-            {/* Mapbox Token Input Section */}
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-bold">Mapbox Integration (HD Satellite & Navigation)</span>
-                <a
-                  href="https://account.mapbox.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-semibold text-sky-600 dark:text-sky-400 hover:underline flex items-center space-x-1"
-                >
-                  <span>Get Free Mapbox Key</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-
-              <div className={`p-3.5 rounded-xl border text-xs space-y-1.5 ${
-                isDark ? 'bg-slate-900 border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-600'
-              }`}>
-                <div className="font-semibold text-slate-800 dark:text-slate-200">How to get your Mapbox API key:</div>
-                <ol className="list-decimal list-inside space-y-1 text-[11px] leading-relaxed">
-                  <li>Visit <strong className="text-sky-500">account.mapbox.com</strong> and create a free account (includes 50,000 free map loads every month).</li>
-                  <li>On the dashboard under <strong>Access Tokens</strong>, click copy on your <strong>Default public token</strong>.</li>
-                  <li>Paste your token (format: <code className="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono text-[10px]">pk.eyJ1...</code>) below and click Save.</li>
-                </ol>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center gap-2">
-                <input
-                  type="text"
-                  value={tempToken}
-                  onChange={(e) => setTempToken(e.target.value)}
-                  placeholder="Paste Mapbox token: pk.eyJ1..."
-                  className={`w-full flex-1 px-4 py-2.5 rounded-xl border text-xs font-mono focus:outline-none focus:ring-2 focus:ring-sky-500 ${
-                    isDark ? 'bg-slate-900 border-slate-700 text-white' : 'bg-white border-slate-300 text-slate-900'
-                  }`}
-                />
-                <button
-                  onClick={() => {
-                    const cleaned = tempToken.trim();
-                    localStorage.setItem('resqzone_mapbox_token', cleaned);
-                    setMapboxToken(cleaned);
-                    if (cleaned) {
-                      setCurrentBasemap('mapbox_satellite');
-                    }
-                    setShowApiKeyModal(false);
-                  }}
-                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs shadow-md shadow-sky-500/20 transition-all shrink-0"
-                >
-                  Save & Activate
-                </button>
-              </div>
-            </div>
-
-            {/* Additional Providers Reference */}
-            <div className={`pt-3 border-t text-[11px] space-y-1 ${
-              isDark ? 'border-slate-800 text-slate-400' : 'border-slate-200 text-slate-500'
-            }`}>
-              <div><strong>Google Maps:</strong> Key generated via <em>console.cloud.google.com</em> &rarr; Google Maps JavaScript API.</div>
-              <div><strong>ISRO Bhuvan:</strong> India geospatial datasets are served via open WMS at <em>bhuvan.nrsc.gov.in</em>.</div>
-              <div><strong>MapTiler:</strong> Cloud vector tiles available with a free key at <em>cloud.maptiler.com</em>.</div>
-            </div>
-          </div>
-        </div>
-      )}
 
       </div>
     </div>
