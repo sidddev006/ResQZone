@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { 
   X, Sparkles, Send, Bot, User, ArrowRight, Terminal, Cpu, 
   Key, Check, Shield, Info, HelpCircle 
@@ -208,7 +209,53 @@ export default function AICopilotModal({
                     : (isDark ? 'bg-slate-900/90 border border-slate-800 text-slate-200 rounded-tl-none' : 'bg-slate-50 border border-slate-200 text-slate-800 rounded-tl-none')
                 }`}
               >
-                <div className="whitespace-pre-line text-xs sm:text-[13px] leading-relaxed">{m.text}</div>
+                {m.sender === 'user' ? (
+                  <div className="text-xs sm:text-[13px] leading-relaxed whitespace-pre-wrap">{m.text}</div>
+                ) : (
+                  <div className={`max-w-none text-xs sm:text-[13px] leading-relaxed ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
+                    <ReactMarkdown
+                      components={{
+                        p: ({ children }) => <p className="mb-2 last:mb-0 leading-relaxed">{children}</p>,
+                        strong: ({ children }) => (
+                          <strong className={`font-semibold ${isDark ? 'text-white' : 'text-slate-950'}`}>{children}</strong>
+                        ),
+                        ul: ({ children }) => (
+                          <ul className="space-y-1.5 my-2 pl-4 list-disc marker:text-sky-500">{children}</ul>
+                        ),
+                        ol: ({ children }) => (
+                          <ol className="space-y-1.5 my-2 pl-4 list-decimal marker:text-sky-500">{children}</ol>
+                        ),
+                        li: ({ children }) => <li className="leading-relaxed pl-0.5">{children}</li>,
+                        h1: ({ children }) => (
+                          <h1 className={`font-bold text-sm sm:text-base mt-3 mb-1.5 ${isDark ? 'text-white' : 'text-slate-950'}`}>{children}</h1>
+                        ),
+                        h2: ({ children }) => (
+                          <h2 className={`font-bold text-xs sm:text-sm mt-2.5 mb-1 ${isDark ? 'text-white' : 'text-slate-950'}`}>{children}</h2>
+                        ),
+                        h3: ({ children }) => (
+                          <h3 className={`font-semibold text-xs sm:text-[13px] mt-2 mb-1 ${isDark ? 'text-sky-300' : 'text-sky-700'}`}>{children}</h3>
+                        ),
+                        pre: ({ children }) => (
+                          <pre className={`p-2.5 rounded-lg overflow-x-auto text-[11px] font-mono my-2 ${isDark ? 'bg-slate-950 text-slate-200 border border-slate-800' : 'bg-slate-100 text-slate-800 border border-slate-200'}`}>
+                            {children}
+                          </pre>
+                        ),
+                        code: ({ children, ...props }) => (
+                          <code className={`px-1.5 py-0.5 rounded text-[11px] font-mono ${isDark ? 'bg-slate-800 text-sky-300' : 'bg-slate-200/80 text-sky-800'}`} {...props}>
+                            {children}
+                          </code>
+                        ),
+                        blockquote: ({ children }) => (
+                          <blockquote className={`border-l-2 pl-3 py-1 my-2 italic ${isDark ? 'border-sky-500/60 text-slate-300 bg-sky-950/20' : 'border-sky-500 text-slate-600 bg-sky-50/50'}`}>
+                            {children}
+                          </blockquote>
+                        )
+                      }}
+                    >
+                      {m.text}
+                    </ReactMarkdown>
+                  </div>
+                )}
 
                 {/* Structured Table If Provided */}
                 {m.structured && Array.isArray(m.structured) && m.structured.length > 0 && (
